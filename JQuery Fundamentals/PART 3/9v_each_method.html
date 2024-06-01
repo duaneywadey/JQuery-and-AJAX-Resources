@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<body>
+	<ul>
+		<input type="text" id="typeAny">
+		<button id="replaceHello">Replace with hello</button>
+		<li>Item1</li>
+		<li>Item2</li>
+		<li>Item3</li>
+		<li>Item4</li>
+		<li>Item5</li>
+	</ul>
+	<script>
+		$(document).ready(function () {
+
+			$('#replaceHello').click(function (e) {
+				$('li').each(function () {
+					$(this).text($('#typeAny').val());
+				})
+
+			})
+			
+		})
+
+		// $(document).ready(function () { 
+		// 	$("ul[id*=strategyDropDown] li").click(function() { 
+		// 		$('#strategyId').val($(this).attr('value')); 
+		// })}
+			
+	</script>
+</body>
+</html>

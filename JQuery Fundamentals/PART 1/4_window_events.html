@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		.box {
+			width: 70%;
+			height: 250px;
+			border-style: solid 1px #000;
+			background-color: pink;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="box">
+		<h2>Box Title</h2>
+		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi corrupti quidem eveniet odio sapiente architecto necessitatibus laborum doloribus facere! Facere tenetur vero pariatur dicta eius, aliquid nihil similique reprehenderit. Necessitatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et nesciunt ullam vero sunt nemo, minus dolor illo a magnam, nostrum laudantium illum, alias ipsam hic nihil nobis consectetur. Eveniet, nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates facilis, odit ducimus minima obcaecati quasi numquam, sunt mollitia officia dolor esse atque voluptate consequuntur facere dignissimos impedit ipsam. Quis, tenetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti aliquid esse excepturi officiis asperiores. Nostrum ratione id assumenda omnis aspernatur dolorem, quia tempore tempora corporis qui ipsam dolor cum quis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro dolor, maxime illum vero eligendi molestiae quis consectetur facere fugiat perspiciatis voluptates ipsa odit laudantium nostrum aliquam, est deserunt non accusamus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque fugit odio, tempore, unde atque repudiandae optio debitis, iusto, labore excepturi explicabo distinctio at non blanditiis fuga numquam ipsa inventore. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem minus earum, deleniti eum illo assumenda vel corporis expedita quibusdam perferendis magni possimus officiis, est optio, placeat repellat quas necessitatibus laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi corrupti quidem eveniet odio sapiente architecto necessitatibus laborum doloribus facere! Facere tenetur vero pariatur dicta eius, aliquid nihil similique reprehenderit. Necessitatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et nesciunt ullam vero sunt nemo, minus dolor illo a magnam, nostrum laudantium illum, alias ipsam hic nihil nobis consectetur. Eveniet, nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates facilis, odit ducimus minima obcaecati quasi numquam, sunt mollitia officia dolor esse atque voluptate consequuntur facere dignissimos impedit ipsam. Quis, tenetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti aliquid esse excepturi officiis asperiores. Nostrum ratione id assumenda omnis aspernatur dolorem, quia tempore tempora corporis qui ipsam dolor cum quis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro dolor, maxime illum vero eligendi molestiae quis consectetur facere fugiat perspiciatis voluptates ipsa odit laudantium nostrum aliquam, est deserunt non accusamus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque fugit odio, tempore, unde atque repudiandae optio debitis, iusto, labore excepturi explicabo distinctio at non blanditiis fuga numquam ipsa inventore. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem minus earum, deleniti eum illo assumenda vel corporis expedita quibusdam perferendis magni possimus officiis, est optio, placeat repellat quas necessitatibus laborum.</p>
+	</div>
+
+	<script>
+
+		$(document).ready(function(){
+
+			$('.box').scroll(function(){
+				console.log('You are scrolling');
+			})
+
+			//Deprecated 
+			$(window).unload(function(){
+				console.log('You are resizing window');
+			})
+		});
+		
+
+	</script>	
+</body>
+</html>

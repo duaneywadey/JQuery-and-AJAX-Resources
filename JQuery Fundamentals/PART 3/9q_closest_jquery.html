@@ -1,0 +1,37 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+	<style>  
+		.main * {   
+			display: block;  
+			font-size: 20px;  
+			position: relative;  
+			border: 2px solid black;  
+			color: black;   
+			padding: 10px;  
+			margin: 17px;  
+		}  
+	</style>  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+	<script>  
+		function fun(){  
+			$(document).ready(function(){  
+				$("p").closest("ul").css({ "font-size": "30px", "color": "blue", "border": "6px dashed blue"});  
+			});  
+		}  
+	</script>  
+</head>  
+
+<body class = "main"> body  
+	<div> div1  
+		<div id="closestTest"> div2  
+			<ul> ul   
+				<h2> Heading h2  
+					<p> Paragraph element </p>  
+				</h2>  
+			</ul>     
+		</div>  
+	</div>  
+	<button onclick = "fun()"> click me </button>  
+</body>  
+</html>  

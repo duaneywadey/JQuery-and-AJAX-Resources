@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		button {
+			font-size: 2em;
+			margin-top: 10px;
+			height: 100px;
+			width: 300px;
+		}
+
+		#box {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: #f5fffa;
+		}
+
+		#box2 {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: pink;
+			margin-top: 5px;
+		}
+
+		.boxbg {
+			color: blue;
+		}
+
+		.first {
+			color: red;
+		}
+		.second {
+			background: pink;
+		}
+		#newstyle {
+			background-color: lightgray;
+			font-family: 'Verdana';
+		}
+		h1 #newstyle  {
+			background-color: white;
+			font-family: 'Verdana';
+			font-size: 3em;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="box">
+		<h1>Test Box</h1>
+		<p>Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi suscipit nam nesciunt voluptate obcaecati repellat ullam itaque! Enim aperiam voluptates, illum dolorem asperiores! Deleniti expedita praesentium maxime quia qui quisquam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, dolorem, porro nulla qui sapiente consequatur. Maiores non dignissimos dicta molestias, iusto odio blanditiis, sequi, voluptatibus repudiandae numquam provident, eveniet laboriosam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis recusandae non totam eius esse, earum neque. Consectetur, quidem fugiat delectus sint rem minima molestias reiciendis et officia, voluptatum sequi ut?</p>
+	</div>
+
+	<button id='positionBtn'>Position</button>
+	<button id='offsetBtn'>Offset</button>
+
+	<script>
+		$(document).ready(function(){
+			$('#positionBtn').click(function(){
+				var x = $('#box h1').position();
+				console.log("Top: " + x.top + "Left: " + x.left);
+			})
+
+			$('#offsetBtn').click(function(){
+				var x = $('#box h1').offset();
+				console.log("Top: " + x.top + "Left: " + x.left);
+
+			})
+		});
+	</script>	
+</body>
+</html>

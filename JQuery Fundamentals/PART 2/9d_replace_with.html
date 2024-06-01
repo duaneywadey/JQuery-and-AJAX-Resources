@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		button {
+			font-size: 2em;
+			margin-top: 10px;
+			height: 100px;
+			width: 300px;
+		}
+
+		#box {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: #f5fffa;
+		}
+
+		#box2 {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: pink;
+			margin-top: 5px;
+		}
+
+		.boxbg {
+			color: blue;
+		}
+
+		.first {
+			color: red;
+		}
+		.second {
+			background: pink;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="box">
+		<h2>Test Box</h2>
+		<p>First - Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi suscipit nam nesciunt voluptate obcaecati repellat ullam itaque! Enim aperiam voluptates, illum dolorem asperiores! Deleniti expedita praesentium maxime quia qui quisquam?</p>
+		<p>Second - Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi suscipit nam nesciunt voluptate obcaecati repellat ullam itaque! Enim aperiam voluptates, illum dolorem asperiores! Deleniti expedita praesentium maxime quia qui quisquam?</p>
+		<p>Third - Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi suscipit nam nesciunt voluptate obcaecati repellat ullam itaque! Enim aperiam voluptates, illum dolorem asperiores! Deleniti expedita praesentium maxime quia qui quisquam?</p>
+	</div>
+
+
+	<button id='replaceAChildBtn'>Replace a Child</button>
+	<button id='replaceBtn'>Replace all</button>
+
+
+	<script>
+		$(document).ready(function(){
+			$('#replaceAChildBtn').click(function(){
+				$('#box p:nth-child(3)').replaceWith('<h2>Ivan Duaneyy</h2>');
+			})
+			$('#replaceBtn').click(function(){
+				$("<h3>Ivan Duane</h3>").replaceAll('#box p');
+			})
+		});		
+	</script>	
+</body>
+</html>

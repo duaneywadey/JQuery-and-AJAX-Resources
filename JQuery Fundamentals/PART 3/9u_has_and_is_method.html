@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+	<style>
+		body {
+			font-family: "Arial";
+		}
+
+		div {
+			margin-top: 25px;
+		}
+
+		.cardOne {
+			width: 800px;
+			border-style: solid;
+			background-color:#A1BE95;
+		}
+
+		.cardTwo {
+			width: 800px;
+			border-style: solid;
+			background-color:#F98866;
+		}
+
+	</style>
+</head>
+<body>
+	<h2>JQuery has and IsMethod</h2>
+	<div class="cardOne">
+		<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit nam exercitationem enim optio, corrupti nisi, ad, dolorum impedit, itaque possimus sed perspiciatis officia voluptatum maxime molestias qui eaque rerum. Perferendis.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum fuga fugiat debitis non nostrum ad placeat magni eaque natus eligendi perspiciatis aspernatur odit minus, libero maxime aut odio ratione inventore.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum fuga fugiat debitis non nostrum ad placeat magni eaque natus eligendi perspiciatis aspernatur odit minus, libero maxime aut odio ratione inventore.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum fuga fugiat debitis non nostrum ad placeat magni eaque natus eligendi perspiciatis aspernatur odit minus, libero maxime aut odio ratione inventore.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum fuga fugiat debitis non nostrum ad placeat magni eaque natus eligendi perspiciatis aspernatur odit minus, libero maxime aut odio ratione inventore.</p>
+	</div>
+	<div class="cardTwo">
+		<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit nam exercitationem enim optio, corrupti nisi, ad, dolorum impedit, itaque possimus sed perspiciatis officia voluptatum maxime molestias qui eaque rerum. Perferendis.</p>
+		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam nihil magni itaque, nulla mollitia doloribus magnam eveniet modi atque excepturi necessitatibus nobis similique libero ipsum error et, quibusdam rerum rem.</p>
+		<p class="test">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt, ea sint enim. Atque libero quis voluptates sapiente et excepturi voluptatum ex eius similique ipsam, at quod culpa? Neque, reiciendis, reprehenderit?</p>
+	</div>
+	<button id="enableHighlight">Enable highlight</button>
+	<ul>
+		<li>ListElement1</li>
+		<li>ListElement2</li>
+		<li>ListElement3</li>
+		<li>ListElement4</li>
+		<li>ListElement5</li>
+		<li>ListElement5</li>
+		<li>ListElement5</li>
+	</ul>
+	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus, possimus aut reprehenderit fugit esse nesciunt tempore maxime quo quidem. Doloremque nam quam doloribus, illum, vitae id dolore amet tempore ex. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque corrupti eius accusantium, rerum ea error laboriosam accusamus voluptatibus quis. Recusandae minus aliquam dolores earum exercitationem, odio impedit mollitia distinctio nostrum?</p>
+
+	<script>
+		$(document).ready(function () {
+
+			$('#enableHighlight').click(function () {
+				
+				$('p').click(function () {
+					if($(this).parent().is('div')) {
+						$(this).css('background', 'gold');
+					}
+				});	
+				
+			});
+			
+			
+		});
+
+	</script>	
+</body>
+</html>

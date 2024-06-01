@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#box {
+			background-color: #4287f5;
+			border-style: solid 1px #000;
+			height: 500px;
+		}
+	</style>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+</head>
+<body>
+	<div id="box" class="test">
+		<p>Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Illo pariatur temporibus voluptate odio inventore neque doloribus ipsa nihil a accusantium quis, quod aliquam aspernatur recusandae iure est impedit iusto veritatis.</p>
+	</div>
+	<script>
+		$(document).ready(function(){
+			
+			$('#box').click(function(){
+				$('#box').css('background-color', 'green');
+
+				//Prints whole HTML in console
+				var a = $('#box').html();
+				console.log(a);
+
+			});
+
+			$('#box').dblclick(function(){
+				$('#box').css('background-color', 'purple');
+			});
+
+			$('#box').contextmenu(function(){
+				$('#box').css('background-color', 'blue');	
+			});
+
+			$('#box').mouseenter(function(){
+				$('#box').css('background-color', 'tan');			
+			});
+
+			$('#box').mouseleave(function(){
+				$('#box').css('background-color', 'pink');			
+			});
+
+		});
+
+		
+
+	</script>	
+</body>
+</html>

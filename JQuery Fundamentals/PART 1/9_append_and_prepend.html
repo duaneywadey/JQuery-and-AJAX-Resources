@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		button {
+			font-size: 2em;
+			margin-top: 10px;
+			height: 100px;
+			width: 300px;
+		}
+
+		#box {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: #f5fffa;
+		}
+
+		.boxbg {
+			color: blue;
+		}
+
+		.first {
+			color: red;
+		}
+		.second {
+			background: pink;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="box">
+		<h2>Test Box</h2>
+		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi corrupti quidem eveniet odio sapiente architecto necessitatibus laborum doloribus facere! Facere tenetur vero pariatur dicta eius, aliquid nihil similique reprehenderit. Necessitatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur, illum? Quisquam in exercitationem blanditiis beatae odio commodi error, officiis placeat! A ducimus consequatur atque similique molestiae autem nulla laborum!</p>
+		<ol id='randomList'>
+
+		</ol>
+	</div>
+	<button id='appendBtn'>Append</button>
+	<button id='prependBtn'>Prepend</button>
+
+	<script>		
+		$(document).ready(function(){
+			$('#appendBtn').click(function(){
+				$('#randomList').append('<li>Ivan Duane</li>')
+			})
+
+			$('#prependBtn').click(function(){
+				$('#randomList').prepend('<li>From Prepend</li>')
+			})
+		});
+	</script>	
+</body>
+</html>

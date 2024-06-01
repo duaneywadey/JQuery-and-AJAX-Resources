@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		.container {
+			height: 400px;
+			width: 800px;
+			background-color: lavenderblush;
+		}
+
+		#box {
+			background-color: lightblue;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<h1>JQuery pageX and pageY</h1>
+	<div class="container">
+		<div id="result">lorem</div>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Itaque eveniet ullam minima, totam, inventore fuga? Repellendus, dolores impedit officiis nesciunt? Illo ratione maxime unde dolorum molestias quas quia quisquam reiciendis.</p>
+		<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique dicta repellat id culpa sunt eos quidem excepturi perspiciatis quos non deleniti, veniam sint quasi a rem doloribus sapiente quibusdam, ad!</h3>
+		<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum vero, ad amet modi, atque deserunt molestias. Dolor autem, quos officia aut, in sunt. Architecto rem ratione quis porro similique iure. </h2>
+	</div>
+	<h3></h3>
+
+	<script>
+		$(document).ready(function () {
+			$('p').click(function (e) {
+				alert('A paragraph element was clicked!' + e.isPropagationStopped());
+			})
+			$('h3').click(function (e) {
+				alert('An h3 element was clicked!: ');
+			})
+			$('h2').click(function (e) {
+				alert('An h2 element was clicked!');
+			})
+			
+		});
+	</script>
+</body>
+</html>

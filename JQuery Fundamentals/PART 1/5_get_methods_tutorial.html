@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+		.box {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			background-color: pink;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="box">
+		<h2>Box Title</h2>
+		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi corrupti quidem eveniet odio sapiente architecto necessitatibus laborum doloribus facere! Facere tenetur vero pariatur dicta eius, aliquid nihil similique reprehenderit. Necessitatibus. </p>
+	</div>
+
+	<form id="sform">
+		<label for="fname">Name:</label><br>
+		<input type="text" id="sname" name="fname" value="John"><br>
+		<label for="lname">Class:</label><br>
+		<input type="text" id="sclass" name="lname" value="Doe"><br><br>
+		<label for="cars">Choose a car:</label>
+		<select name="cars" id="scountry">
+			<option value="volvo">India</option>
+			<option value="saab">Philippines</option>
+			<option value="mercedes">Germany</option>
+			<option value="audi">Singapore</option>
+		</select>
+		<input type="submit" value="Submit">
+	</form> 
+
+	<script>
+
+		$(document).ready(function(){
+			var a = $('.box p').html();
+			console.log(a)
+
+			var a = $('.box').text();
+			console.log(a)
+
+			var c = $('.box').attr('class');
+			console.log(c)
+
+			$('#sform').submit(function(){
+				var name = $('#sname').val();
+				var sclass = $('#sclass').val();
+				var scountry = $('#scountry').val()
+				alert('Hello there Im ' + name + ' and im from ' + sclass + ' I was born in ' + scountry);
+			})
+		});
+		
+
+	</script>	
+</body>
+</html>

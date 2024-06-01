@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+			text-align: center;
+		}
+
+		.container {
+			margin: auto;
+			height: 400px;
+			width: 800px;
+			background-color: lavenderblush;
+		}
+
+		#box {
+			background-color: lightblue;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<h1>JQuery pageX and pageY</h1>
+	<div class="container">
+		<div id="result"></div>
+		<div id="box"></div>
+	</div>
+	<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi repellendus et consequuntur, dicta dolorem, tenetur nesciunt neque eius. Corporis consectetur accusamus earum deserunt totam eius ullam saepe veritatis eos perspiciatis! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, sed, voluptatem debitis vel ex iste officia repudiandae sit inventore nemo eveniet, quaerat aliquam ab dolorem recusandae consequuntur similique velit voluptates.</h2>
+
+	<script>
+		$(document).ready(function (event) {
+			$('#box').on('click dblclick mouseover mouseout', function (event) {
+				$('h2').html("Event: " + event.type)	
+			})
+		});
+	</script>
+</body>
+</html>

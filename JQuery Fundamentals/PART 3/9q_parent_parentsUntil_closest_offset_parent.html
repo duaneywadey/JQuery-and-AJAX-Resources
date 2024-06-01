@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+			font-size: 2em;
+		}
+
+		button {
+			font-size: 2em;
+			margin-top: 10px;
+			height: 100px;
+			width: 300px;
+		}
+		.outer {
+			background-color: lightblue;
+			width: 800px;
+			height: 800px;
+			border-style: solid;
+			margin: auto;
+
+		}
+		.inner {
+			background-color: pink;
+			width: 600px;
+			height: 600px;
+			border-style: solid;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.child-C {
+			background-color: MediumSeaGreen;
+			width: 400px;
+			height: 400px;
+			border-style: solid;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: flex;
+			justify-content: center;
+		}
+
+		.child-C div{
+			background-color: yellow;
+			width: 100px;
+			height: 300px;
+			border-style: solid;
+			margin: 10px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="outer">
+		A
+		<div class="inner">
+			B
+			<div class="child-C">
+			C
+				<div>D</div>
+				<div>E</div>
+				<div>F</div>
+			</div>
+		</div>
+	</div>
+
+	<button id='animateBtn'>Animate</button>
+	<button id='stopBtn'>Stop</button>
+
+	<script>
+		$(document).ready(function(){
+			// $('.child-C').parent().css('background', 'red') 
+			// $('.child-C').parents().css('background', 'red')
+			// $('.child-C').parentsUntil('.outer').css('background', 'red')
+			// $('.child-C').offsetParent().css('background', 'red') 
+			$('.child-C').closest('div').css('color', 'red')
+		});
+
+	</script>	
+</body>
+</html>

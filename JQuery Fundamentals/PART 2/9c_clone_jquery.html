@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		button {
+			font-size: 2em;
+			margin-top: 10px;
+			height: 100px;
+			width: 300px;
+		}
+
+		#box {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: #f5fffa;
+		}
+
+		#box2 {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			overflow: auto;
+			background-color: pink;
+			margin-top: 5px;
+		}
+
+		.boxbg {
+			color: blue;
+		}
+
+		.first {
+			color: red;
+		}
+		.second {
+			background: pink;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="box">
+		<h2>Test Box</h2>
+		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi corrupti quidem eveniet odio sapiente architecto necessitatibus laborum doloribus facere! Facere tenetur vero pariatur dicta eius, aliquid nihil similique reprehenderit. Necessitatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur, illum? Quisquam in exercitationem blanditiis beatae odio commodi error, officiis placeat! A ducimus consequatur atque similique molestiae autem nulla laborum!</p>
+	</div>
+
+
+	<div id="box2">
+		<p>This is another div!</p>
+	</div>
+
+
+	<button id='cloneBtn'>Clone</button>
+
+
+	<script>
+		$(document).ready(function(){
+			$('#cloneBtn').click(function(){
+				$('#box h2').clone().appendTo('#box2');
+				$('#box p').clone().appendTo('#box2');
+			});
+		});		
+	</script>	
+</body>
+</html>

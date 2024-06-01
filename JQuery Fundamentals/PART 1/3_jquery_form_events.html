@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+</head>
+<body>
+	<form id="sform">
+		<label for="fname">Name:</label><br>
+		<input type="text" id="sname" name="fname" value="John"><br>
+		<label for="lname">Class:</label><br>
+		<input type="text" id="sclass" name="lname" value="Doe"><br><br>
+		<label for="cars">Choose a car:</label>
+		<select name="cars" id="scountry">
+			<option value="volvo">India</option>
+			<option value="saab">Philippines</option>
+			<option value="mercedes">Germany</option>
+			<option value="audi">Singapore</option>
+		</select>
+		<input type="submit" value="Submit">
+	</form> 
+	<script>
+
+		$(document).ready(function(){
+
+			$('#sname, #sclass, #scountry').focus(function(){
+				$(this).css('background-color', 'lime')
+			})
+
+			$('#sname, #sclass, #scountry').blur(function(){
+				$(this).css('background-color', '');
+			})
+
+			$('#sname, #sclass, #scountry').change(function(){
+				$(this).css('height', '200px'); 	
+			})
+
+			$('#sname, #sclass, #scountry').select(function(){
+				$(this).css('background-color', 'yellow'); 	
+			})
+
+			$('#sform').submit(function(){
+				alert("Form submitted");
+			})
+		});
+		
+
+	</script>	
+</body>
+</html>

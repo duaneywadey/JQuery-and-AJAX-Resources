@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+			text-align: center;
+		}
+
+		.container {
+			margin: auto;
+			height: 400px;
+			width: 800px;
+			background-color: lavenderblush;
+		}
+
+		#box {
+			background-color: lightblue;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<h1>JQuery pageX and pageY</h1>
+	<div class="container">
+		<div id="result"></div>
+		<div id="box"></div>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			$(document).mousemove(function (e) {
+				$('#result').text("X: " + event.pageX + "Y: " + event.pageY);
+				var x = event.pageX;
+				var y = event.pageY;
+
+				$('#box').offset({top:y, left:x});
+			});
+		});
+	</script>
+</body>
+</html>

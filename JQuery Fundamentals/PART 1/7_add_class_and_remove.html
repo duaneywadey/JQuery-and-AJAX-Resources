@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		button {
+			font-size: 2em;
+			margin-top: 10px;
+			height: 100px;
+			width: 300px;
+		}
+
+		#box {
+			width: 70%;
+			height: 250px;
+			border-style: solid;
+			background-color: pink;
+			overflow: auto;
+		}
+
+		.blue {
+			color: blue;
+		}
+
+		.first {
+			color: red;
+		}
+		.second {
+			background: pink;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="box">
+		<h2>Box Title</h2>
+		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi corrupti quidem eveniet odio sapiente architecto necessitatibus laborum doloribus facere! Facere tenetur vero pariatur dicta eius, aliquid nihil similique reprehenderit. Necessitatibus.</p>
+	</div>
+
+	<button id="clickbutton">Click here</button>
+	<button id="addbutton">Add button</button>
+	<button id="removebutton">Remove class</button>
+	<button id="togglebutton">Toggle class</button>
+
+
+	<script>
+
+		$(document).ready(function(){
+
+			$('#clickbutton').click(function(){
+
+				$('#box h2').text("This is Ivan Duane");
+				$('#box p').html("<h1>This is new text. No more form</h1>");
+				$('#box h2').attr("class", "blue");
+
+				$('#sname').val("Ivan");
+				$('#sclass').val("CompSci");
+				$('#scountry').val("Philippines");
+
+			})
+
+			$('#addbutton').click(function(){
+				$('#box h2').addClass("first");
+			})
+
+			$('#removebutton').click(function(){
+				$('#box h2').removeClass("first");
+			})
+
+		});
+		
+
+	</script>	
+</body>
+</html>

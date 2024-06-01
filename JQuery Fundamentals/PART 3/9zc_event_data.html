@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+
+		.container {
+			height: 400px;
+			width: 800px;
+			background-color: lavenderblush;
+		}
+
+		#box {
+			background-color: lightblue;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<h1>JQuery pageX and pageY</h1>
+	<div class="container">
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, eum! Iusto corrupti ad tempora atque ipsam! Quaerat distinctio ad, recusandae quo nulla aliquid saepe neque quisquam magni asperiores obcaecati, deserunt.</p>
+		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa, possimus? Obcaecati, voluptate. Nostrum quia quidem placeat autem, voluptas consectetur perspiciatis alias qui, fugiat aspernatur incidunt nihil quae iure praesentium id.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora alias enim iusto culpa fugit perferendis distinctio qui deserunt ea nostrum delectus officia cupiditate repellendus, nisi accusantium consequuntur modi maxime excepturi.</p>
+	</div>
+	<h3></h3>
+
+	<script>
+		$(document).ready(function () {
+			$('p').each(function (i) {
+				$(this).on('click', {value:i}, function (event) {
+					alert(event.data.value);
+				})
+			})
+		});
+	</script>
+</body>
+</html>
