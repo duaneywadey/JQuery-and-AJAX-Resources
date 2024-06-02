@@ -1,5 +1,6 @@
+<?php require_once 'backend-search.php'; ?>
 <!doctype html>
-<html lang="en">
+  <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,27 +19,44 @@
         </div>
       </div>
       <div class="row mt-4 searchResults">
+        <?php $allUsers = selectAllUsers($pdo); ?>
+        <?php foreach ($allUsers as $row) { ?>
+          <div class='col-md-4 mt-4'>
+            <div class='card'>
+              <div class='card-body'>
+                <h1><?php echo $row['username']; ?></h1>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
       </div>
     </div>
 
     <script>
-      $(document).ready(function () {
-        $('#searchInput').keyup(function (e) {
-          var searchInput = $(this).val();
-          if(searchInput.length) {
-            $.ajax({
-              method: 'GET',
-              url: 'backend-search.php',
-              data: {searchInput: searchInput}
-            }).done(function (data) {
-              $('.searchResults').html(data);
-            })
-          }
-          else {
-              $('.searchResults').empty();
-          }
-        })
-      })  
+   $(document).ready(function () {
+      $('#searchInput').on('input', function (e) {
+        var searchInput = $(this).val();
+        if (searchInput.length) {
+          $.ajax({
+            method: 'GET',
+            url: 'backend-search.php',
+            data: {searchInput: searchInput}
+          }).done(function (data) {
+            $('.searchResults').html(data);
+          });
+        } 
+        else {
+          $.ajax({
+            method: 'GET',
+            url: 'backend-search.php',
+            data: {searchInput: ''}
+          }).done(function (data) {
+            $('.searchResults').html(data);
+          });
+        }
+      });
+  });
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/
@@ -47,4 +65,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     
   </body>
-</html>
+  </html>
