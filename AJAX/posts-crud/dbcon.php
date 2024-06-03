@@ -32,13 +32,7 @@ function showPostByIDWithJSON($conn, $post_id)
     $stmt->execute([$post_id]);
     $result = $stmt->fetch();
 
-    $values = array(
-        "description"=> $result['description'],
-        "date_posted" => $result['date_posted']
-    );
-
-    // JSON ENCODE
-    return json_encode($values);
+    return $result;
 }
 
 function updateAPost($conn, $description, $post_id)
@@ -46,6 +40,11 @@ function updateAPost($conn, $description, $post_id)
     $sql = "UPDATE posts SET description = ? WHERE post_id = ?";
     $stmt = $conn->prepare($sql);
     return $stmt->execute([$description, $post_id]);
+}
+
+if (isset($_GET['post_id'])) {
+    $data = json_encode(showPostByIDWithJSON($conn, $_GET['post_id'])); 
+    echo $data;
 }
 
 if (isset($_POST['post_id']) && isset($_POST['description'])) {

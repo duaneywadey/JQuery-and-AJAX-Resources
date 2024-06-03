@@ -31,6 +31,33 @@
         <?php } ?>
     </table>
     <script>
+        $(document).ready(function (e) {
+            $('#description').on("input", function (e) {
+                e.preventDefault();
+                var post_id = $('#post_id').val();
+                var description = $('#description').val();
+
+                if(description!="") {
+                        $.ajax({
+                            url:"dbcon.php",
+                            method:"POST",
+                            data: {
+                                description:description,
+                                post_id:post_id
+                            },
+                        dataType:"text",
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    })
+                }
+                else {
+                    alert("Make sure the fields are complete!");
+                }
+                
+            })
+        })
+
     </script>
 </body>
 </html>

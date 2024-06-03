@@ -14,6 +14,12 @@
 		<textarea name="description" id="description" cols="100" rows="5"><?php echo $showPostByID['description']; ?></textarea>
 	</form>
 	<a href="index.php">Return to home</a>
+	<!-- JSON DECODE -->
+	<?php 
+	$showPostByIDWithJSON = json_decode(showPostByIDWithJSON($conn, $_GET['post_id']),true);
+	echo "<h1>" . $showPostByIDWithJSON['description'] . " - " . $showPostByIDWithJSON['date_posted'] . "</h1>";
+	?>
+	
 	<script>
 		$(document).ready(function (e) {
 			$('#description').on("input", function (e) {
