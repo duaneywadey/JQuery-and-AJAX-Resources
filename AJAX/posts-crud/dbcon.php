@@ -47,22 +47,22 @@ if (isset($_GET['post_id'])) {
     echo $data;
 }
 
-if (isset($_POST['updateBtn'])) {
-    $post_id = $_POST['post_id'];
-    $description = $_POST['description'];
+// if (isset($_POST['updateBtn'])) {
+//     $post_id = $_POST['post_id'];
+//     $description = $_POST['description'];
 
-    if(updateAPost($conn, $description, $post_id)) {
-         echo $post_id . " - " , $description;
-     }
+//     if(updateAPost($conn, $description, $post_id)) {
+//         header("Location: index.php");
+//      }
 
-}
-
-// if (isset($_REQUEST['post_id']) && isset($_REQUEST['description'])) {
-//     if(updateAPost($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
-//         echo true;
-//     }
-//     else {
-//         echo false;
-//     }
 // }
+
+if (isset($_REQUEST['post_id']) && isset($_REQUEST['description'])) {
+    if(updateAPost($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
+        echo true;
+    }
+    else {
+        echo false;
+    }
+}
 ?>

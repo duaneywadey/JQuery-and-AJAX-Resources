@@ -27,7 +27,7 @@
   	<div class="container">
   		<div class="row">
   			<h1>Hello, world!</h1>
-  			<table class="table">
+  			<table class="table" id="usersTable">
   				<thead>
   					<tr>
   						<th scope="col">ID</th>
@@ -62,7 +62,7 @@
   					</button>
   				</div>
   				<div class="modal-body">
-  					<form action="dbcon.php" method="POST">
+  					<form action="#" method="POST">
   						<input type="hidden" id="post_id" name="post_id" class="form-control">
   						<div class="form-group">
   							<label for="#">Description</label>
@@ -72,9 +72,6 @@
   							<label for="#">Date Added</label>
   							<input type="text" name="date_added" id="date_posted" class="form-control" disabled>
   						</div>
-  				</div>
-  				<div class="modal-footer">
-  					<input type="submit" class="btn btn-primary" name="updateBtn">
   				</div>
   				</form>
   			</div>
@@ -102,9 +99,39 @@
   						$('#post_id').val(res.post_id);
   						$('#description').val(res.description);
   						$('#date_posted').val(res.date_posted);
+
   					}
   				})
   			})
+
+  			$('#description').on("input", function (e) {
+  				e.preventDefault();
+  				var post_id = $('#post_id').val();
+  				var description = $('#description').val();
+
+					if(description!="") {
+							$.ajax({
+								url:"dbcon.php",
+								method:"POST",
+								data: {
+									description:description,
+									post_id:post_id
+								},
+							dataType:"text",
+							success: function (data) {
+								console.log(data);
+
+								// Load an HTML element
+								$("#usersTable").load(location.href + " #usersTable");
+							}
+						})
+					}
+					else {
+						alert("Make sure the fields are complete!");
+					}
+					
+				})
+
   		})
   	</script>
 
