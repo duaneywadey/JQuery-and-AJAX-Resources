@@ -42,20 +42,26 @@ function updateAPost($conn, $description, $post_id)
     return $stmt->execute([$description, $post_id]);
 }
 
-if (isset($_GET['post_id'])) {
-    $data = json_encode(showPostByIDWithJSON($conn, $_GET['post_id'])); 
-    echo $data;
+function seeAllCommentsByPost($conn, $post_id)
+{
+    $sql = "SELECT * FROM comments WHERE post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$post_id]);
+    return $stmt->fetchAll();
 }
 
-// if (isset($_POST['updateBtn'])) {
-//     $post_id = $_POST['post_id'];
-//     $description = $_POST['description'];
+if (isset($_GET['post_id'])) {
 
-//     if(updateAPost($conn, $description, $post_id)) {
-//         header("Location: index.php");
-//      }
+    $showPostByID = showPostByID($conn, $_GET['post_id']);
+    $seeAllCommentsByPost = seeAllCommentsByPost($conn, $_GET['post_id']);
+    $data = array(
+        'showPostByID' => $showPostByID,
+        'seeAllCommentsByPost' => $seeAllCommentsByPost,
+    );
 
-// }
+    echo json_encode($data);
+}
+
 
 if (isset($_REQUEST['post_id']) && isset($_REQUEST['description'])) {
     if(updateAPost($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
@@ -65,4 +71,23 @@ if (isset($_REQUEST['post_id']) && isset($_REQUEST['description'])) {
         echo false;
     }
 }
+
+if (isset($_REQUEST['seeComments'])) {
+    if (seeAllCommentsByPost($conn, $_REQUEST['post_id'])) {
+        $data = json_encode(seeAllCommentsByPost($conn, $_REQUEST['post_id']));
+        echo $data;
+    }
+}
+
+
+$showPostByID = showPostByID($conn, 20);
+$seeAllCommentsByPost = seeAllCommentsByPost($conn, 20);
+$data = array(
+    'showPostByID' => $showPostByID,
+    'seeAllCommentsByPost' => $seeAllCommentsByPost,
+);
+
+echo json_encode($data);
+
+
 ?>

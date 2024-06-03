@@ -72,6 +72,16 @@
   							<label for="#">Date Added</label>
   							<input type="text" name="date_added" id="date_posted" class="form-control" disabled>
   						</div>
+  						<button type="submit" class="btn btn-primary" id="seeComments" name="seeComments">See all comments</button>
+
+  						<div class="card">
+  							<div class="card-body">
+  								<ul>
+  									<li></li>
+  								</ul>
+  							</div>
+  						</div>
+
   				</div>
   				</form>
   			</div>
@@ -132,6 +142,13 @@
 					
 				})
 
+				$('#seeComments').on("click", function (e) {
+					e.preventDefault();
+					$.ajax({
+						type: 'GET',
+						url: 'dbcon.php',
+					})
+				})
   		})
   	</script>
 
