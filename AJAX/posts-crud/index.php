@@ -62,7 +62,7 @@
   					</button>
   				</div>
   				<div class="modal-body">
-  					<form action="#" method="POST">
+  					<form action="dbcon.php" method="POST">
   						<input type="hidden" id="post_id" name="post_id" class="form-control">
   						<div class="form-group">
   							<label for="#">Description</label>
@@ -70,10 +70,13 @@
   						</div>
   						<div class="form-group">
   							<label for="#">Date Added</label>
-  							<input type="text" name="description" id="date_posted" class="form-control" disabled>
+  							<input type="text" name="date_added" id="date_posted" class="form-control" disabled>
   						</div>
-  					</form>
   				</div>
+  				<div class="modal-footer">
+  					<input type="submit" class="btn btn-primary" name="updateBtn">
+  				</div>
+  				</form>
   			</div>
   		</div>
   	</div>
@@ -96,12 +99,12 @@
   						var res = jQuery.parseJSON(response);
   						console.log(res.description);
 
+  						$('#post_id').val(res.post_id);
   						$('#description').val(res.description);
   						$('#date_posted').val(res.date_posted);
   					}
   				})
   			})
-
   		})
   	</script>
 
