@@ -72,16 +72,6 @@
   							<label for="#">Date Added</label>
   							<input type="text" name="date_added" id="date_posted" class="form-control" disabled>
   						</div>
-  						<button type="submit" class="btn btn-primary" id="seeComments" name="seeComments">See all comments</button>
-
-  						<div class="card">
-  							<div class="card-body">
-  								<ul>
-  									<li></li>
-  								</ul>
-  							</div>
-  						</div>
-
   				</div>
   				</form>
   			</div>
@@ -100,16 +90,15 @@
   				$.ajax({
   					type: "GET",
   					url: "dbcon.php?post_id=" + post_id,
-  					success: function (response) {
+						dataType: 'json',
 
-  						// Parse JSON always
-  						var res = jQuery.parseJSON(response);
-  						console.log(res.description);
-
-  						$('#post_id').val(res.post_id);
-  						$('#description').val(res.description);
-  						$('#date_posted').val(res.date_posted);
-
+  					success: function (res) { 
+  						console.log(res);
+  						console.log(JSON.stringify(res));
+  						console.log(JSON.stringify(res.seeAllCommentsByPost));
+  						$('#post_id').val(res.showPostByID.post_id);
+  						$('#description').val(res.showPostByID.description);
+  						$('#date_posted').val(res.showPostByID.date_posted);
   					}
   				})
   			})
@@ -140,14 +129,6 @@
 						alert("Make sure the fields are complete!");
 					}
 					
-				})
-
-				$('#seeComments').on("click", function (e) {
-					e.preventDefault();
-					$.ajax({
-						type: 'GET',
-						url: 'dbcon.php',
-					})
 				})
   		})
   	</script>

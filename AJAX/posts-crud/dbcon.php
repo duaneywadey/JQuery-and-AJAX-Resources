@@ -50,13 +50,20 @@ function seeAllCommentsByPost($conn, $post_id)
     return $stmt->fetchAll();
 }
 
+function insertIntoActivityLogs($conn, $description, $post_id)
+{
+    $sql = "INSERT INTO activity_logs (description, post_id) VALUES (?,?)";
+    $stmt = $conn->prepare($sql);
+    return $stmt->execute([$description, $post_id]);
+}
+
 if (isset($_GET['post_id'])) {
 
     $showPostByID = showPostByID($conn, $_GET['post_id']);
     $seeAllCommentsByPost = seeAllCommentsByPost($conn, $_GET['post_id']);
     $data = array(
         'showPostByID' => $showPostByID,
-        'seeAllCommentsByPost' => $seeAllCommentsByPost,
+        'seeAllCommentsByPost' => $seeAllCommentsByPost
     );
 
     echo json_encode($data);
@@ -65,29 +72,29 @@ if (isset($_GET['post_id'])) {
 
 if (isset($_REQUEST['post_id']) && isset($_REQUEST['description'])) {
     if(updateAPost($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
-        echo true;
-    }
-    else {
-        echo false;
-    }
-}
-
-if (isset($_REQUEST['seeComments'])) {
-    if (seeAllCommentsByPost($conn, $_REQUEST['post_id'])) {
-        $data = json_encode(seeAllCommentsByPost($conn, $_REQUEST['post_id']));
-        echo $data;
+        if(insertIntoActivityLogs($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
+            echo true;
+        }
+        else {
+            echo false;
+        }
     }
 }
 
 
-$showPostByID = showPostByID($conn, 20);
-$seeAllCommentsByPost = seeAllCommentsByPost($conn, 20);
-$data = array(
-    'showPostByID' => $showPostByID,
-    'seeAllCommentsByPost' => $seeAllCommentsByPost,
-);
+// $showPostByID = showPostByID($conn, 8);
+// $seeAllCommentsByPost = seeAllCommentsByPost($conn, 8);
+// $data = array(
+//     'showPostByID' => $showPostByID,
+//     'seeAllCommentsByPost' => $seeAllCommentsByPost,
+// );
 
-echo json_encode($data);
+
+// echo "<pre>";
+// print_r($seeAllCommentsByPost);
+// echo "<pre>";
+
 
 
 ?>
+
