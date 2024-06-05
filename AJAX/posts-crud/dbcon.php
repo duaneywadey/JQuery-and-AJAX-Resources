@@ -57,7 +57,16 @@ function insertIntoActivityLogs($conn, $description, $post_id)
     return $stmt->execute([$description, $post_id]);
 }
 
-if (isset($_GET['post_id'])) {
+
+function showActivityLogsByPostId($conn, $post_id)
+{
+    $sql = "SELECT * FROM activity_logs WHERE post_id = ? ORDER BY date_created DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$post_id]);
+    return $stmt->fetchAll();
+}
+
+if (isset($_GET['post_id']) && isset($_GET['editPost'])) {
 
     $showPostByID = showPostByID($conn, $_GET['post_id']);
     $seeAllCommentsByPost = seeAllCommentsByPost($conn, $_GET['post_id']);
@@ -67,6 +76,11 @@ if (isset($_GET['post_id'])) {
     );
 
     echo json_encode($data);
+}
+
+if(isset($_GET['post_id']) && isset($_GET['showHistory'])) {
+    $activityLogsData = showActivityLogsByPostId($conn, $_GET['post_id']);
+    echo json_encode($activityLogsData);
 }
 
 
