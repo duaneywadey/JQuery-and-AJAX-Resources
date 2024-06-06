@@ -181,7 +181,8 @@
     				})
     				$('#historyModal').on('hidden.bs.modal', function (e) {
 						  location.reload();
-						})
+						});
+
     			})
     		</script>
 
