@@ -10,7 +10,7 @@
  <div class="form-group">
     <div class="col-sm-12">
         <label for="p_type">Type*:</label>
-        <select class="form-control" name="qp_type" id="p_type" required>
+        <select class="form-control" name="qp_type" id="selectType" required>
             <option  value="Css">CSS</option>
             <option  value="HTML">HTML</option>
             <option  value="PhP">PhP</option>
@@ -36,7 +36,7 @@
 
 <script>
     $(document).ready(function(){
-        $('select[name=qp_type]').on('change', function(){
+        $('#selectType').on('change', function(){
             if($(this).val() == 'Other') {
                 $('#otherType').show();
                 $('#pType').prop('disabled',false);
@@ -49,6 +49,10 @@
         });
         $('#pType').on('input', function () {
             console.log($(this).val());
+        })
+
+        $('#pType').on('copy', function () {
+            alert($(this).val());
         })
     });
 </script>
