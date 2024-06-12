@@ -66,32 +66,9 @@ function showActivityLogsByPostId($conn, $post_id)
     return $stmt->fetchAll();
 }
 
-if (isset($_GET['post_id']) && isset($_GET['editPost'])) {
-
-    $showPostByID = showPostByID($conn, $_GET['post_id']);
-    $seeAllCommentsByPost = seeAllCommentsByPost($conn, $_GET['post_id']);
-    $data = array(
-        'showPostByID' => $showPostByID,
-        'seeAllCommentsByPost' => $seeAllCommentsByPost
-    );
-
-    echo json_encode($data);
-}
-
-if(isset($_GET['post_id']) && isset($_GET['showHistory'])) {
-    $activityLogsData = showActivityLogsByPostId($conn, $_GET['post_id']);
-    echo json_encode($activityLogsData);
-}
-
-
-if (isset($_REQUEST['post_id']) && isset($_REQUEST['description'])) {
-    if(updateAPost($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
-        if(insertIntoActivityLogs($conn, $_REQUEST['description'], $_REQUEST['post_id'])) {
-            echo true;
-        }
-        else {
-            echo false;
-        }
+if(isset($_POST['postDescription'])) {
+    if(updateAPost($conn, $_POST['postDescription'], $_POST['postID'])) {
+        header('Location: tables.php');
     }
 }
 

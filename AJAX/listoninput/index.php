@@ -65,7 +65,7 @@
                     $('#pType').prop('disabled',false);
                 }
                 else {
-                    $('.jumbotron').removeClass("d-none");
+                    $('.jumbotron').removeClass("d-none").hide().fadeIn();
                     $('.choice').text($(this).val());
                 }
             });
