@@ -83,7 +83,8 @@
 				</div>
 				<div>E</div>
 				<div>F</div>
-				<div class="item-test">Item Test</div>
+				<div class="item-test">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -95,6 +96,11 @@
 		$(document).ready(function () {
 			// $('.child-C').children().css('background', 'red');
 			// $('.child-C').find('.item-test').css('background', 'red');
+			// $('.item-test').find('.item-test-again').css('font-family', 'papyrus');
+
+			$('.child-C').on('click', function (e) {
+				$(this).find('li').css('font-family', 'papyrus');
+			})
 		})
 	</script>	
 </body>

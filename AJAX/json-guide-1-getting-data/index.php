@@ -12,6 +12,8 @@
 
 	<button id="allProducts">View All Products</button>
 	<button id="getProduct">Get Product 1</button>
+	<button id="showImages">Show All Images</button>
+	<button id="showPokemonInfo">Show Pokemon</button>
 	<div class="product">
 		<h3 id="productTitle"></h3>
 		<h3 id="productPrice"></h3>
@@ -19,6 +21,8 @@
 		<h3 id="productCategory"></h3>
 	</div>
 	<ul id="itemsList">
+	</ul>
+	<ul id="imagesList">
 	</ul>
 	<script>
 
@@ -32,11 +36,36 @@
 
 					// How we access TWO OR MORE VALUES. For iterating through JSON object
 					$.each(res, function (key, value) {
-						$('#itemsList').append("<li><i>" + value.title +"</i></li>").hide().fadeIn(400);
+						$('#imagesList').append("<li>" + value.title +"</li>").hide().fadeIn(400);
 					})
 				}
 			})
 		})
+
+		$('#showImages').on('click', function (e) {
+			$.ajax({
+				type: "GET",
+				url: "https://fakestoreapiserver.reactbd.com/smart/",
+				dataType: 'json',
+
+				success: function (res) { 
+
+					// How we access TWO OR MORE VALUES. For iterating through JSON object
+					$.each(res, function (key, value) {
+						$('#imagesList').append(
+							"<h1>" + value.title + "</h1><img src='" + value.image + "'</i></li>"
+							).hide().fadeIn(400);
+					})
+				}
+			})
+		})
+
+		// $('#showPokemonInfo').on('click', function (e) {
+		// 	$.ajax({
+		// 		type: "GET",
+		// 		url: 
+		// 	})
+		// })
 
 		$('#getProduct').on('click', function (e) {
 			$.ajax({

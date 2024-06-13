@@ -12,14 +12,7 @@
 			margin: 17px;  
 		}  
 	</style>  
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-	<script>  
-		function fun(){  
-			$(document).ready(function(){  
-				$("p").closest("ul").css({ "font-size": "30px", "color": "blue", "border": "6px dashed blue"});  
-			});  
-		}  
-	</script>  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </head>  
 
 <body class = "main"> body  
@@ -32,6 +25,14 @@
 			</ul>     
 		</div>  
 	</div>  
-	<button onclick = "fun()"> click me </button>  
+	<button id="clickMe"> click me </button>  
+	<script>  
+		$(document).ready(function(){  
+			$('#clickMe').on('click', function (e) {
+				$("p").closest("div").css({ "font-size": "30px", "color": "blue", "border": "6px dashed blue"});  
+			})
+
+		});  
+	</script> 
 </body>  
 </html>  

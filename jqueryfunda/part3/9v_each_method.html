@@ -19,10 +19,13 @@
 	<script>
 		$(document).ready(function () {
 
+			// Once we click replace hello btn
 			$('#replaceHello').click(function (e) {
 				$('li').each(function () {
+					// Replace the text value of each element with #typeAny id
 					$(this).text($('#typeAny').val());
 				})
+				
 
 			})
 			
