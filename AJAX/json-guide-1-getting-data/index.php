@@ -11,29 +11,37 @@
 	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit accusamus doloremque nostrum voluptates odio minima dicta exercitationem dolorem assumenda. Suscipit consequuntur, nesciunt velit maiores reiciendis soluta magnam dolore. Commodi, dolore.</p>
 
 	<button id="allProducts">View All Products</button>
-	<button id="getProduct">Get Product 1</button>
+	<input type="text" id="productID">
+	<button id="getProduct">Get Product</button>
 	<button id="showImages">Show All Images</button>
 	<button id="showPokemonInfo">Show Pokemon</button>
+	<button id="hideImages">Hide Images</button>
 	<div class="product">
 		<h3 id="productTitle"></h3>
 		<h3 id="productPrice"></h3>
 		<h3 id="productDescription"></h3>
 		<h3 id="productCategory"></h3>
 	</div>
+	<ul id="pokemonsList">
+	</ul>
 	<ul id="itemsList">
 	</ul>
 	<ul id="imagesList">
 	</ul>
 	<script>
 
+		$('#hideImages').on('click', function (e) {
+			$('#imagesList').hide();
+		})
 		$('#allProducts').on('click', function (e) {
+			$('#imagesList').hide();
+			
 			$.ajax({
 				type: "GET",
 				url: "https://fakestoreapi.com/products/",
 				dataType: 'json',
 
 				success: function (res) { 
-
 					// How we access TWO OR MORE VALUES. For iterating through JSON object
 					$.each(res, function (key, value) {
 						$('#imagesList').append("<li>" + value.title +"</li>").hide().fadeIn(400);
@@ -60,17 +68,29 @@
 			})
 		})
 
-		// $('#showPokemonInfo').on('click', function (e) {
-		// 	$.ajax({
-		// 		type: "GET",
-		// 		url: 
-		// 	})
-		// })
-
-		$('#getProduct').on('click', function (e) {
+		$('#showPokemonInfo').on('click', function (e) {
 			$.ajax({
 				type: "GET",
-				url: "https://fakestoreapi.com/products/1",
+				url: "https://calmcode.io/static/data/pokemon.json",
+				dataType: 'json',
+
+				success: function (res) {
+					$.each(res, function (key, value) {
+						$('#pokemonsList').append(
+							"<li>" + value.type + "</li>"
+						).hide().fadeIn();
+					})
+				}
+			})
+		})
+
+		$('#getProduct').on('click', function (e) {
+
+			var productID = $('#productID').val();
+
+			$.ajax({
+				type: "GET",
+				url: "https://fakestoreapi.com/products/" + productID,
 				dataType: 'json',
 
 				success: function (res) { 
