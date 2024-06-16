@@ -10,6 +10,12 @@
 	<h1>JSON test</h1>
 	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit accusamus doloremque nostrum voluptates odio minima dicta exercitationem dolorem assumenda. Suscipit consequuntur, nesciunt velit maiores reiciendis soluta magnam dolore. Commodi, dolore.</p>
 
+	<div class="classTest">
+		<p>Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Molestias dolores nihil debitis? Harum beatae deserunt quod adipisci. Repudiandae nostrum tenetur nesciunt quia eligendi! Repellat, perspiciatis? Facilis accusamus aliquam ea recusandae!</p>
+		<p>Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Molestias dolores nihil debitis? Harum beatae deserunt quod adipisci. Repudiandae nostrum tenetur nesciunt quia eligendi! Repellat, perspiciatis? Facilis accusamus aliquam ea recusandae!</p>	
+
+	</div>
+
 	<button id="allProducts">View All Products</button>
 	<input type="text" id="productID">
 	<button id="getProduct">Get Product</button>
@@ -24,33 +30,57 @@
 	</div>
 	<ul id="pokemonsList">
 	</ul>
-	<ul id="itemsList">
+	<ul id="productsList">	
 	</ul>
 	<ul id="imagesList">
 	</ul>
+	<div class="response error"></div>
+	<form id="myForm"> 
+		<input type="radio"name="option" value="HTML">
+		<label for="html">HTML</label><br>
+		<input type="radio" name="option" value="CSS">
+		<label for="html">CSS</label><br>
+		<input type="radio" name="option" value="JavaScript">
+		<label for="html">JavaScript</label><br>
+		<input type="radio" name="option" value="JQuery">
+		<label for="html">JQuery</label><br>
+	</form> 
+	<p> 
+		The value of the option selected is:  
+		<span class="output"></span> 
+	</p> 
+
+
+
+
+
+
 	<script>
 
-		$('#hideImages').on('click', function (e) {
-			$('#imagesList').hide();
-		})
+		// ON SELECT
+		 $("input[type='radio']").on('click', function() { 
+		 	$('.output').text($(this).val())
+        }); 
+
 		$('#allProducts').on('click', function (e) {
 			$('#imagesList').hide();
-			
 			$.ajax({
 				type: "GET",
 				url: "https://fakestoreapi.com/products/",
 				dataType: 'json',
 
 				success: function (res) { 
+					
 					// How we access TWO OR MORE VALUES. For iterating through JSON object
 					$.each(res, function (key, value) {
-						$('#imagesList').append("<li>" + value.title +"</li>").hide().fadeIn(400);
+						$('#productsList').append("<li>" + value.title +"</li>").hide().fadeIn(400);
 					})
 				}
 			})
 		})
 
 		$('#showImages').on('click', function (e) {
+			$('#productsList').hide();
 			$.ajax({
 				type: "GET",
 				url: "https://fakestoreapiserver.reactbd.com/smart/",
@@ -78,7 +108,7 @@
 					$.each(res, function (key, value) {
 						$('#pokemonsList').append(
 							"<li>" + value.type + "</li>"
-						).hide().fadeIn();
+							).hide().fadeIn();
 					})
 				}
 			})
@@ -94,7 +124,7 @@
 				dataType: 'json',
 
 				success: function (res) { 
-					
+					$('.response').hide();
 					// How we get INDIVIDUAL VALUES
 					$('.product').css({"border-style": "solid","border-color": "red"}).hide().fadeIn(400);
 					$('#productTitle').text(res.title);
@@ -102,7 +132,17 @@
 					$('#productDescription').text(res.description);
 					$('#productCategory').text(res.category);
 
-				}
+				},
+
+				// Show error msg
+				error: function(res) {	
+				  $('.response').show();
+				  $('.product').hide();
+				  $('.response').addClass('error');
+			      $('.error').html('<h1 style="color: red;">Product ' + productID + 
+			      	' NotAvailable</h1>');
+			    }
+
 			})
 		})
 	</script>
