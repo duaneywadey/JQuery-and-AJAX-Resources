@@ -128,6 +128,7 @@
 					postID:postID,
 				},
 				success : function (response) {
+					console.log(response);
 					$("#exampleModal").find('.status').val(response.status);
 					$("#exampleModal").find('.message').val(response.message);
 					$("#exampleModal").find('.description').val(response.description);
@@ -150,6 +151,7 @@
 					postID:postID,
 				},
 				success: function (response) {
+					console.log(response);
 					$.each(response, function (key, value){
 						$('.commentsList').append("<li>" + value.description +"</li>");
 					})

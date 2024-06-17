@@ -72,4 +72,8 @@ if (isset($_POST['getComments'])) {
     echo $showAllCommentsByPost;
 }
 
+
+// $showAllCommentsByPost = showAllCommentsByPost($conn, 26);
+// echo $showAllCommentsByPost;
+
 ?>
