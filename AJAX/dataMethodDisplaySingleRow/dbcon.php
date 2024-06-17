@@ -34,11 +34,23 @@ function showPostByIDWithJSON($conn, $post_id)
 
     $values = array(
         "description"=> $result['description'],
-        "date_posted" => $result['date_posted']
+        "date_posted" => $result['date_posted'],
+        "status" => 200,
+        "message" => 'Student Updated Successfully'
     );
 
     // JSON ENCODE
     return json_encode($values);
+}
+
+function showAllCommentsByPost($conn, $post_id)
+{
+    $sql = "SELECT * FROM comments WHERE post_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$post_id]);
+    $result = $stmt->fetchAll();
+    return json_encode($result);
+
 }
 
 function updateAPost($conn, $description, $post_id)
@@ -48,12 +60,16 @@ function updateAPost($conn, $description, $post_id)
     return $stmt->execute([$description, $post_id]);
 }
 
-if (isset($_POST['post_id']) && isset($_POST['description'])) {
-    if(updateAPost($conn, $_POST['description'], $_POST['post_id'])) {
-        echo true;
-    }
-    else {
-        echo false;
-    }
+if (isset($_POST['getPost'])) {
+    $postID = $_POST['postID'];
+    $showPostByIDWithJSON = showPostByIDWithJSON($conn, $postID);
+    echo $showPostByIDWithJSON;
 }
+
+if (isset($_POST['getComments'])) {
+    $postID = $_POST['postID'];
+    $showAllCommentsByPost = showAllCommentsByPost($conn, $postID);
+    echo $showAllCommentsByPost;
+}
+
 ?>
