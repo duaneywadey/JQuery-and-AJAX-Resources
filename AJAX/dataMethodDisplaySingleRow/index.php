@@ -5,6 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<style>
+		.modal-body {
+			height: 500px;
+			overflow: scroll;
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -58,7 +64,6 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<h1 class="postIdHere"></h1>
 					<form>
 						<div class="form-group">
 							<label for="date_posted">Date Posted</label>
@@ -97,15 +102,22 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<h1 class="postIdHere"></h1>
-					<ul class="commentsList">
-						
+				<div class="modal-body commentsModalBody">
+					<ul id="commentsList">
 					</ul>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<form action="#">
+									<input type="hidden" name="postID" class="postIdHere">
+									<input type="text" name="commentDescription" id="commentDescription" class="form-control">
+									<input type="submit" class="btn btn-primary float-right mt-2" id="submitCommentBtn">
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -117,7 +129,7 @@
 	<script>
 		$('.modalBtn').on('click', function (e) {
 			var postID = $(this).closest('tr').data("postid");
-			$("#exampleModal").find('.postIdHere').text(postID);
+			$("#exampleModal").find('.postIdHere').val(postID);
 
 			$.ajax({
 				type:"POST",
@@ -138,9 +150,29 @@
 
 		});
 
+		$('#submitCommentBtn').on('click', function (e) {
+			e.preventDefault();
+			var postID = $('.postIdHere').val();
+			var commentDescription = $('#commentDescription').val();
+
+			$.ajax({
+				type: "POST",
+				url: "dbcon.php",
+				dataType: "text",
+				data: {
+					submitCommentBtn:1,
+					postID: postID,
+					commentDescription:commentDescription,
+				},
+				success: function (response) {
+					location.reload();
+				}
+			})
+		});
+
 		$('.commentsModalBtn').on('click', function (e) {
 			var postID = $(this).closest('tr').data("postid");
-			$("#commentsModal").find('.postIdHere').text(postID);
+			$("#commentsModal").find('.postIdHere').val(postID);
 
 			$.ajax({
 				type:"POST",
@@ -151,16 +183,15 @@
 					postID:postID,
 				},
 				success: function (response) {
-					console.log(response);
 					$.each(response, function (key, value){
-						$('.commentsList').append("<li>" + value.description +"</li>");
+						$('#commentsList').append("<li>" + value.description +"</li>");
 					})
 				}
 			})
 		})
 
 		$('#commentsModal').on("hide.bs.modal", function() {
-			$('.commentsList').html('');
+			$('#commentsList').html('');
 		})
 
 

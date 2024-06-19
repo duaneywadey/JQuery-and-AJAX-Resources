@@ -60,6 +60,16 @@ function updateAPost($conn, $description, $post_id)
     return $stmt->execute([$description, $post_id]);
 }
 
+function addAComment($conn, $post_id, $user_id, $commentDescription) {
+    $sql = "
+            INSERT INTO comments (post_id, user_id, description)
+            VALUES (?,?,?)
+            ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$post_id, $user_id, $commentDescription]);
+}
+
+
 if (isset($_POST['getPost'])) {
     $postID = $_POST['postID'];
     $showPostByIDWithJSON = showPostByIDWithJSON($conn, $postID);
@@ -72,6 +82,17 @@ if (isset($_POST['getComments'])) {
     echo $showAllCommentsByPost;
 }
 
+if (isset($_POST['submitCommentBtn'])) {
+    $postID = $_POST['postID'];
+    $commentDescription = $_POST['commentDescription'];
+    $showAllCommentsByPost = showAllCommentsByPost($conn, $postID);
+    if(addAComment($conn, $postID, 26, $commentDescription)){
+        echo "Successfully";
+    }
+    else {
+        echo "failed";
+    }
+}
 
 // $showAllCommentsByPost = showAllCommentsByPost($conn, 26);
 // echo $showAllCommentsByPost;
