@@ -33,7 +33,8 @@
             $( "#textInput" ).prop( "disabled", true );
             alert("allowed only 3");
         }
-})
+    })
+
 </script>
 </body>
 </html>
