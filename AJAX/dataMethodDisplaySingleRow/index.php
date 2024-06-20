@@ -154,20 +154,25 @@
 			e.preventDefault();
 			var postID = $('.postIdHere').val();
 			var commentDescription = $('#commentDescription').val();
-
-			$.ajax({
-				type: "POST",
-				url: "dbcon.php",
-				dataType: "text",
-				data: {
-					submitCommentBtn:1,
-					postID: postID,
-					commentDescription:commentDescription,
-				},
-				success: function (response) {
-					location.reload();
-				}
-			})
+			if(commentDescription != "") {
+				$.ajax({
+					type: "POST",
+					url: "dbcon.php",
+					dataType: "text",
+					data: {
+						submitCommentBtn:1,
+						postID: postID,
+						commentDescription:commentDescription,
+					},
+					success: function (response) {
+						$('#commentsList').append("<li>" + commentDescription +"</li>");
+					}
+				})
+			}
+			else {
+				alert("Should not be empty!");
+			}
+			
 		});
 
 		$('.commentsModalBtn').on('click', function (e) {

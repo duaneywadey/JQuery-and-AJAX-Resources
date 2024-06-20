@@ -53,6 +53,23 @@ function showAllCommentsByPost($conn, $post_id)
 
 }
 
+function showLatestCommentByPost($conn, $post_id)
+{
+    $sql = "SELECT * FROM comments
+            WHERE post_id = ? 
+            ORDER BY date_added DESC
+            LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$post_id]);
+    $result = $stmt->fetch();
+    $values = array(
+        "description"=> $result['description'],
+        "date_added" => $result['date_added']
+    );
+
+    return json_encode($values);
+}
+
 function updateAPost($conn, $description, $post_id)
 {
     $sql = "UPDATE posts SET description = ? WHERE post_id = ?";
@@ -66,7 +83,7 @@ function addAComment($conn, $post_id, $user_id, $commentDescription) {
             VALUES (?,?,?)
             ";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$post_id, $user_id, $commentDescription]);
+    return $stmt->execute([$post_id, $user_id, $commentDescription]);
 }
 
 
@@ -86,15 +103,13 @@ if (isset($_POST['submitCommentBtn'])) {
     $postID = $_POST['postID'];
     $commentDescription = $_POST['commentDescription'];
     $showAllCommentsByPost = showAllCommentsByPost($conn, $postID);
-    if(addAComment($conn, $postID, 26, $commentDescription)){
-        echo "Successfully";
-    }
-    else {
-        echo "failed";
+    $showLatestCommentByPost = showLatestCommentByPost($conn, $postID);
+    if(addAComment($conn, $postID, 26, $commentDescription)) {
+        echo true;
     }
 }
 
-// $showAllCommentsByPost = showAllCommentsByPost($conn, 26);
-// echo $showAllCommentsByPost;
+
+
 
 ?>
