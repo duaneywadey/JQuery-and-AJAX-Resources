@@ -12,9 +12,11 @@
        <div class="pricing-levels-3">
           <p><strong>Which level would you like? (Select 3 Levels)</strong></p>
           <div class="checkboxes">
-            <input class="single-checkbox"type="checkbox" id="checkboxInput" name="vehicle" value="Bike1">Level 1<br>
-            <input class="single-checkbox" type="checkbox" id="checkboxInput" name="vehicle" value="Bike2">Level 2<br>
-            <input class="single-checkbox" type="checkbox" id="checkboxInput" name="vehicle" value="Bike3">Level 3<br> 
+            <input class="single-checkbox"type="checkbox" name="vehicle" value="Bike1">Level 1<br>
+            <input class="single-checkbox" type="checkbox" name="vehicle" value="Bike2">Level 2<br>
+            <input class="single-checkbox" type="checkbox" name="vehicle" value="Bike3">Level 3<br> 
+            <input class="single-checkbox" type="checkbox" name="vehicle" value="Bike3">Level 3<br> 
+            <input class="single-checkbox" type="checkbox" name="vehicle" value="Bike3">Level 3<br> 
         </div>
 
     </div>
@@ -23,7 +25,7 @@
 <script>
 
     var choices = []
-    $('.single-checkbox').on('change', function (e) {
+    $('.single-checkbox').on('click', function (e) {
         choices.push($(this).val());
         console.log(choices)
         if ($('.single-checkbox').filter(':checked').length >= 2) {
