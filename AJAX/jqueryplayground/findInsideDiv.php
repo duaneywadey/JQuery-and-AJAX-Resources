@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+i<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -69,25 +69,25 @@
 		<div class="postGroup" data-postid = "1">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<p class="sampleText">1 - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
 		</div>
 
 		<div class="postGroup" data-postid = "2">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<p class="sampleText">2- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
 		</div>
 
-		<div class="postGroup" data-postid = "2">
+		<div class="postGroup" data-postid = "3">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<p class="sampleText">3 - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
 		</div>
 
-		<div class="postGroup" data-postid = "2">
+		<div class="postGroup" data-postid = "4">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<p class="sampleText">4 - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
 		</div>
 	</div>
 
@@ -108,10 +108,24 @@
 				var dataTest = $("#getThis").data("postid");
 				console.log(dataTest);
 			})
-
+			
 			$('.showID').on('click', function (e) {
 				var postid = $(this).closest('div').data('postid');
-				alert(postid);
+				var pTag = $(this).next().text();
+
+				$.ajax({
+					url:'form.php',
+					method:'POST',
+					data: {
+						showID: 1,
+						postid: postid,
+						pTag: pTag
+					},
+					dataType: 'text',
+					success: function (data) {
+						console.log(data);
+					}
+				})
 			})
 
 		})
