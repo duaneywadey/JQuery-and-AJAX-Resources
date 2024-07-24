@@ -1,14 +1,4 @@
-<?php 
-
-$host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "test";
-$dsn = "mysql:host={$host};dbname={$dbname}";
-
-$conn = new PDO($dsn, $user, $password);
-$conn->exec("SET time_zone = '+08:00';");
-
+<?php  
 function showAllPosts($conn)
 {
     $sql = "SELECT * FROM posts";
@@ -48,12 +38,17 @@ function updateAPost($conn, $description, $post_id)
     return $stmt->execute([$description, $post_id]);
 }
 
-if (isset($_POST['post_id']) && isset($_POST['description'])) {
-    if(updateAPost($conn, $_POST['description'], $_POST['post_id'])) {
-        echo true;
-    }
-    else {
-        echo false;
-    }
+function returnAllNames($conn) {
+    $sql = "SELECT * FROM name_and_networth";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+
+function updateTheNetWorth($conn, $net_worth, $id) {
+    $sql = "UPDATE name_and_networth SET net_worth = ? WHERE id = ? ";
+    $stmt = $conn->prepare($sql);
+    return $stmt->execute([$net_worth, $id]);
 }
 ?>
