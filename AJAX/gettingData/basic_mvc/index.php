@@ -18,25 +18,31 @@ require_once 'controller.php';
 	<div class="searchInput">
 		<input type="text" class="searchInputField">
 	</div>
-	<table style="margin-top:20px; width: 100%;">
-		<tr>
-			<th>ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Email</th>
-			<th>Gender</th>
-		</tr>
-		<?php $getAllUsers = getAllUsers($conn); ?>
-		<?php foreach ($getAllUsers as $user) { ?>
-		<tr class="singleRow"data-userid=<?php echo $user['id'];?>>
-			<td><?php echo $user['id']; ?></td>
-			<td><?php echo $user['first_name']; ?></td>
-			<td><?php echo $user['last_name']; ?></td>
-			<td><?php echo $user['email']; ?></td>
-			<td><?php echo $user['gender']; ?></td>
-		</tr>
-		<?php } ?>
-	</table>	
+	<div class="tableForAllRecords">
+		<table style="margin-top:20px;">
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Gender</th>
+			</tr>
+			<?php $getAllUsers = getAllUsers($conn); ?>
+			<?php foreach ($getAllUsers as $user) { ?>
+				<tr class="allRecords"data-userid=<?php echo $user['id'];?>>
+					<td><?php echo $user['id']; ?></td>
+					<td><?php echo $user['first_name']; ?></td>
+					<td><?php echo $user['last_name']; ?></td>
+					<td><?php echo $user['email']; ?></td>
+					<td><?php echo $user['gender']; ?></td>
+				</tr>
+			<?php } ?>
+		</table>
+	</div>
+	<div class="tableForSearchResults">
+		<table style="margin-top:20px;">
+		</table>
+	</div>	
 	<script>
 		
 		$('.singleRow').on('click', function (e) {
@@ -48,13 +54,18 @@ require_once 'controller.php';
 			$.ajax({
 				method:'POST',
 				url:'controller.php',
-				dataType:'json',
 				data:{
 					searchAUser:1,
 					keyword:keyword
 				},
 				success: function (data) {
-					console.log(data);
+					if (keyword.length) {
+						$('.tableForAllRecords').hide();
+						$('.tableForSearchResults table').html(data);
+					}
+					else {
+						$('.tableForAllRecords').show();
+					}
 				}
 			})
 		})
