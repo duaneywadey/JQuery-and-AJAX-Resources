@@ -14,6 +14,7 @@ if (isset($_POST['searchAUser'])) {
 				<th>Email</th>
 				<th>Gender</th>
 			</tr>
+			
 			";
 
 	foreach ($allRecordsFromSearch as $value) {

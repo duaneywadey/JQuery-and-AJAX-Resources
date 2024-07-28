@@ -17,13 +17,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <?php $returnAllNames = returnAllNames($conn); ?>
-    <?php foreach ($returnAllNames as $name) { ?>
-        <div class="numberField" data-userid=<?php echo $name['id']; ?>>
-            <label for="quantity"><?php echo "<br>" . $name['first_name'] . "<br>"; ?></label>
-            <input type="number" name="numberInputField" value="<?php echo $name['net_worth']; ?>" class="numberInputField">
-        </div> 
-    <?php } ?>
+    <div class="allNames">
+        <?php $returnAllNames = returnAllNames($conn); ?>
+        <?php foreach ($returnAllNames as $name) { ?>
+            <div class="numberField" data-userid=<?php echo $name['id']; ?>>
+                <label for="quantity"><?php echo "<br>" . $name['first_name'] . "<br>"; ?></label>
+                <input type="number" name="numberInputField" value="<?php echo $name['net_worth']; ?>" class="numberInputField">
+            </div> 
+        <?php } ?>
+    </div>
     <script>
         $('.numberInputField').on('change', function (e) {
             var userID = $(this).closest('div').data('userid');
@@ -38,7 +40,7 @@
                 },
                 dataType:'text',
                 success: function (data) {
-                    location.reload();
+                    $('.allNames').load(location.href + ".allNames");
                 }
             })
         })
