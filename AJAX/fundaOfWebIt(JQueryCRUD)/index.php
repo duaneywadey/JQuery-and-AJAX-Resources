@@ -10,6 +10,11 @@
 </head>
 <body>
 	<div class="container-fluid">
+		<ul>
+			<li><a href="all-posts.php">All Posts</a></li>
+			<li><a href="limit-posts.php">Limit Posts</a></li>
+			<li><a href="index.php">Home</a></li>
+		</ul>
 		<div class="row justify-content-center">
 			<button class="btn btn-primary mt-4 mb-4 addNewUserBtn">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
 			<div class="col-md-12">
@@ -233,6 +238,10 @@
 			$('#addNewUserModal').modal('show');
 		});
 
+		$('.modal').on('hidden.bs.modal', function (e) {
+			location.reload();
+		})
+
 		$('.viewUserBtn').on('click', function (e) {
 			var user_id = $(this).val();
 			$.ajax({
@@ -273,42 +282,44 @@
 					$('#editUserModal').modal('show');
 				}
 			})
-
-			$('.first_name, .last_name, .email, .gender, .ipaddress, .quote').on('input', function (e) {
-				var user_id = $('#editUserModal').find('.user_id').val();
-				var first_name = $('#editUserModal').find('.first_name').val();
-				var last_name = $('#editUserModal').find('.last_name').val();
-				var email = $('#editUserModal').find('.email').val();
-				var gender = $('#editUserModal').find('.gender').val();
-				var ipaddress = $('#editUserModal').find('.ipaddress').val();
-				var quote = $('#editUserModal').find('.quote').val();
-
-				if (first_name != "" && last_name != "" && email != "" && gender != "" && ipaddress != "" && quote !="") {
-
-					$.ajax({
-						type: "POST",
-						url: "controllers.php",
-						data: {
-							editAUser:1,
-							user_id: user_id,
-							first_name: first_name,
-							last_name: last_name,
-							email: email,
-							gender: gender,
-							ipaddress: ipaddress,
-							quote: quote
-						},
-						success: function (response) {
-							$(".table").load(location.href + " .table");
-						}
-					})
-
-				}
-				else {
-					alert("A field should not be empty");
-				}
-			})
 		})
+
+		$('.first_name, .last_name, .email, .gender, .ipaddress, .quote').on('input', function (e) {
+			var user_id = $('#editUserModal').find('.user_id').val();
+			var first_name = $('#editUserModal').find('.first_name').val();
+			var last_name = $('#editUserModal').find('.last_name').val();
+			var email = $('#editUserModal').find('.email').val();
+			var gender = $('#editUserModal').find('.gender').val();
+			var ipaddress = $('#editUserModal').find('.ipaddress').val();
+			var quote = $('#editUserModal').find('.quote').val();
+
+			if (first_name != "" && last_name != "" && email != "" && gender != "" && ipaddress != "" && quote !="") {
+
+				$.ajax({
+					type: "POST",
+					url: "controllers.php",
+					data: {
+						editAUser:1,
+						user_id: user_id,
+						first_name: first_name,
+						last_name: last_name,
+						email: email,
+						gender: gender,
+						ipaddress: ipaddress,
+						quote: quote
+					},
+					success: function (response) {
+						console.log(location.href);
+						$(".table").load(location.href + " .table");
+					}
+				})
+
+			}
+			else {
+				alert("A field should not be empty");
+			}
+		})
+		
 	</script>
 </body>
 </html>

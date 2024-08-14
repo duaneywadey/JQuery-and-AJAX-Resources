@@ -34,4 +34,22 @@ if (isset($_POST['editAUser'])) {
 	}
 }
 
+if (isset($_POST['hideAllPostsFromUser'])) {
+	$user_id = $_POST['userid'];
+	if (hideAllPostsFromUser($pdo, $user_id)) {
+		echo "success";
+	}
+}
+
+if (isset($_POST['unhideAllPostsFromUser'])) {
+	$user_id = $_POST['userid'];
+	if (unhideAllPostsFromUser($pdo, $user_id)) {
+		echo "success";
+	}
+}
+
+// if (isset($_POST['unhideUserPosts'])) {
+// 	// code...
+// }
+
 ?>

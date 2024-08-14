@@ -51,4 +51,5 @@ function updateTheNetWorth($conn, $net_worth, $id) {
     $stmt = $conn->prepare($sql);
     return $stmt->execute([$net_worth, $id]);
 }
+
 ?>
