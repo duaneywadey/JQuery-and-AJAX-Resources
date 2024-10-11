@@ -70,36 +70,43 @@ i<!DOCTYPE html>
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
 			<p class="sampleText">1 - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<div class="findME">
+				FINDME - Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, illum quae ducimus magnam assumenda quisquam id nulla pariatur, velit ab, ullam quos cupiditate. Tempore optio non voluptatibus saepe temporibus autem.
+			</div>
 		</div>
 
 		<div class="postGroup" data-postid = "2">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
 			<p class="sampleText">2- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<div class="findME">
+				FINDME - Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, illum quae ducimus magnam assumenda quisquam id nulla pariatur, velit ab, ullam quos cupiditate. Tempore optio non voluptatibus saepe temporibus autem.
+			</div>
 		</div>
 
 		<div class="postGroup" data-postid = "3">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
 			<p class="sampleText">3 - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<div class="findME">
+				FINDME - Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, illum quae ducimus magnam assumenda quisquam id nulla pariatur, velit ab, ullam quos cupiditate. Tempore optio non voluptatibus saepe temporibus autem.
+			</div>
 		</div>
 
 		<div class="postGroup" data-postid = "4">
 			<h1>Title</h1>
 			<button class="showID">Show ID</button>
 			<p class="sampleText">4 - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur fugiat illo, ducimus, molestias cumque id! Odit sequi alias corporis quasi recusandae iste error quia aliquam pariatur aspernatur, officia, consequatur ipsa.</p>
+			<div class="findMe">
+				FINDME - Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, illum quae ducimus magnam assumenda quisquam id nulla pariatur, velit ab, ullam quos cupiditate. Tempore optio non voluptatibus saepe temporibus autem.
+			</div>
 		</div>
 	</div>
 
+	<button class="buttonTest">BTN</button>
+
 	<script>
 		$(document).ready(function () {
-
-			// $('.child-E').siblings().css('background', 'red');
-			// $('.child-E').next().css('background', 'red');
-			// $('.child-E').nextAll().css('background', 'red');
-			// $('.child-E').prev().css('background', 'red');
-			// $('.child-E').prevAll().css('background', 'red');
-			// $('.fromHere').nextAll().css('color', 'red');
 
 			$('.buttonTest').on('click', function (e) {
 				$('.groupOfDivs').each(function (e) {
@@ -110,23 +117,22 @@ i<!DOCTYPE html>
 			})
 			
 			$('.showID').on('click', function (e) {
-				var postid = $(this).closest('div').data('postid');
-				var pTag = $(this).next().text();
+			    var postid = $(this).closest('div').data('postid');
 
-				$.ajax({
-					url:'form.php',
-					method:'POST',
-					data: {
-						showID: 1,
-						postid: postid,
-						pTag: pTag
-					},
-					dataType: 'text',
-					success: function (data) {
-						console.log(data);
-					}
-				})
-			})
+			    $.ajax({
+			        url: 'form.php',
+			        method: 'POST',
+			        data: {
+			            showID: 1,
+			            postid: postid,
+			            pTag: pTag
+			        },
+			        dataType: 'text',
+			        success: function (data) {
+			            alert(postid); // Alerting the text retrieved
+			        }
+			    });
+			});
 
 		})
 	</script>	
