@@ -11,6 +11,12 @@
 		table, th, td {
 		  border:1px solid black;
 		}
+
+		.redStyle {
+			color: red;
+			background-color: yellow;
+			border-style: solid;
+		}
 	</style>
 </head>
 <body>
@@ -40,12 +46,62 @@
 		</div>
 	</div>
 
+	<div class="checkboxes">
+		<p>
+			<label for="">Sure?</label>
+			<input type="radio" class="radioButton" value="one">
+		</p>
+		<p>
+			<label for="">Sure?</label>
+			<input type="radio" class="radioButton" value="two">
+		</p>
+		<p>
+			<label for="">Sure?</label>
+			<input type="radio" class="radioButton" value="three">
+		</p>
+		<p>
+			<label for="">Sure?</label>
+			<input type="radio" class="radioButton" value="four">
+		</p>
+		<p>
+			<label for="">Sure?</label>
+			<input type="radio" class="radioButton" value="five">
+		</p>
+	</div>
 
-	<button class="changeStyle">CHANGE STYLE</button>
+
+	<button class="slideUp">SLIDE UP</button>
+
+	<div class="choices"></div>
+
+	<div class="randomContent" style="border-style: solid;">
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure odio iste maxime quas quae earum ducimus, laborum veniam cupiditate impedit consequatur, quo dolore minima sint totam reprehenderit! Iure in, cum.</p>
+	</div>
+
 	<script>
-		$('.greatGrandparent').on('click', function (e) {
-			alert($(this).find('.parenttwo .prm').text())
+		var choices = []
+		$('.parenttwo').on('click', function (e) {
+
+			if (!$(this).hasClass('redStyle')) {
+				$(this).addClass('redStyle');
+			}
+			else {
+				$(this).removeClass('redStyle');
+			}
+
 		})
+
+		$('.radioButton').on('change', function (e) {
+			choices.push($(this).val());
+			for (var i = 0; i<=choices.length; i++) {
+				$('.choices').append(choices[i]);
+			}
+		})
+
+		$('.slideUp').on('click', function (e) {
+			$('.randomContent').fadeToggle();
+		})
+
 	</script>
 </body>
 </html>
