@@ -27,13 +27,15 @@
     <input type="text" class="orderID">
     <button class="loadOrder">Get order</button>
 
-    <div class="orderInfo" style="border-style: solid;">
+    <div class="orderInfo">
         <div class="orderCustomerName"></div>
         <div class="orderDate"></div>
         <div class="orderID"></div>
         <div class="orderItem"></div>
         <div class="orderValue"></div>
     </div>
+
+
 
     <script>
 
@@ -58,23 +60,31 @@
 
         $('.loadOrder').on('click',function (e) {
             var orderValue = $('.orderID').val()
-            $.ajax({
-                type:"GET",
-                url:"controllers.php",
-                dataType:"json",
-                data : {
-                    getJSONOrder: 1,
-                    orderValue: orderValue
-                },
-                success: function (res) {
-                    console.log(res);
-                    $('.orderCustomerName').text("Customer Name: " + res.order_customer_name);
-                    $('.orderDate').text("Order Date: " + res.order_date);
-                    $('.orderID').text("Order ID: " + res.order_id);
-                    $('.orderItem').text("Order Item: " + res.order_item);
-                    $('.orderValue').text("Order Value: " + res.order_value);
-                }
-            })
+
+            if (orderValue != "") {
+                    $.ajax({
+                    type:"GET",
+                    url:"controllers.php",
+                    dataType:"json",
+                    data : {
+                        getJSONOrder: 1,
+                        orderValue: orderValue
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        $('.orderInfo').attr("style", "border-style:solid");
+                        $('.orderCustomerName').text("Customer Name: " + res.order_customer_name);
+                        $('.orderDate').text("Order Date: " + res.order_date);
+                        $('.orderID').text("Order ID: " + res.order_id);
+                        $('.orderItem').text("Order Item: " + res.order_item);
+                        $('.orderValue').text("Order Value: " + res.order_value);
+                    }
+                })
+            }
+            else {
+                alert("Make sure it's not empty!")
+            }
+    
         })
     
     </script>
