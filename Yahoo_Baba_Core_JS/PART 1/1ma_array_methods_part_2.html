@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = "IvanDuane";
+		let arr = ["CFmoto", "Honda", "Toyota", "Jaguar", "Mitsubishi", "Nissan"];
+
+		document.write(a + "<br><br>");
+
+		if (Array.isArray(arr)) {
+			document.write("This is an array");
+		}
+		else {
+			document.write("This is not an array");
+		}
+
+		// Search from index 2
+		var b = arr.indexOf("Honda", 2);
+		document.write("<h1>"+ b +"</h1>");
+
+		var c = arr.lastIndexOf("Honda", 2);
+		document.write("<h1>"+ c +"</h1>")
+
+		var d = arr.includes("Honda");
+		document.write("<h1>"+ d +"</h1>");
+
+		function checkAdult(age) {
+			return age >= 18;
+		}
+
+		var ages = [1,2,3,4,5,6,7,8,9,10,19,20,21];
+		var e = ages.some(checkAdult);
+		var e = ages.every(checkAdult);
+		document.write("<h1>"+ e +"</h1>");
+
+		// returns first index depending on the condition
+		var f = ages.findIndex(checkAdult)
+		document.write("<h1>"+ f +"</h1>");
+
+		// returns first value depending on the function
+		var g = ages.find(checkAdult)
+		document.write("<h1>"+ g +"</h1>");
+
+		// returns all elements based on the condition
+		var h = ages.filter(checkAdult);
+		document.write("<h1>"+ h +"</h1>");
+
+
+		// converts arr to string
+		var arrToString = arr.toString();
+		document.write("<h1>" + arrToString + "</h1>");
+
+		var arrValueOf= arr.valueOf();
+		document.write("<h1>ValOf: " + arrValueOf + "</h1>");
+
+		// var arrFill= arr.fill("new_car_brand");
+		// document.write("<h1>ValOf: " + arrFill + "</h1>");
+
+		// foreach function to array
+		arr.forEach(function (value, index) {
+			document.write("<h1>" + index + ": " + value + "</h1>");
+		})
+
+		function loop(value, index) {
+			document.write("<h1>NEW ELS: " + index + ": " + value + "</h1>");
+		}
+
+		arr.forEach(loop);
+
+	</script>
+</body>
+</html>

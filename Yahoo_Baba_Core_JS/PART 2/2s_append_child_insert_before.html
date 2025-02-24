@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+		#test {
+			background-color: sandybrown;
+		}
+	</style>
+</head>
+<body>
+	<div id="test">
+		<h1>From body</h1>
+		<p>Lorem ipsum dolor, sit, amet consectetur adipisicing elit. Ullam aspernatur inventore nostrum veritatis enim, ipsa dignissimos ducimus dolores deleniti eum ad magnam amet eligendi at maiores sed dicta. Maxime, fugit?</p>
+		<p>Lorem ipsum dolor, sit, amet consectetur adipisicing elit. Ullam aspernatur inventore nostrum veritatis enim, ipsa dignissimos ducimus dolores deleniti eum ad magnam amet eligendi at maiores sed dicta. Maxime, fugit?</p>
+		<p>Lorem ipsum dolor, sit, amet consectetur adipisicing elit. Ullam aspernatur inventore nostrum veritatis enim, ipsa dignissimos ducimus dolores deleniti eum ad magnam amet eligendi at maiores sed dicta. Maxime, fugit?</p>
+	</div>
+	<script>
+		var newElement = document.createElement("h2");
+		var newText = document.createTextNode("Some random text loeoeo");
+		newElement.appendChild(newText);
+		document.getElementById('test').appendChild(newElement);
+
+		var target = document.getElementById('test');
+		target.insertBefore(newElement, target.childNodes[2] );
+
+		console.log(target.childNodes);
+	</script>
+</body>
+</html>

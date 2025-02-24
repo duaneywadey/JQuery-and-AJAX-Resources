@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div class="grandparent" style="padding: 25px;background-color: aliceblue;">
+		yes first grandparent textContent
+		<div class="parent" style="padding: 25px;background-color:blanchedalmond;">
+			parent textContent
+			<div class="children" style="padding: 25px;background-color: chocolate;">
+				children textContent
+				<div class="grandchildren" style="padding: 25px;background-color: cornsilk;">
+					<input type="text" value="getVal" class="inputField">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grandparent" style="padding: 25px;background-color: aliceblue;">
+		hi grandparent textContent
+		<div class="parent" style="padding: 25px;background-color:blanchedalmond;">
+			parent textContent
+			<div class="children" style="padding: 25px;background-color: chocolate;">
+				children textContent
+				<div class="grandchildren" style="padding: 25px;background-color: cornsilk;">
+					<input type="text" value="getVal" class="inputField">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grandparent" style="padding: 25px;background-color: aliceblue;">
+		grandparent textContent hello
+		<div class="parent" style="padding: 25px;background-color:blanchedalmond;">
+			parent textContent
+			<div class="children" style="padding: 25px;background-color: chocolate;">
+				children textContent
+				<div class="grandchildren" style="padding: 25px;background-color: cornsilk;">
+					<input type="text" value="getVal" class="inputField">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		let button = document.querySelectorAll('.grandparent');
+		let buttonFirst = document.querySelectorAll('.grandparent')[0];
+
+		for (let i = 0; i < button.length; i++) {
+			button[i].addEventListener('click', function (event) {
+				console.log(event.cancelable);
+				console.log(event.eventPhase);
+				console.log(event.timeStamp);
+				console.log(event.bubbles);
+				console.log(button[i].firstElementChild)
+				console.log(button[i].innerHTML)
+				console.log(button[i].textContent)
+			})
+		}
+
+		console.log(buttonFirst);
+	</script>
+</body>
+</html>

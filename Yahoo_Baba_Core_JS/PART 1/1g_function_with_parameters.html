@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		function sum(math, eng, sc) {
+			var s = math + eng + sc;
+			return s;
+		}
+
+		function percentage(tt) {
+			var per = tt/300 * 100;
+			document.write(per)
+		}
+
+		function hello(fname="Ivan", lname="Duane") {
+			document.write("Hello, " + fname + " " + lname);
+		}
+		hello()
+		hello()
+		hello("Alex", "Mercer")
+
+		var total = sum(80,80,80)
+		percentage(total);
+	</script>
+</body>
+</html>

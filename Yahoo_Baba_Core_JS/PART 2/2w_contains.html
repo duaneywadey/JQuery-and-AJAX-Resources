@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="test">
+		<h2>JS contains method</h2>
+		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident adipisci minus quod cum doloribus maiores placeat, doloremque quos dolores autem expedita magni sunt voluptatum molestiae consectetur inventore quibusdam numquam? Ut.</p>
+		<p class="abc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat porro ut neque quam dicta nihil, sapiente suscipit sed laborum maxime totam. Earum, praesentium explicabo doloribus veniam, ipsa neque ducimus consectetur!</p>
+	</div>
+
+	<script>
+		var parentElement = document.getElementById('test');
+		var target = document.querySelector('.abc');
+		
+		var find = parentElement.contains(target);
+		document.write("<h1>"+ find +"</h1>")
+	</script>
+</body>
+</html>

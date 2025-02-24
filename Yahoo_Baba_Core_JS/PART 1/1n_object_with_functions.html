@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let army = {
+			minAge: 18,
+			maxAge: 27,
+			canJoin(user) {
+				return user.age >= this.minAge && user.age < this.maxAge;
+			}
+		};
+
+		let users = [
+		{age: 16},
+		{age: 20},
+		{age: 23},
+		{age: 30}
+		];
+
+		// find users, for who army.canJoin returns true
+		let soldiers = users.filter(army.canJoin, army);
+
+		document.write("<br>")
+		document.write(JSON.stringify(soldiers));
+		document.write("<br>")
+
+
+		let ask = (question, yes, no) => confirm(question) ? yes() : no();
+	
+		ask('Do you agree?',
+			() => console.log('You agreed'),
+			() => console.log('You interrupted execution'),
+		);
+		
+	</script>
+</body>
+</html>

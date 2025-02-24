@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = {
+			fname: 'Ivan',
+			lname: 'Duane',
+			age: 24,
+			email:'ivan@email.com',
+			favHobbies: ['Boxing', 'Movies', 'Playing the Bass'],
+
+			getAge: function () {
+				return this.age;
+			}
+		}
+
+		console.log(a);
+		document.write(a.getAge());
+	</script>
+</body>
+</html>

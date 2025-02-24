@@ -1,36 +1,31 @@
 <?php  
-
 require_once 'dbConfig.php';
-$getAllUsers = getAllUsers($pdo);
+
+if (isset($_GET['getUserByIDBtn'])) {
+    $user_id = $_GET['user_id'];
+    $getUserByID = getUserByID($pdo, $user_id);
+    echo $getUserByID;
+}
 
 
-$columns = array(
-    array( 'db' => 'first_name', 'dt' => 'first_name' ),
-    array( 'db' => 'last_name',  'dt' => 'last_name' ),
-    array( 'db' => 'email',   'dt' => 'email' ),
-);
+if (isset($_POST['editUserBtn'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $user_id = $_POST['user_id'];
+    $updateQuery = updateUser($pdo, $first_name, $last_name, $email, $user_id);
+    
+    if ($updateQuery) {
+        echo true;
+    }
+}
 
-
-// DB table to use
-$table = 'mock_data';
- 
-// Table's primary key
-$primaryKey = 'id';
-
-
-
-// SQL server connection information
-$sql_details = array(
-    'user' => 'root',
-    'pass' => '',
-    'db'   => 'test',
-    'host' => 'localhost'
-);
-
-require('ssp.class.php');
-
-echo json_encode(
-    SSP::simple( $_POST, $sql_details, $table, $primaryKey, $columns )
-);
+if (isset($_POST['deleteUserBtn'])) {
+    $updateQuery = deleteUser($pdo, $_POST['user_id']);
+    
+    if ($updateQuery) {
+        return true;
+    }
+}
 
 ?>

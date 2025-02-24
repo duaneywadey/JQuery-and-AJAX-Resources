@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<body>
+	<div class="grandparent" style="border-style: solid; width: 50%; padding: 25px; margin-top: 10px;">
+		Im the grandparent
+		<div class="parent">
+			parenttext
+			<div class="children">
+				<div class="grandchildren">
+					Click to see parent
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grandparent" style="border-style: solid; width: 50%; padding: 25px; margin-top: 10px;">
+		Im the grandparent
+		<div class="parent">
+			<h1 class="findMe">lorem</h1>
+			<h1 class="findMeAgain">lorem</h1>
+			<div class="children">
+				<div class="grandchildren">
+					Click to see parent
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grandparent" style="border-style: solid; width: 50%; padding: 25px; margin-top: 10px;">
+		Im the grandparent
+		<div class="parent">
+			parenttext
+			<div class="children">
+				<div class="grandchildren">
+					Click to see parent
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="fadeInName" style="background-color: powderblue; padding:25px; display: none;"></div>
+	<form action="#" id="basicForm">
+		<input type="text" name="uname">
+		<input type="text" name="fname">
+		<input type="text" name="lname">
+		<input type="submit">
+	</form>
+	<script>
+		$('.grandchildren').click(function (e) {
+			alert($(this).closest('.parent').find('.findMe').text())
+		})
+
+		$('#basicForm').submit(function (e) {
+			e.preventDefault();
+			console.log($(this).serialize())
+			$('.fadeInName').css('display','none').html("<h2>"+ $(this).find("[name='uname']").val()+"</h2>").hide().fadeIn();
+		})
+	</script>
+</body>
+</html>

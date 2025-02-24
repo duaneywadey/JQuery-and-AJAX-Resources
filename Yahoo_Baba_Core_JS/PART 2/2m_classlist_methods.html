@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.yellow {
+			color: red;
+			font-family: 'Papyrus';
+		}
+		.greatGrandparent {
+			padding: 100px;
+			background-color: orange;
+			border-style: solid;
+		}
+		.grandparent {
+			padding: 100px;
+			background-color: springgreen;
+			border-style: solid;
+		}
+		.parent {
+			display: grid;
+			padding: 100px;
+			grid-gap: 25px;
+			grid-template-columns: repeat(6, 1fr);
+			background-color: cadetblue;
+			border-style: solid;
+		}
+
+		.el {
+			padding: 25px;
+			text-align: center;
+			background-color: cyan;
+			border-style: solid;
+		}
+
+
+		@media screen and (max-width: 1000px) {
+			.parent {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="greatGrandparent">
+		Im the great grandparent. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut modi, mollitia excepturi ab consequuntur vitae earum repellat voluptatem laudantium provident distinctio amet officia, molestiae, beatae est, perspiciatis officiis a. Voluptas.
+		<div class="grandparent">
+			Im the grandparent . 
+			<div class="parent">
+				<div class="el">
+					1 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el">
+					2 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el">
+					3 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el">
+					4 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el">
+					5 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el">
+					6 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var element = document.querySelectorAll('.el');
+		for (let i = 0; i < element.length; i++) {
+			element[i].addEventListener('click', function (event) {
+				element[i].style.backgroundColor = 'yellow';
+			})
+		}
+
+		var grandparElement = document.querySelector('.grandparent');
+
+		function changeColor() {
+			document.querySelector('.grandparent').classList.toggle('yellow');
+		}
+
+		grandparElement.addEventListener('click', changeColor)
+	</script>
+</body>
+</html>

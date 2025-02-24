@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript &amp; jQuery - Chapter 7: Introducing jQuery - Example</title>
+    
+    <style>
+      .done {
+        background-color: yellow;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="randomText">Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Dolorem, debitis, iusto! Provident voluptatem dignissimos hic sed dolore, ipsum facere rerum, ea ab, neque ducimus esse aperiam? Nihil fuga, asperiores non!</div>
+      <div class="randomText">Lorem ipsum dolor sit, amet consectetur, adipisicing elit. Quod possimus, totam. Accusamus voluptatum, ratione atque quaerat unde quis minus amet ut dicta, voluptates quod, provident. Voluptate aspernatur similique, quos explicabo!</div>
+      <div class="randomText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laboriosam dicta veritatis aliquam corporis corrupti! Labore nihil repellat provident sint qui, odit deleniti dolores suscipit amet, id, quis? Maxime, perspiciatis?</div>
+      <div class="randomText">Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Ad modi enim est eveniet suscipit placeat, ipsum accusamus. Officia recusandae expedita tempore possimus provident. Est aliquid ab, fuga eos tempore labore!</div>
+      <div class="randomText">IM CLICKED Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ex est fugiat quibusdam. Esse numquam et cumque ut fuga impedit sapiente voluptate enim quos facere. Optio alias consequuntur hic, dolorum.</div>
+    </div>
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/example.js"></script>
+    <script>
+      $('.container').on('click', '.randomText', function (e) {
+        $(this).hide().fadeIn(1000);
+      })
+    </script>
+  </body>
+</html>

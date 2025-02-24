@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="list1">
+		<li>Ducati</li>
+		<li>Kawasaki</li>
+		<li>Honda</li>
+		<li>CFMoto</li>
+	</ul>
+
+	<script>
+		var newElement = document.createElement('li');
+		var newText = document.createTextNode('lorem ipsummmmmm');
+
+		newElement.appendChild(newText);
+
+		var target = document.getElementById('list');
+		var oldElement = target.children[3];
+		var oldElement = target.children[0];
+
+		console.log(oldElement);
+
+		target.replaceChild(newElement, oldElement);
+	</script>
+</body>
+</html>

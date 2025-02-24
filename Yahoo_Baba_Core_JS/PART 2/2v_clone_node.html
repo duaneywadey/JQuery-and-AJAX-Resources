@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#test {
+			background-color: moccasin;
+		}
+	</style>
+</head>
+<body>
+	<ul id="list1">
+		<li>Ducati</li>
+		<li>Kawasaki</li>
+		<li>Honda</li>
+		<li>CFMoto</li>
+	</ul>
+
+	<ul id="list2">
+		<li>Lambo</li>
+		<li>Toyota</li>
+		<li>BMW</li>
+		<li>Jaguar</li>
+	</ul>
+
+	<div id="test"></div>
+
+	<script>
+		var target = document.getElementById('list1').children[0];
+		var target = document.getElementById('list1').children[1];
+		var target = document.getElementById('list1').children[2];
+		var copyElement = target.cloneNode(true);
+
+		document.getElementById('test').appendChild(copyElement);
+	</script>
+</body>
+</html>

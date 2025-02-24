@@ -15,7 +15,14 @@
         <li id="four">balsamic vinegar</li>
       </ul>
     </div>
+    <script>
+      $(document).ready(function() {
+        $('h2').hide().slideDown();
+        $('li').hide().each( function(index) {
+          $(this).delay(700*index).fadeIn(700);
+        });
+      });
+    </script>
     <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/including-jquery.js"></script>
   </body>
 </html>

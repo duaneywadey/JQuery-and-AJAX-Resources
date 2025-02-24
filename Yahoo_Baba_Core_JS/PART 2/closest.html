@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.grandparent {
+			border-style: solid;
+			margin-top: 25px;
+			padding: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="grandparent">
+			jwjw
+			<div class="parent">
+				<p class="findme">Lorememem</p>
+				<div class="children">
+					<div class="grandchildren">
+						<input type="text" value="get this val" class="inputField">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grandparent">
+			jwjw
+			<div class="parent">
+				<p class="findme">Lorememem</p>
+				<div class="children">
+					<div class="grandchildren">
+						<input type="text" value="get this val" class="inputField">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grandparent">
+			jwjw
+			<div class="parent">
+				<p class="findme">Lorememem</p>
+				<div class="children">
+					<div class="grandchildren">
+						<input type="text" value="get this val" class="inputField">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grandparent">
+			jwjw
+			<div class="parent">
+				<p class="findme">Lorememem</p>
+				<div class="children">
+					<div class="grandchildren">
+						<input type="text" value="get this val" class="inputField">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grandparent">
+			jwjwwowowo
+			<div class="parent">
+				<p class="findme">Lorememem</p>
+				<div class="children">
+					<div class="grandchildren">
+						LAST <input type="text" value="get this val" class="inputField">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="text" class="inputField">
+	<button class="submitBtn">Submit</button>
+	<script>
+
+		var inputField = document.querySelector('.inputField');
+		var els = document.querySelectorAll('.grandparent');
+
+		var allGrandchild = document.querySelectorAll('.grandchildren');
+
+		for (let i = 0; i < allGrandchild.length; i++) {
+			allGrandchild[i].addEventListener('click', function (event) {
+				console.log(this);
+			})
+		}
+
+		for (let i = 0; i < allGrandchild.length; i++) {
+			allGrandchild[i].addEventListener('click', function (event) {
+				console.log(event.target);
+			})
+		}
+
+
+		for (let i = 0; i < els.length; i++) {
+			els[i].addEventListener('click', function (e) {
+				els[i].style.backgroundColor = 'aliceblue';
+				els[i].style.fontFamily = 'sans-serif';
+			})
+		}
+		var submitBtn = document.querySelector('.submitBtn')
+
+		submitBtn.addEventListener('click', function (e) {
+			let node = document.createElement("div");
+			let textNode = document.createTextNode(inputField.value);
+			node.appendChild(textNode);
+			node.style.borderStyle = 'solid';
+			node.style.padding = '25px';
+			node.setAttribute('class', 'grandparent');
+			document.querySelector('.container').appendChild(node);
+
+			node.addEventListener('click', function (event) {
+				node.style.backgroundColor = 'aliceblue';
+				node.style.fontFamily = 'sans-serif';
+			})
+		})
+
+	</script>
+</body>
+</html>

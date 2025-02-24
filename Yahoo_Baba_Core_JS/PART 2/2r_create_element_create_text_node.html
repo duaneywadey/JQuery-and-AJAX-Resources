@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.yellow {
+			color: red;
+			font-family: 'Papyrus';
+		}
+		.greatGrandparent {
+			padding: 100px;
+			background-color: orange;
+			border-style: solid;
+		}
+		.grandparent {
+			padding: 100px;
+			background-color: springgreen;
+			border-style: solid;
+		}
+		.parent {
+			display: grid;
+			padding: 100px;
+			grid-gap: 25px;
+			grid-template-columns: repeat(6, 1fr);
+			background-color: cadetblue;
+			border-style: solid;
+		}
+
+		.el {
+			padding: 25px;
+			text-align: center;
+			background-color: cyan;
+			border-style: solid;
+		}
+
+
+		@media screen and (max-width: 1000px) {
+			.parent {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="greatGrandparent">
+		Im the great grandparent
+		<div class="grandparent">
+			Im the grandparent . 
+			<div class="parent">
+				<div class="el el-1">
+					1 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el el-2">
+					2 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el el-3">
+					3 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el el-4">
+					4 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el el-5">
+					5 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+				<div class="el el-6">
+					6 - Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var newElement = document.createElement("h2");
+		var newText = document.createTextNode("Lorem ipsum dolor, sit amet consectetur adipisicing elit.");
+
+		var greatGrandparent = document.querySelector('.greatGrandparent');
+
+		console.log(newElement);
+		console.log(newText);
+		newElement.appendChild(newText);
+
+		document.querySelector('.parent').appendChild(newElement);
+		document.querySelector('.parent').appendChild(newElement);
+		document.querySelector('.parent').appendChild(newElement);
+		document.querySelector('.parent').insertBefore(newElement, greatGrandparent.childNodes[0]);
+
+	</script>
+</body>
+</html>

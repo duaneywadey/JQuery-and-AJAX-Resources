@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		html {
+			font-family: sans-serif;
+		}
+		body {
+			max-width: 500px;
+			margin: 0 auto;
+		}
+		div, p {
+			padding: 1em;
+			margin: 1em 0;
+			border: 1px solid #a1a1a1;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="main">Accessing the DOM elements</h1>
+	<h2>Using the ID selector</h2>
+
+	<div id="header">Access the element using <strong>getElementsByClassName()</strong></div>
+	<div id="header">Access the element using <strong>getElementsByClassName()</strong></div>
+
+	<h2>Using the tag name</h2>
+	<p>Access the paragraph using <strong>getElementsByTagName()</strong></p>
+	<p>Access the paragraph using <strong>getElementsByTagName()</strong></p>
+
+	<h2>Using the query selector all</h2>
+	<div class="query-all">Access the elements using <strong>querySelectorAll()</strong></div>
+	<div class="query-all">Access the elements using <strong>querySelectorAll()</strong></div>
+
+	<script>
+		let paragraphElements = document.getElementsByTagName('p');
+		for (var i = 0; i < paragraphElements.length; i++) {
+			paragraphElements[i].style.color = "red"
+		}
+	</script>
+</body>
+</html>

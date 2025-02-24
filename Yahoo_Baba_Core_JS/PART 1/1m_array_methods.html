@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text">
+	<button id="showText">Show text</button>
+	<script>
+		var randomWord = "Lorem ipsum dolor sit amet consectetur adipisicing elit Veniam maxime eum esse cum dolorem odit tenetur dolore sapiente soluta ipsum minima suscipit reprehenderit ab possimus cupiditate unde Rem tenetur explicabo"
+
+		// Make randomWord an array
+		var arr = randomWord.split(" ")
+
+		arr.push("NEW ELEMENT HERE")
+		document.write("<br>")
+		document.write(arr)
+		document.write("<br>")
+
+		arr.pop()
+		arr.pop()
+		arr.pop()
+		document.write("<br>")
+		document.write(arr)
+		document.write("<br>")
+
+		arr.shift()
+		arr.shift()
+		arr.shift()
+		document.write("<br>")
+		document.write(arr)
+		document.write("<br>")
+
+		arr.unshift("NEWELEMENTAGAIN")
+		arr.unshift("NEWELEMENTAGAIN")
+		arr.unshift("NEWELEMENTAGAIN")
+		arr.unshift("NEWELEMENTAGAIN")
+		document.write("<br>")
+		document.write(arr)
+		document.write("<br>")
+
+		arr.splice(1,20)
+		document.write("<br>")
+		document.write(arr)
+		document.write("<br>")
+
+		document.write("<br>")
+		document.write(arr.slice(1,6))
+		document.write("<br>")
+
+		var newArr = ["dolorem", "dolor", "ipsujuuuuuuuuuuum"]
+		document.write("<br>")
+		document.write(arr.concat(newArr))
+		document.write("<br>")
+
+		let users = [
+		  {"userId": 1, "username": "johndoe","email": "johndoe@example.com"},
+		  {"userId": 2, "username": "emily","email": "emilydoe@example.com"},
+		  {"userId": 3, "username": "jane","email": "janedoe@example.com"},
+		  {"userId": 4, "username": "mike","email": "mikedoe@example.com"},
+		  {"userId": 5, "username": "alex","email": "alexdoe@example.com"},
+		]
+
+		let findUser = users.find(user => user.userId == 1);
+		document.write("<br>")
+		document.write(findUser.username)
+		document.write("<br>")
+
+		let findIndex = users.findIndex(user => user.username == "johndoe");
+		document.write("<br>")
+		document.write(findIndex);
+		document.write("<br>")
+
+		let filterUser = users.filter(user => user.userId > 3)
+		document.write("<br>")
+		document.write(JSON.stringify(filterUser));
+		document.write("<br>")
+
+		let arrOfNums = [2,4,6,8,10,12,14,16,18,20]
+		let newArrOfNums = arrOfNums.filter((value) => value > 10)
+		document.write("<br>")
+		document.write(newArrOfNums);
+		document.write("<br>")
+
+		let mapFunc = users.map(user => {
+			return user.userId * 69420;
+		})
+
+		let mapFuncTwo = users.map(user=> {
+			return user.username + "Vito Cruz";
+		})
+
+		let mapFuncThree = users.map(user=> {
+			fullEmail = user.email
+			return fullEmail.replace("example", "gmail");
+		})
+
+		document.write("<br>")
+		document.write(JSON.stringify(mapFunc));
+		document.write("<br>")
+
+		document.write("<br>")
+		document.write(JSON.stringify(mapFuncTwo));
+		document.write("<br>")
+
+		document.write("<br>")
+		document.write(JSON.stringify(mapFuncThree));
+		document.write("<br>")
+
+		let userIdSum = users.reduce((userIdSum, current) => userIdSum + current.userId, 0);
+
+		document.write("<br>");
+		document.write(userIdSum);
+		document.write("<br>");
+
+		// SPLIT - STRING ----> ARRAY
+		let names = 'Bilbo, Gandalf, Nazgul';
+		let arrNames = names.split(', ');
+		for (let name of arrNames) {
+		  document.write("<br>");
+		  document.write( `A message to ${name}.` );
+		  document.write("<br>");
+		}
+
+		// JOIN - ARRAY -----> STRING
+		let arrNamesTwo = ['Bilbo', 'Gandalf', 'Nazgul'];
+		let strNames = arrNamesTwo.join(';');
+		document.write("<br>");
+		document.write(strNames);
+		document.write("<br>");		
+		
+	</script>
+</body>
+</html>
