@@ -11,6 +11,10 @@ function charCount(e) {                                    // Declare function
   charDisplay.textContent = counter;                       // Show chars left
   lastkey = document.getElementById('lastKey');            // Get last key elem
   lastkey.textContent = 'Last key in ASCII code: ' + e.keyCode; // Create msg 
+
+  if (counter < 0) {
+    charDisplay.textContent = "Too many characters!";
+  }
 }
 el = document.getElementById('message');                   // Get msg element
-el.addEventListener('keyup', charCount, false); // on keyup - call charCount()
+el.addEventListener('keyup', charCount); // on keyup - call charCount()

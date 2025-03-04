@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Var vs Let vs Const</title>
+</head>
+<body>
+    <button class="btn">Button 1</button>
+    <button class="btn">Button 2</button>
+    <button class="btn">Button 3</button>
+
+    <script>
+        // Using var
+        var buttonsVar = document.querySelectorAll('.btn');
+        for (var i = 0; i < buttonsVar.length; i++) {
+            buttonsVar[i].addEventListener('click', function () {
+                console.log('Var clicked button index:', i); // Always logs the last index due to var's function scope
+            });
+        }
+
+        // Using let
+        let buttonsLet = document.querySelectorAll('.btn');
+        for (let i = 0; i < buttonsLet.length; i++) {
+            buttonsLet[i].addEventListener('click', function () {
+                console.log('Let clicked button index:', i); // Logs the correct index due to block scope
+            });
+        }
+
+        // Using const
+        const buttonsConst = document.querySelectorAll('.btn');
+        buttonsConst.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                console.log('Const clicked button index:', index); // Works because const is block-scoped and immutable
+            });
+        });
+
+
+        var greet = "hello";
+        var greet = "hi";
+
+        if (greet = "hi") {
+            var greet = "yes working"
+        }
+
+        console.log(greet);
+
+        var greetings = ["kumusta", "hello", "hi", "goodmorning"]
+
+        for (var i = 0; i < greetings.length; i++) {
+            console.log(greetings[i])
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Interactive Card</title>
+	<style>
+		.card {
+			border-style: solid;
+			padding: 25px;
+			width: 300px;
+			margin: 20px auto;
+		}
+		.buttons {
+			margin-bottom: 15px;
+		}
+		button {
+			margin: 0 5px;
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			background-color: #007BFF;
+			color: white;
+		}
+		.mainPanel {
+			border-style: solid;
+			border-color: red;
+			padding: 10px;
+		}
+		.panelone, .paneltwo, .panelthree {
+			display: none; /* Hide all panels by default */
+		}
+		.active {
+			display: block; /* Show the active panel */
+		}
+	</style>
+</head>
+<body>
+	<div class="card">
+		<div class="buttons">
+			<button data-panel="panelone">Page 1</button>
+			<button data-panel="paneltwo">Page 2</button>
+			<button data-panel="panelthree">Page 3</button>
+			<input type="checkbox" id="checkboxForYellow">
+		</div>
+		<div class="mainPanel">
+			<div class="panel panelone active">one voluptatum? Accusantium tempore dolores itaque, repellat voluptate. Porro, possimus molestias.</div>
+			<div class="panel paneltwo">two Loreor sit amet consectetur, adipisicing elit. Saepe necessitatibus, laudantium amet non, expedita explicabo eius quis, culpa numquam earum voluptatum? Accusantium tempore dolores itaque, repellat voluptate. Porro, possimus molestias.</div>
+			<div class="panel panelthree">three Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nece, possimus molestias.</div>
+		</div>
+	</div>
+
+	<script>
+		const panels = document.querySelectorAll('.mainPanel .panel');
+		const buttons = document.querySelectorAll('.buttons button')
+		const checkboxForYellow = document.querySelector('#checkboxForYellow');
+
+		checkboxForYellow.addEventListener('change', function (event) {
+			if (this.checked == true) {
+				for (let i = 0; i < panels.length; i++) {
+					panels[i].style.backgroundColor = 'yellow';
+				}
+			}
+			else {
+				for (let i = 0; i < panels.length; i++) {
+					panels[i].style.backgroundColor = '';
+				}
+			}
+		})
+
+
+		for (let i = 0; i < buttons.length; i++) {
+
+			buttons[i].addEventListener('click', function (event) {
+
+				const panelName = buttons[i].getAttribute('data-panel');
+				
+				for (let i = 0; i < panels.length; i++) {
+					panels[i].classList.remove('active');
+				}
+
+	            // Show the selected panel
+	            const activePanel = document.querySelector("." + panelName);
+	            activePanel.classList.add('active');
+        	})
+		}
+
+	</script>
+</body>
+</html>

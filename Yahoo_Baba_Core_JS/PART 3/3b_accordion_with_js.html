@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.accordion {
+			padding: 120px;
+			border-style: solid;
+			background-color: aliceblue;
+		}
+
+		.accordion .acdBody {
+			display: none;
+		}
+
+
+		.accordion .acdBody.active {
+			display: block;
+		}
+
+		.acdTitle {
+			margin-top: 25px;
+			background-color: yellow;
+			border-style: solid;
+		}
+
+		.acdBody {
+			border-style: solid;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="accordion">
+		<div class="accordionItem">
+			<div class="acdTitle">Title</div>
+			<div class="acdBody">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestiae illo commodi officiis, placeat unde nostrum cupiditate, laboriosam saepe nobis, minima quo cum autem fugit officia deserunt dicta molestias eum!</div>
+		</div>
+		<div class="accordionItem">
+			<div class="acdTitle">Title</div>
+			<div class="acdBody">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestiae illo commodi officiis, placeat unde nostrum cupiditate, laboriosam saepe nobis, minima quo cum autem fugit officia deserunt dicta molestias eum!</div>
+		</div>
+		<div class="accordionItem">
+			<div class="acdTitle">Title</div>
+			<div class="acdBody">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestiae illo commodi officiis, placeat unde nostrum cupiditate, laboriosam saepe nobis, minima quo cum autem fugit officia deserunt dicta molestias eum!</div>
+		</div>
+		<div class="accordionItem">
+			<div class="acdTitle">Title</div>
+			<div class="acdBody">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestiae illo commodi officiis, placeat unde nostrum cupiditate, laboriosam saepe nobis, minima quo cum autem fugit officia deserunt dicta molestias eum!</div>
+		</div>
+	</div>
+	<script>
+		const acdBody = document.querySelectorAll('.acdBody');
+		const acdTitle = document.querySelectorAll('.acdTitle');
+
+		for (let i = 0; i < acdTitle.length; i++) {
+			acdTitle[i].addEventListener('click', function (event) {
+				
+				for (var i = 0; i < acdBody.length; i++) {
+					acdBody[i].classList.remove('active');
+				}
+
+				let accordionItem = this.closest('.accordionItem').querySelector('.acdBody');
+				accordionItem.classList.toggle('active');
+			})
+		}
+	</script>
+</body>
+</html>

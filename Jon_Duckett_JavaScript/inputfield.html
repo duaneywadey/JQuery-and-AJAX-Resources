@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="grandparent">
+        <div class="parent">
+            <p class="nope">haha</p>
+            <p class="yesThisOne">haha</p>
+            <div class="children">
+                <div class="grandchildren">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam odio, debitis? Minima esse, asperiores beatae ea accusamus facere, illum, iste ullam corrupti nisi alias, architecto distinctio non laborum labore consequuntur?
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log(document.querySelector('.grandchildren').closest('.parent').querySelector('.yesThisOne').textContent);
+    </script>
+</body>
+</html>

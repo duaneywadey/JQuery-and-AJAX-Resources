@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.greatgrandparent {
+			border-style: solid;
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="greatgrandparent">
+		great grand
+		<div class="grandparent">
+			<p class="getMe">1 - grandp</p>
+			<div class="parent">
+				par
+				<div class="children">
+					child
+					<div class="grandchildren">
+						grandchild
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="greatgrandparent">
+		great grand
+		<div class="grandparent">
+			<p class="getMe">2 - grandp</p>
+			<div class="parent">
+				par
+				<div class="children">
+					child
+					<div class="grandchildren">
+						grandchild
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="greatgrandparent">
+		great grand
+		<div class="grandparent">
+			<p class="getMe">3 - grandp</p>
+			<div class="parent">
+				par
+				<div class="children">
+					child
+					<div class="grandchildren">
+						grandchild
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="greatgrandparent">
+		great grand
+		<div class="grandparent">
+			<p class="getMe">4 - grandp</p>
+			<div class="parent">
+				par
+				<div class="children">
+					child
+					<div class="grandchildren">
+						grandchild
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="greatgrandparent" random="yes" randomAgain="yes" randomYes="yes">
+		great grand
+		<div class="grandparent">
+			<p class="getMe">5 - grandp</p>
+			<div class="parent">
+				par
+				<div class="children">
+					child
+					<div class="grandchildren">
+						grandchild
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var allGreatGrandParent = document.querySelectorAll('.greatgrandparent');
+		var allGrandChild = document.querySelectorAll('.grandchildren');
+
+		allGrandChild.forEach(function (item, index) {
+			item.addEventListener('click', function (event) {
+				console.log(this.closest('.grandparent').querySelector('.getMe').textContent)
+			})
+		})
+
+		allGreatGrandParent.forEach(function (item, index) {
+			item.addEventListener('click', function (event) {
+				console.log("You clicked a " + event.target.tagName + " element");
+				console.log("Inner HTML element:" + event.target.innerHTML);
+				console.log("The class attribute is:" + event.target.getAttribute('class'));
+
+				console.log("ATTRIBUTES:")
+				var allAttr = event.target.attributes;
+				for (var i = 0; i < allAttr.length; i++) {
+					console.log(allAttr[i].name + ": " + allAttr[i].value);
+				}
+
+				allAttr.forEach(function (item) {
+					console.log(item.name);
+				})
+
+			})
+		})
+	</script>
+</body>
+</html>
