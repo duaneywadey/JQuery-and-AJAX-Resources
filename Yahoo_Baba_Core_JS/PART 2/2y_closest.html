@@ -70,11 +70,11 @@
 			</div>
 		</div>
 	</div>
-	<input type="text" class="inputField">
+	<input type="text" class="origInputField">
 	<button class="submitBtn">Submit</button>
 	<script>
 
-		var inputField = document.querySelector('.inputField');
+		var inputField = document.querySelector('.origInputField');
 		var els = document.querySelectorAll('.grandparent');
 
 		var allGrandchild = document.querySelectorAll('.grandchildren');
@@ -112,6 +112,7 @@
 			node.addEventListener('click', function (event) {
 				node.style.backgroundColor = 'aliceblue';
 				node.style.fontFamily = 'sans-serif';
+				node.style.textDecoration = 'line-through';
 			})
 		})
 

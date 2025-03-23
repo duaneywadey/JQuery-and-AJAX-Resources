@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        function varExample() {
+            if (true) {
+                var x = 10; // x is declared with var
+            }
+            console.log(x); // Outputs: 10 (x is function-scoped)
+        }
+
+        varExample();
+
+        // Using let
+        function letExample() {
+            if (true) {
+                let y = 20; // y is declared with let
+                console.log(y); // Outputs: 20 (y is block-scoped)
+            }
+            // console.log(y); // Uncommenting this line would cause a ReferenceError
+        }
+
+        letExample();
+
+        // Using const
+        function constExample() {
+            const z = 30; // z is declared with const
+            console.log(z); // Outputs: 30
+            // z = 40; // Uncommenting this line would cause a TypeError (cannot reassign a const variable)
+        }
+
+        constExample();
+
+        console.log(x);
+        console.log(y);
+        console.log(z);
+    </script>
+</body>
+</html>

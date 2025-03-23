@@ -57,6 +57,11 @@
 
 		for (let i = 0; i < acdTitle.length; i++) {
 			acdTitle[i].addEventListener('click', function (event) {
+				
+				for (var i = 0; i < acdBody.length; i++) {
+					acdBody[i].classList.remove('active');
+				}
+
 				let accordionItem = this.closest('.accordionItem').querySelector('.acdBody');
 				accordionItem.classList.toggle('active');
 			})

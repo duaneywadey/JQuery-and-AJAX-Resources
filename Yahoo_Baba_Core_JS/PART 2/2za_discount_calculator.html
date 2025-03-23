@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			font-family: 'Arial';
+		}
+		input {
+			font-size: 1.5em;
+			padding-top: 25px;
+			padding-right: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Welcome to the Discount Calculator!</h1>
+	<div class="origPriceInput">
+		<label for="origPrice">Price</label>
+		<input type="text" id="origPrice">
+	</div>
+	<div class="discountInput">
+		<label for="discountInput">How much is the discount percentage?</label>
+		<input type="text" id="discountInput">
+	</div>
+
+	<button onclick="getDiscountedPrice()">Get Discounted Price</button>
+
+	<h1 id="discountedPrice"></h1>
+
+
+
+
+	<script>
+		function getDiscountedPrice() {
+			const origPrice = parseInt(document.getElementById('origPrice').value);
+			const discountInput = parseInt(document.getElementById('discountInput').value);
+			const deduction = discountInput / 100 * origPrice;
+			const finalPrice = origPrice - deduction;
+			document.getElementById('discountedPrice').textContent = "The discounted price is " + finalPrice;
+		}
+	</script>
+
+
+
+
+</body>
+</html>
