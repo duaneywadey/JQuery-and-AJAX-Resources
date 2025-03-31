@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+
+		.yellowBg {
+			background-color: lightyellow !important;
+			font-family: 'Papyrus';
+		}
+
+		.container {
+			margin-top: 25px;
+			padding: 25px;
+			border-style: solid;
+			background-color: pink;
+		}
+		#container {
+			margin-top: 25px;
+			padding: 25px;
+			border-style: solid;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="container" class="container">
+		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum suscipit nisi quidem ipsum facilis quibusdam consequuntur ut exercitationem nostrum labore quae rem adipisci laborum sequi beatae, dicta eos illo temporibus?
+	</div>
+	<script>
+		const container = document.querySelector('#container');
+
+		container.addEventListener('click', function () {
+			alert("You clicked the element!");
+			console.log(this);
+		});
+
+		container.addEventListener('dblclick', function () {
+			alert("You double clicked the element!"); 
+			console.log(this);
+		});
+
+		container.addEventListener('mouseover', function () {
+			alert("You hovered over the element!"); 
+			console.log(this);
+		});
+
+		container.addEventListener('copy', function () {
+			alert("You copied the element!"); 
+			console.log(this);
+		});
+
+		container.addEventListener('click', function () {
+			this.classList.toggle('yellowBg');
+		})
+	</script>
+</body>
+</html>

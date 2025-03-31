@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.container {
+			background-color: pink;
+			border-style: solid;
+			margin-top: 25px;
+			padding: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="titleEl">Lorem Ipsum</h1>
+		<button>Click to show something</button>
+		<i>March 28, 2025</i>
+		<p class="description">Paragraph 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, unde nobis quasi cupiditate eos id commodi, amet omnis illo quam adipisci sint perspiciatis, cum dolorum atque ut facilis culpa hic.</p>
+	</div>
+	<div class="container">
+		<h1 class="titleEl">Lorem Ipsum</h1>
+		<button>Click to show something</button>
+		<i>March 29, 2025</i>
+		<p class="description">Paragraph 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, unde nobis quasi cupiditate eos id commodi, amet omnis illo quam adipisci sint perspiciatis, cum dolorum atque ut facilis culpa hic.</p>
+	</div>
+	<div class="container">
+		<h1 class="titleEl">Lorem Ipsum</h1>
+		<button>Click to show something</button>
+		<i>March 30, 2025</i>
+		<p class="description">Paragraph 4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, unde nobis quasi cupiditate eos id commodi, amet omnis illo quam adipisci sint perspiciatis, cum dolorum atque ut facilis culpa hic.</p>
+	</div>
+	<script>
+		const container = document.querySelectorAll('.container');
+		const buttons = document.querySelectorAll('button');
+
+		for (let i = 0; i < container.length; i++) {
+			container[i].addEventListener('click', function (event) {
+				console.log(this.querySelector('.description').textContent);
+			})
+		}
+
+		for (let i = 0; i < buttons.length; i++) {
+			buttons[i].addEventListener('click', function (event) {
+				alert("You clicked this button!");
+			})
+		}
+	</script>
+</body>
+</html>

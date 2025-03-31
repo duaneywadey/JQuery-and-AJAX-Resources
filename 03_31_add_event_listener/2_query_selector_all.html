@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.element {
+			background-color: pink;
+			border-style: solid;
+			padding: 25px;
+			margin-top: 25px;
+		}
+
+		.yellowBgAndRed {
+			font-family: 'Papyrus';
+			background-color: yellow;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container con1">
+		<div class="element el1">
+			El 1 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ipsum, expedita officiis quam veniam aperiam ea tempora obcaecati ipsam? Deleniti doloremque nulla, tempora, eveniet odit quis iste similique reiciendis animi?
+		</div>
+		<div class="element el2">
+			El 2 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ipsum, expedita officiis quam veniam aperiam ea tempora obcaecati ipsam? Deleniti doloremque nulla, tempora, eveniet odit quis iste similique reiciendis animi?
+		</div>
+		<div class="element el3">
+			El 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ipsum, expedita officiis quam veniam aperiam ea tempora obcaecati ipsam? Deleniti doloremque nulla, tempora, eveniet odit quis iste similique reiciendis animi?
+		</div>
+		<div class="element el4">
+			El 4 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ipsum, expedita officiis quam veniam aperiam ea tempora obcaecati ipsam? Deleniti doloremque nulla, tempora, eveniet odit quis iste similique reiciendis animi?
+		</div>
+	</div>
+
+	<script>
+		const allElements = document.querySelectorAll('.element');
+        
+        // printing all elements with the class, element
+		for (var i = 0; i < allElements.length; i++) {
+			console.log(allElements[i]);
+		}
+
+		// adding a pink background color to all 
+		// elements with the class, element
+		for (var i = 0; i < allElements.length; i++) {
+			allElements[i].style.backgroundColor = 'pink';
+		}
+
+		// adding a new font style to all 
+		// elements with the class, element
+		for (var i = 0; i < allElements.length; i++) {
+			allElements[i].style.fontFamily = 'Arial';
+		}
+
+		// adding new class to each element
+		for (var i = 0; i < allElements.length; i++) {
+			allElements[i].classList.add('yellowBgAndRed');
+		}
+
+		// removing new class to each element
+		for (var i = 0; i < allElements.length; i++) {
+			allElements[i].classList.remove('yellowBgAndRed');
+		}
+	</script>
+</body>
+</html>

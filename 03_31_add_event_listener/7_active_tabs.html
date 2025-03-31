@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.tabContainer {
+			border-style: solid;
+			padding: 120px;
+			background-color: aliceblue;
+		}
+		.buttons, .tabContent {
+			border: 1px solid black;
+			padding: 25px;
+		}
+		.tabContent {
+			display: none; 
+		}
+		.tabContent.active {
+			display: block; 
+		}
+		.active-button {
+			background-color: black; 
+			color: white; 
+		}
+	</style>
+</head>
+<body>
+	<div class="tabContainer">
+		<div class="buttons">
+			<button class="active-button">Tab 1</button>
+			<button>Tab 2</button>
+			<button>Tab 3</button>
+		</div>
+		<div class="tabContent active">
+			<p>This is tab number 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia amet adipisci sit ratione iure atque pariatur labore laboriosam.</p>
+		</div>
+		<div class="tabContent">
+			<p>This is tab number 2 - Lorem ipsum dolor, sit amet, consectetur adipisicing elit. Quisquam quaerat ipsa optio officia, maiores, quos dolorum ratione.</p>
+		</div>
+		<div class="tabContent">
+			<p>This is tab number 3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, ipsum quo sequi eum! Omnis quod earum commodi cupiditate.</p>
+		</div>
+	</div>
+
+
+	<script>
+		const buttons = document.querySelectorAll('button');
+		const tabContents = document.querySelectorAll('.tabContent');
+
+		for (let i = 0; i < buttons.length; i++) {
+			buttons[i].addEventListener('click', function () {
+				// Hide all tab contents
+				for (let j = 0; j < tabContents.length; j++) {
+					tabContents[j].style.display = 'none';
+					buttons[j].classList.remove('active-button'); // Remove active class from all buttons
+				}
+				// Show the selected tab content
+				tabContents[i].style.display = 'block';
+				buttons[i].classList.add('active-button'); // Add active class to the clicked button
+			});
+		}
+	</script>
+
+
+</body>
+</html>

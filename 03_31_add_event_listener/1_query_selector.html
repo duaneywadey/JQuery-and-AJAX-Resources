@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.containerClass {
+			margin-top: 25px;
+			padding: 25px;
+			border-style: solid;
+			background-color: aliceblue;
+		}
+		#containerID {
+			margin-top: 25px;
+			padding: 25px;
+			border-style: solid;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="containerClass">
+		Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto corporis nulla aspernatur alias, dolor veritatis ab consequatur. Labore ipsam adipisci, officia, cupiditate praesentium nesciunt, laudantium nisi nam vel quisquam ipsa.
+	</div>
+	<div id="containerID">
+		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus officia corporis itaque quos possimus maxime nemo expedita qui error tempora repudiandae adipisci vitae esse consequatur quasi sunt, tenetur, quam, alias.
+	</div>
+
+	<ul>
+		<li>Element 1</li>
+		<li>Element 2</li>
+		<li>Element 3</li>
+		<li>Element 4</li>
+		<li>Element 5</li>
+	</ul>
+
+	<h3>Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Necessitatibus quaerat, vitae perferendis illo adipisci rem aliquid explicabo suscipit voluptatum provident magnam eum totam quia consectetur, quam eius in debitis? Accusamus!</h3>
+
+	<script>
+		// Selecting element with class attribute
+		const containerClass = document.querySelector('.containerClass');
+		containerClass.textContent = "Selecting with class selector";
+
+		// Selecting element with ID attribute
+		const containerID = document.querySelector('#containerID');
+		containerID.textContent = "Selecting with ID selector";
+
+		// Selecting list element
+		const ulElement = document.querySelector('ul');
+		ulElement.style.backgroundColor = 'aquamarine';
+
+		// Selecting h3 element
+		const h3Element = document.querySelector('h3');
+		h3Element.style.fontFamily = 'Arial';
+	</script>
+
+	
+</body>
+</html>

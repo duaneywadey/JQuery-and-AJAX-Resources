@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		input {
+			padding: 25px;
+			font-size: 1.5em;
+		}
+	</style>
+</head>
+<body>
+	<form action="#" method="POST" id="form">
+		<input type="text" id="inputField">
+		<input type="submit">
+	</form>
+	<script>
+		const form = document.querySelector('#form');
+		const inputField = document.querySelector('#inputField');
+
+		inputField.addEventListener('focus', function () {
+			console.log("You clicked on the input field!");
+		});
+
+		inputField.addEventListener('blur', function () {
+			console.log("You just typed something!");
+		});
+
+		inputField.addEventListener('input', function () {
+			console.log(this.value);
+		});
+
+		form.addEventListener('submit', function (event) {
+			event.preventDefault();
+			console.log("You submitted the form!")
+			console.log("You typed " + inputField.value + " on the input field");
+		})
+	</script>
+</body>
+</html>
