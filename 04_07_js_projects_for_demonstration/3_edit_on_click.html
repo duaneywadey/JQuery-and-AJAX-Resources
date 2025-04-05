@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			font-family: 'Helvetica';
+			font-size: 2em;
+		}	
+		input {
+			padding: 10px;
+			font-size: 1em;
+		}
+	</style>
+</head>
+<body>
+	<p id="editableText">Click me to edit</p>
+	<form id="editForm" style="display: none;">
+		<input type="text" id="inputField" />
+		<button type="submit">Save</button>
+	</form>
+	<script>
+		// Get what's in the paragraph tag
+		const editableText = document.querySelector('#editableText');
+		const inputField = document.querySelector('#inputField');
+		const editForm = document.querySelector('#editForm');
+
+		// Setting a behavior once it's clicked
+		editableText.addEventListener('dblclick', function() {
+
+		  // Hide the text
+		  editableText.style.display = 'none';
+
+		  // Display the form
+		  editForm.style.display = 'block';
+
+		  // Add an already existing input
+		  inputField.value = editableText.textContent;
+
+		});
+
+
+		// Setting a behavior once it's submitted
+		editForm.addEventListener('submit', function(e) {
+
+		  // So we prevent unnecessary page reload
+		  e.preventDefault();
+
+		  // Get value stored in the editForm
+		  const inputField = document.getElementById('inputField').value;
+
+		  // Set the value of editableText similar to newText 
+		  editableText.textContent = inputField;
+
+		  // Show the text newly edited
+		  editableText.style.display = 'block';
+
+		  // Hide the form
+		  editForm.style.display = 'none';
+
+		});
+
+		
+	</script>
+</body>
+</html>

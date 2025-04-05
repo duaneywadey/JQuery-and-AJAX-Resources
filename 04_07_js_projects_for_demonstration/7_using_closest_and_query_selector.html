@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.greatGrandparent{
+			margin-top: 25px;
+			border-style: solid;
+			padding: 25px;
+		}
+
+		.yellowBg {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="greatGrandparent" dataAttr="greatgrandparent data attribute">
+		Im the great grandparent
+		<div class="grandparent" dataAttr="grandparent data attribute">
+			Im the grandparent
+			<div class="parent" dataAttr="parent data attribute">
+				Im the parent
+				<div class="children">
+					<p class="parOne">Par1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Tr mollitia, animi alias officia consectetur sint ab, tempora aliquid, voluptatum repellat nesciunt.</p>
+					<p class="parTwo">Par2 - Mollitia, animi alias officia consectetur sint ab, tempora aliquid, voluptatum repellat nesciunt.</p>
+					<div class="grandchildren">
+						Im the grandchildren
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="greatGrandparent" dataAttr="greatgrandparent data attribute">
+		Im the great grandparent
+		<div class="grandparent" dataAttr="grandparent data attribute">
+			Im the grandparent
+			<div class="parent" dataAttr="parent data attribute">
+				Im the parent
+				<div class="children">
+					<p class="parOne">Par1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Tr mollitia, animi alias officia consectetur sint ab, tempora aliquid, voluptatum repellat nesciunt.</p>
+					<p class="parTwo">Par2 - Mollitia, animi alias officia consectetur sint ab, tempora aliquid, voluptatum repellat nesciunt.</p>
+					<div class="grandchildren">
+						Im the grandchildren
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="greatGrandparent" dataAttr="greatgrandparent data attribute">
+		Im the great grandparent
+		<div class="grandparent" dataAttr="grandparent data attribute">
+			Im the grandparent
+			<div class="parent" dataAttr="parent data attribute">
+				Im the parent
+				<div class="children">
+					<p class="parOne">Par1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Tr mollitia, animi alias officia consectetur sint ab, tempora aliquid, voluptatum repellat nesciunt.</p>
+					<p class="parTwo">Par2 - Mollitia, animi alias officia consectetur sint ab, tempora aliquid, voluptatum repellat nesciunt.</p>
+					<div class="grandchildren">
+						Im the grandchildren
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const allGrandchildren = document.querySelectorAll('.grandchildren');
+
+		for (let i = 0; i < allGrandchildren.length; i++) {
+
+			allGrandchildren[i].addEventListener('click', function (event) {
+
+				// Find the closest element with 'children' as class attribute
+				// and find the element with 'parOne' class attribute inside it 
+				console.log("Nearest element with parOne class: " + 
+					this.closest('.children').querySelector('.parOne').textContent
+				);
+				console.log("Nearest element with parTwo class: " + 
+					this.closest('.children').querySelector('.parTwo').textContent
+				);
+
+				// Find the closest element with 'parent' as class attribute
+				// and return the value of its 'dataAttr' attribute
+				console.log(this.closest('.parent').getAttribute('dataAttr'));
+
+			})
+		}
+	</script>
+</body>
+</html>

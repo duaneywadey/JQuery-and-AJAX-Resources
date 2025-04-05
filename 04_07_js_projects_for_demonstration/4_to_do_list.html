@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.lineThrough {
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>To do list</h1>
+
+	<input type="text" id="itemInput">
+	<button id="addBtn">Add New</button>
+
+	<ul id="unorderedList">
+		<li>
+			<h4>Item 1</h4>
+			<button class="deleteBtn">Delete</button>
+		</li>
+		<li>
+			<h4>Item 2</h4>
+			<button class="deleteBtn">Delete</button>
+		</li>
+		<li>
+			<h4>Item 3</h4>
+			<button class="deleteBtn">Delete</button>
+		</li>
+		<li>
+			<h4>Item 4</h4>
+			<button class="deleteBtn">Delete</button>
+		</li>
+	</ul>
+	<script>
+		const itemInput = document.querySelector('#itemInput');
+		const addBtn = document.querySelector('#addBtn');
+		const deleteBtns = document.querySelectorAll('.deleteBtn');
+		const unorderedList = document.querySelector('#unorderedList');
+		const h4Element = document.querySelectorAll('h4');
+
+		// If an h4 element is clicked, put line through the text
+		for (let i = 0; i < h4Element.length; i++) {
+			h4Element[i].addEventListener('click', function (event) {
+				this.classList.toggle('lineThrough');
+			})
+		}
+
+
+		// If addBtn is clicked, invoke the following function
+		addBtn.addEventListener('click', function (event) {
+
+			// Create the three elements, list, h4, and button element
+			var listElement = document.createElement('li'); 
+			var h4Element = document.createElement('h4'); 
+			var deleteButtonEl = document.createElement('button'); 
+
+			// We set the class attribute of delete button to 'deleteBtn'
+			deleteButtonEl.setAttribute('class', 'deleteBtn'); 
+
+			// We set the textContent to Delete
+			deleteButtonEl.textContent = "Delete"; 
+
+			// We set the textContent attribute of h4 to the 
+			// given value on inputField
+			h4Element.textContent = itemInput.value;
+
+			// Adding the elements to the <ul> element
+			listElement.appendChild(h4Element); 
+			listElement.appendChild(deleteButtonEl); 
+			unorderedList.appendChild(listElement);
+
+
+			// Handles deleting of element
+			deleteButtonEl.addEventListener('click', function (event) {
+				unorderedList.removeChild(listElement);
+			})
+
+			// Handles putting a line through list element
+			h4Element.addEventListener('click', function (event) {
+				this.classList.toggle('lineThrough');
+			})
+
+		})
+
+
+		// To delete items not added through user input
+		for (let i = 0; i < deleteBtns.length; i++) {
+			deleteBtns[i].addEventListener('click', function (event) {
+				unorderedList.removeChild(this.closest('li'));
+			});
+		}
+
+
+	</script>
+</body>
+</html>

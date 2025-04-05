@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.grandparent, .newGrandchildren {
+			margin-top: 25px;
+			border-style: solid;
+			padding: 25px;
+		}
+
+		.yellowBg {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="grandparent">
+		<p class="descPerClass">I'm the grandparent</p>
+		<div class="parent">
+			<p class="descPerClass">I'm the parent</p>
+			<div class="children">
+				<p class="descPerClass">I'm the children</p>
+				<div class="grandChildren">
+					<p class="descPerClass">I'm the grandchildren</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="grandparent">
+		<p class="descPerClass">I'm the grandparent</p>
+		<div class="parent">
+			<p class="descPerClass">I'm the parent</p>
+			<div class="children">
+				<p class="descPerClass">I'm the children</p>
+				<div class="grandChildren">
+					<p class="descPerClass">I'm the grandchildren</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="grandparent">
+		<p class="descPerClass">I'm the grandparent</p>
+		<div class="parent">
+			<p class="descPerClass">I'm the parent</p>
+			<div class="children">
+				<p class="descPerClass">I'm the children</p>
+				<div class="grandChildren">
+					<p class="descPerClass">I'm the grandchildren</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="newGrandchildren">
+		<div class="childrenOne">I'm children 1</div>
+		<div class="childrenTwo">I'm children 2</div>
+		<div class="childrenThree">I'm children 3</div>
+	</div>
+
+	<div class="newGrandchildren">
+		<div class="childrenOne">I'm children 1</div>
+		<div class="childrenTwo">I'm children 2</div>
+		<div class="childrenThree">I'm children 3</div>
+	</div>
+
+	<script>
+
+		// Selecting the HTML elements
+		const allgrandparents = document.querySelectorAll('.grandparent');
+		const newGrandchildrens = document.querySelectorAll('.newGrandchildren');
+		const inputField = document.querySelector('#inputField');
+
+		// Showing the textContent of item clicked
+		for (let i = 0; i < newGrandchildrens.length; i++) {
+			newGrandchildrens[i].addEventListener('click', function (event) {
+				console.log(event.target.textContent);
+				console.log(event.target.querySelector('.childrenThree'));
+			})
+		}
+
+
+		// Iterating through each given element
+		for (let i = 0; i < allgrandparents.length; i++) {
+			
+			// Attaching a click element
+			allgrandparents[i].addEventListener('click', function (event) {
+				
+				// Prints element clicked
+				console.log(event.target);
+
+				// Add yellow background when clicked
+				if (event.target) {
+					event.target.classList.toggle('yellowBg');
+				}
+
+				// If element clicked has class containing a certain value
+				if (event.target.classList.contains("grandparent")) {
+					console.log("You clicked grandparent!")
+				}
+				if (event.target.classList.contains("parent")) {
+					console.log("You clicked parent!")
+				}
+				if (event.target.classList.contains("children")) {
+					console.log("You clicked children!")
+				}
+				if (event.target.classList.contains("grandChildren")) {
+					console.log("You clicked grandchildren!")
+				}
+
+				if (event.target.tagName == 'P') {
+					console.log("You clicked a paragraph element")
+				}
+			})
+		}
+
+		
+	</script>
+</body>
+</html>
