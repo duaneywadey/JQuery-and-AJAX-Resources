@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="style.css">
   <title>Image Slider</title>
   <style>
+    body {
+      background-color: aliceblue;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -49,6 +52,7 @@
   </style>
 </head>
 <body>
+
   <div id="slideContainer">
     <div class="slide show">
       <img src="https://images.unsplash.com/photo-1742626157103-76367e3798bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="slide1" />
@@ -72,54 +76,91 @@
     </div>
 
     <div class="flexButton">
-      <button id='prev' class="sliderBtn">Previous</button>
-      <button id="next" class="sliderBtn">Next</button>
+      <button id='prev' class="sliderBtn"><</button>
+      <button id="next" class="sliderBtn">></button>
     </div>
+
   </div>
   <script>
+
+    // Selecting the elements from the DOM using querySelector
     let nextBtn = document.querySelector("#next");
     let prevBtn = document.querySelector("#prev");
     let slides = document.querySelectorAll(".slide");
-    let changeSlide = 0;
 
-    for (var i = 0; i < slides.length; i++) {
-      console.log(slides[i]);
-    }
-    console.log(slides[4]);
+    // To keep track which index we're in while switching images
+    let currentIndex = 0;
 
+    // For next button functionality
     nextBtn.addEventListener("click", function() {
+
+      // We'll go through each given image from the DOM
         for (let index = 0; index < slides.length; index++) {
+
+          // Store its current spot/index of the image 
+          // to this slide variable
             let slide = slides[index];
+
+            // If it's the image currently shown
             if (slide.classList.contains("show") === true) {
-                changeSlide = index + 1;
+
+                // Move to the next image (since we clicked next)
+                currentIndex = index + 1;
+
+                // Remove 'show' class from the image since
+                // we don't want it be shown anymore
                 slide.classList.remove("show");
             }
         }
 
-        if (changeSlide < slides.length) {
-            slides[changeSlide].classList.add("show");
+        // If the image is in a valid index, show it by adding 
+        // the 'show' class to the element's class attribute
+        if (currentIndex < slides.length) {
+            slides[currentIndex].classList.add("show");
         } 
+
+        // If it's not, we go back to the first index, which is zero
+        // since we reached already the last image
         else {  
-            changeSlide = 0;
-            slides[changeSlide].classList.add("show");
+            currentIndex = 0;
+            slides[currentIndex].classList.add("show");
         }
     });
 
+    // We'll go through each given image from the DOM
     prevBtn.addEventListener('click', function () {
+
+      // We'll go through each given image from the DOM
         for (let index = 0; index < slides.length; index++) {
+
+          // Store its current spot/index of the image 
+          // to this slide variable
             let slide = slides[index];
+
+            // If it's the image currently shown
             if (slide.classList.contains("show") === true) {
-                changeSlide = index - 1;
+
+              // Move to the previous image (since we clicked previous)
+                currentIndex = index - 1;
+
+                // Remove 'show' class from the image since
+                // we don't want it be shown anymore
                 slide.classList.remove("show");
             }
         }
 
-        if (changeSlide < slides.length && changeSlide > -1) {
-            slides[changeSlide].classList.add("show");
+        // If the image is in a valid index, show it by adding 
+        // the 'show' class to the element's class attribute
+        if (currentIndex < slides.length && currentIndex > -1) {
+            slides[currentIndex].classList.add("show");
         } 
+
+        // If it's not, we go to the very last index, which is four
+        // in this case to see the last image. If we click previous 
+        // while currentIndex is zero, we'll see the last image
         else {            
-            changeSlide = slides.length - 1;
-            slides[changeSlide].classList.add("show");
+            currentIndex = slides.length - 1;
+            slides[currentIndex].classList.add("show");
         }
     });
   </script>
