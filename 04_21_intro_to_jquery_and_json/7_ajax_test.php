@@ -78,8 +78,12 @@
 	            	// We show the success label and add a fadeIn effect when showing it
 	            	$('.successLabel').removeClass('d-none').hide().fadeIn();
 
-	            	// We get the values inside the JSON data returned
+	            	// We get the values inside the JSON data returned (JSON)
 	            	$('.successLabel').html("<h1>"+ data.greeting + ", "+ data.first_name + " " + data.last_name + "</h1><h3>" + data.message +"</h3>");
+
+	            	// If we want to return the result in text format
+	            	// $('.successLabel').html("<h1>" + data +"</h1>");
+
 	            }
 	          })
 	        }
