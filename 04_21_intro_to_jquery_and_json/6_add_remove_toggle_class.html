@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			font-family: 'Arial';
+			font-size: 1.5em;
+		}
+
+		/*The class for hiding an element*/
+		.d-none {
+			display: none;
+		}
+
+		/*The class for showing an element*/
+		.d-block {
+			display: block;
+		}
+		.successLabel {
+			background-color: #98FBCB; 
+			border-style: solid; 
+			padding: 25px;
+		}
+		.errorLabel {
+			background-color: pink; 
+			border-style: solid; 
+			padding: 25px;
+		}
+		input {
+			font-size: 1.5em;
+			padding: 25px;
+		}
+		.lavenderTheme {
+			background-color: lavender;
+			padding: 25px;
+			font-family: 'Georgia';
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<body>
+	<div class="errorLabel">
+		<h1>Please make sure to type more than 12 characters inside the input field</h1>
+	</div>
+	<div class="successLabel d-none">
+		<h1>Yes! Great Job</h1>
+	</div>
+	<label for="inputField">Type Something Here</label>
+	<input type="text" id="inputField">
+
+	<div id="toggleClassTest" style="margin-top: 25px;">
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente asperiores ducimus at dolore, doloremque non numquam quis aperiam itaque repellat dignissimos similique consectetur quos corrupti nostrum laboriosam, eos quibusdam. Numquam.
+	</div>
+
+	<script>
+		$('#inputField').on('input', function (event) {
+
+			// If the number of characters typed in the field
+			// is greater than twelve
+			if ($(this).val().length > 12) {
+
+				// Hide the errorLabel element by adding d-none
+				// inside its class attribute
+				$('.errorLabel').addClass('d-none');
+
+				// Show the successLabel element by removing d-none
+				// inside its class attribute and adding d-block to show it
+				$('.successLabel').removeClass('d-none').addClass('d-block');
+			}
+			else {
+
+				// If less than 12, show the errorLabel element 
+				// by adding d-none inside its class attribute
+				$('.errorLabel').removeClass('d-none');
+
+				// We make sure successLabel is hidden by removing
+				// d-block class inside its class attribute and adding
+				// d-none class
+				$('.successLabel').removeClass('d-block').addClass('d-none');
+			}
+		})
+
+		// If we click on this element, we can switch from adding
+		// and removinng the lavenderTheme class attribute
+		$('#toggleClassTest').on('click', function (event) {
+			$(this).toggleClass('lavenderTheme');
+		})
+	</script>
+</body>
+</html>

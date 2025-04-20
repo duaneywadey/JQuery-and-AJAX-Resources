@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		.parentElement {
+			margin-top: 25px;
+			background-color: aliceblue;
+			padding: 25px;
+		}
+		.children {
+			background-color: pink;
+			padding: 25px;
+			margin-top: 25px;
+		}
+		.grandChildren {
+			background-color: yellow;
+			padding: 25px;
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="parent parentElement" dataAttr="parentOneDataAttrHere">
+		Parent One
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			ChildrenThree Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenFour" dataAttr="childrenFourDataAttrHere">
+			ChildrenFour - Lorem ipsum dolor sit amet consectetur adipisicing 
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+	<div class="parent parentElement" dataAttr="parentTwoDataAttrHere">
+		Parent Three
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			ChildrenThree Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenFour" dataAttr="childrenFourDataAttrHere">
+			ChildrenFour - Lorem ipsum dolor sit amet consectetur adipisicing 
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+
+	<div class="parent parentElement" dataAttr="parentThreeDataAttrHere">
+		Parent Three
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			ChildrenThree Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenFour" dataAttr="childrenFourDataAttrHere">
+			ChildrenFour - Lorem ipsum dolor sit amet consectetur adipisicing 
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+	<script>
+		$('.grandChildren').on('click', function (event) {
+
+			// If an element with grandChildren class has been 
+			// clicked, find that closest element with children class
+			// and return its dataAttr from that element's attribute
+			console.log($(this).closest('.children').attr('dataAttr'));
+
+			
+			// If an element with grandChildren class has been 
+			// clicked, find that closest element with children class
+			// and return its dataAttr from that element's attribute
+			console.log($(this).closest('.parent').attr('dataAttr'));
+		})
+	</script>
+</body>
+</html>

@@ -69,6 +69,7 @@
         </div>
       </div>
     </div>
+    <p class="parElement"></p>
 
     <script>
 
@@ -82,18 +83,22 @@
 		      testForm:1
 		    };
 
-        if (formData.name != "" && formData.email != "") {
+        if (formData.name != "" && formData.email != "" 
+          && formData.superheroAlias != "") {
           $.ajax({
             type: "POST",
             url: "process.php",
             data: formData,
             dataType: "json",
             success: function (data) {   
-              $('.emptyAlert').addClass('d-none').hide().fadeIn();   
-              $('.alert-info').removeClass('d-none').hide().fadeIn();      
-              $('.nameAlert').text("Name: " + data.name);
-              $('.emailAlert').text("Email: " + data.email);
-              console.log(JSON.stringify(data));
+              // $('.emptyAlert').addClass('d-none').hide().fadeIn();   
+              // $('.alert-info').removeClass('d-none').hide().fadeIn();      
+              // $('.nameAlert').text("Name: " + data.name);
+              // $('.emailAlert').text("Email: " + data.email);
+
+              for (var i = 0; i < data.length; i++) {
+                console.log(data[i].firstName)
+              }
             }
           })
         }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<body>
+
+	<div id="parElement" dataVal="parElementDataIsHere">
+		Test display HTML element - Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Id, modi. Dolorum explicabo, voluptatibus. A iusto, vel corrupti, sapiente sed, eaque, doloremque beatae animi laudantium pariatur ratione. Fuga delectus sunt optio.
+		<h1>H1 element here</h1>
+		<h2>H2 element here</h2>
+		<h3>H3 element here</h3>
+		<h4>H3 element here</h4>
+	</div>
+
+	<label for="inputField">Type Here</label>
+	<input type="text" id="inputField">
+
+	<p id="parElementHere" style="display: none;"></p>
+
+	<button id="showSlideEffect"> Show Slide Effect</button>
+
+
+	<script>
+
+		$('#parElement').on('click', function (event) {
+
+			// When (#parElement) is clicked , 
+			// it returns its HTML element child  
+			console.log($(this).html());
+
+			// When clicked, it replaces HTML content of 
+			// this element with the argument passed inside
+			// the function  
+			$(this).html('<h1>New HTML element</h1>');
+
+			// When clicked, it changed the font size
+			// to 2em
+			$(this).css('font-size', '2em');
+
+			// When clicked, it returns all the textContent
+			// from the element
+			console.log($(this).text());
+
+			// When clicked, it returns the value of 
+			// the dataVal attribute
+			console.log($(this).attr('dataVal'));
+		});
+
+
+		$('#inputField').on('input', function (event) {
+
+			// Display the value being typed 
+			// on the console as long as input 
+			// event is detected
+			console.log($(this).val());
+
+			// If the input field is not empty
+			if ($(this).val() != "") {
+
+				// Display it inside an HTML element
+				$('#parElementHere').css('display', 'block');
+				$('#parElementHere').css('background-color', 'yellow');
+				$('#parElementHere').css('padding', '25px');
+				$('#parElementHere').css('font-size', '2em');
+				$('#parElementHere').text($(this).val());
+			}
+
+			// Hide that HTML element in case the
+			// input field is empty
+			else {
+				$('#parElementHere').css('display', 'none');
+			}
+		})
+
+		// We add a fadeIn() effect on the element if
+		// it's clicked
+		$('#parElementHere').on('click', function (event) {
+			$(this).hide().fadeIn(2000);
+		})
+
+		// We attach both a slideUp and a slideDown method
+		// to a button
+		$('#showSlideEffect').on('click', function (event) {
+			$('#parElementHere').slideToggle(1000);
+		})
+
+
+	</script>
+</body>
+</html>

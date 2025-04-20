@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		.parentElement {
+			border-style: solid;
+			margin-top: 25px;
+			background-color: aliceblue;
+			padding: 25px;
+		}
+		.children {
+			background-color: pink;
+			padding: 25px;
+			margin-top: 25px;
+		}
+		.grandChildren {
+			background-color: yellow;
+			padding: 25px;
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="parent parentElement" dataAttr="parentOneDataAttrHere">
+		Parent One
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			ChildrenThree Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenFour" dataAttr="childrenFourDataAttrHere">
+			ChildrenFour - Lorem ipsum dolor sit amet consectetur adipisicing 
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+	<div class="parent parentElement" dataAttr="parentTwoDataAttrHere">
+		Parent Two
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			<p class="parElementHere">Im children three of parent two</p>
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+		<div class="children childrenFour" dataAttr="childrenFourDataAttrHere">
+			<p class="parElementHere">Im children four of parent two</p>
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+
+	<div class="parent parentElement" dataAttr="parentThreeDataAttrHere">
+		Parent Three
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			<p class="parElementHere">Im children three of parent three</p>
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+		<div class="children childrenFour" dataAttr="childrenFourDataAttrHere">
+			<p class="parElementHere">Im children four of parent three</p>
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+	<script>
+		$('.grandChildren').on('click', function (event) {
+
+			// If clicked, we look for that element with the class
+			// children and find inside that element another element 
+			// with the class parElementHere and then return its textContent
+			console.log($(this).closest('.children').find('.parElementHere').text());
+
+			// If clicked, we look for that element with the class
+			// parent and find inside that element another element 
+			// with the class childrenOne and then return its textContent
+			console.log($(this).closest('.parent').find('.childrenOne').text());
+		})
+	</script>
+</body>
+</html>

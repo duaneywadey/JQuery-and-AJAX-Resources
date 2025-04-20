@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		.parentElement {
+			background-color: aliceblue;
+			padding: 25px;
+		}
+		.children {
+			background-color: pink;
+			padding: 25px;
+			margin-top: 25px;
+		}
+		.grandChildren {
+			background-color: yellow;
+			padding: 25px;
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="parent parentElement">
+		<div class="children childrenOne">
+			ChildrenOne - Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenTwo">
+			ChildrenTwo- Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenThree">
+			ChildrenThree Lorem ipsum dolor sit amet consectetur adipisicing elit
+		</div>
+		<div class="children childrenFour">
+			ChildrenFour - Lorem ipsum dolor sit amet consectetur adipisicing 
+			<div class="grandChildren grandChildrenOne">
+				grandChildrenOne here
+			</div>
+			<div class="grandChildren grandChildrenTwo">
+				grandChildrenTwo here
+			</div>
+			<div class="grandChildren grandChildrenThree">
+				grandChildrenThree here
+			</div>
+		</div>
+	</div>
+	<script>
+		$('.childrenOne').on('click', function (event) {
+
+			// We display all its sibling elements
+			console.log($(this).siblings());
+
+			// All the sibling elements will have their
+			// font styles replaced
+			$(this).siblings().css('font-family', 'Papyrus')
+
+			// Among the siblings, select that element with 
+			// childrenTwo class value and return its text content
+			console.log($(this).siblings('.childrenTwo').text());
+		})
+
+		$('.grandChildrenTwo').on('click', function (event) {
+
+			// We display all its sibling elements
+			console.log($(this).siblings());
+
+			// All the sibling elements will have their
+			// font styles replaced to Impact
+			$(this).siblings().css('font-family', 'Impact')
+
+			// Among the siblings, select that element with 
+			// grandChildrenThree class value and return its text content
+			console.log($(this).siblings('.grandChildrenThree').text());
+		})
+	</script>
+</body>
+</html>
