@@ -24,6 +24,8 @@ $('#createPostForm').on('submit', function (event) {
 			url: "controller.php",
 			data: formData,
 			success: function (data) {
+				// if php script returns true, refresh the page
+				// in its current state
 				location.reload();
 			}
 		})
@@ -36,9 +38,11 @@ $('#createPostForm').on('submit', function (event) {
 $('.createCommentForm').on('submit', function (event) {
 	event.preventDefault();
 
+	// Declare a variable for this form
 	var form = $(this); 
+
+	// Find the closest element showing the comments
 	var commentsContainer = form.closest('.comments');
-	var allCommentsDiv = commentsContainer.find('.allComments');
 
 	var formData = {
 		commentDescInputField: form.find(".commentDescInputField").val(),
@@ -52,11 +56,8 @@ $('.createCommentForm').on('submit', function (event) {
 			url: "controller.php",
 			data: formData,
 			success: function (data) {
-				// allCommentsDiv.html(data);
-				// form.find(".commentDescInputField").val("");
-				// setTimeout(function () {
-				// 	location.reload()
-				// }, 1000) 
+				// if php script returns true, refresh the page
+				// in its current state
 				location.reload();
 			}
 		});
@@ -83,6 +84,8 @@ $('.editPostForm').on('submit', function (event) {
 			url: "controller.php",
 			data: formData,
 			success: function (data) {
+				// if php script returns true, refresh the page
+				// in its current state
 				location.reload();	
 			}
 		});
@@ -96,9 +99,12 @@ $('.editPostForm').on('submit', function (event) {
 	
 $('.editCommentForm').on('submit', function (event) {
 	event.preventDefault();
-    var form = $(this); // Store a reference to the form
+
+	// Declare a variable for this form
+    var form = $(this);
+
+    // Find the closest div storing the comments
     var commentsContainer = form.closest('.comments');
-    var allCommentsDiv = commentsContainer.find('.allComments'); // Get the .allComments element
 
     var formData = {
     	commentDescEditField: form.find('.commentDescEditField').val(),
@@ -113,10 +119,8 @@ $('.editCommentForm').on('submit', function (event) {
     		url: "controller.php",
     		data: formData,
     		success: function (data) {
-    			// allCommentsDiv.html(data);
-    			// setTimeout(function () {
-    			// 	location.reload()
-    			// }, 1000)
+    			// if php script returns true, refresh the page
+    			// in its current state
     			location.reload()
     		}
     	});
@@ -125,3 +129,39 @@ $('.editCommentForm').on('submit', function (event) {
     	alert("Make sure to not leave anything empty!");
     }
 });	
+
+$('.deletePostBtn').on('click', function (event) {
+	event.preventDefault();
+	var postContainer = $(this).closest('.postContainer');
+	var postID = postContainer.find('.postIDForEdit').val();
+	$.ajax({
+		type:"POST",
+		url: "controller.php",
+		data:{
+			postID: postID,
+			deleteAPost: 1
+		},
+		success: function (data) {
+			console.log(data);
+			postContainer.fadeOut();
+		}
+	})
+})
+
+$('.deleteCommentBtn').on('click', function (event) {
+	event.preventDefault();
+	var commentContainer = $(this).closest('.commentContainer');
+	var commentID = commentContainer.find('.commentIDEditField').val();
+	$.ajax({
+		type:"POST",
+		url: "controller.php",
+		data:{
+			commentID: commentID,
+			deleteAComment: 1
+		},
+		success: function (data) {
+			console.log(data);
+			commentContainer.fadeOut();
+		}
+	})
+})

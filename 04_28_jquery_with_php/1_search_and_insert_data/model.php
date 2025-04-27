@@ -16,7 +16,7 @@ function insertAUser($pdo, $first_name, $last_name, $email, $gender) {
 }
 
 function searchAUser($pdo, $keyword) {
-	$sql = "SELECT * FROM mock_data WHERE CONCAT(first_name,last_name,gender) LIKE ?";
+	$sql = "SELECT * FROM mock_data WHERE CONCAT(first_name,last_name,email,gender) LIKE ?";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(["%".$keyword."%"]);
 	return $stmt->fetchAll();

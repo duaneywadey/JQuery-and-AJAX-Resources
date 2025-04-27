@@ -4,7 +4,7 @@ require_once 'models.php';
 
 if (isset($_POST['createNewPost'])) {
 	$postDescInputField = $_POST['postDescInputField'];
-	echo insertAPost($pdo, $postDescInputField);
+	insertAPost($pdo, $postDescInputField);
 }
 
 if (isset($_POST['createNewComment'])) {
@@ -24,6 +24,16 @@ if (isset($_POST['editComment'])) {
 	$commentIDEditField = $_POST['commentIDEditField'];
 	$postIDForEdit = $_POST['postIDForEdit'];
 	updateAComment($pdo, $commentDescEditField, $commentIDEditField);
+}
+
+if (isset($_POST['deleteAPost'])) {
+	$postID = $_POST['postID'];
+	deleteAPost($pdo, $postID);
+}
+
+if (isset($_POST['deleteAComment'])) {
+	$commentID = $_POST['commentID'];
+	deleteAComment($pdo, $commentID);
 }
 
 ?>

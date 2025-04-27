@@ -20,16 +20,6 @@
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
-	<form action="controller.php" id="insertNewUser">
-		<p><label for="inputField">First Name</label><input type="text" id="firstNameInput"></p>
-		<p><label for="inputField">Last Name</label>
-		<input type="text" id="lastNameInput"></p>
-		<p>	<label for="inputField">Email</label>
-		<input type="text" id="emailInput"></p>
-		<p><label for="inputField">Gender</label>
-		<input type="text" id="genderInput"></p>
-		<input type="submit">
-	</form>
 	<div id="allUsers">		
 	<?php $getRecentUsers = getRecentUsers($pdo); ?>
 	<?php foreach ($getRecentUsers as $row) { ?>
@@ -40,6 +30,18 @@
 		</div>
 	<?php } ?>	
 	</div>
+	<form action="controller.php" id="insertNewUser">
+		<label for="inputField">First Name</label><input type="text" id="firstNameInput">
+		<label for="inputField">Last Name</label>
+		<input type="text" id="lastNameInput">
+			<label for="inputField">Email</label>
+		<input type="text" id="emailInput">
+		<p>
+			<label for="inputField">Gender</label>
+			<input type="text" id="genderInput">
+			<input type="submit">
+		</p>
+	</form>
 	<label for="inputField">Search here by name</label>
 	<input type="text" id="inputFieldNameSearch">
 	<div id="loadData">
@@ -65,7 +67,7 @@
 	            url: "controller.php",
 	            data: formData,
 	            success: function (data) {   
-	            	$('#allUsers').load(location.href + " #allUsers");
+	            	location.reload();
 	            	console.log($(this));
 	            }
 	          })

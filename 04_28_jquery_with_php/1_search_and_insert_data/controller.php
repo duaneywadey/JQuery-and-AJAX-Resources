@@ -1,11 +1,12 @@
 <?php  
 require_once 'dbcon.php';
 require_once 'model.php';
+
 if (isset($_POST['searchAUser'])) {
 	$keyword = $_POST['keyword'];
 	$searchAUser = searchAUser($pdo, $keyword);
 	foreach ($searchAUser as $row) {
-		echo "<div class='postContainer' style='padding: 25px; margin-top: 25px; border:1px solid black;'><h1>". $row['last_name'] . ", " . $row['first_name'] . "</h1><h4>" . $row['gender'] . "</h4></div>";
+		echo "<div class='postContainer' style='padding: 25px; margin-top: 25px; border:1px solid black;'><h1>". $row['last_name'] . ", " . $row['first_name'] . "</h1><h4>" . $row['gender'] . "</h4><h3>" . $row['email'] . "</h3></div>";
 	}
 }
 

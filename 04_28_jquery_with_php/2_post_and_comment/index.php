@@ -27,6 +27,8 @@
 	<h1>
 		<i>Guide: Double click to edit post and comment</i>
 	</h1>
+
+	<h3 class="fadeOutTest">Click to fade out</h3>
 	<form id="createPostForm">
 		<input type="text" id="postDescInputField" placeholder="type your post here!">
 		<input type="submit" value="Submit">
@@ -37,6 +39,7 @@
 		<div class="postContainer" style="border-style:solid; padding: 25px; margin-top: 25px;">
 			<h2 class="postDescription"><?php echo $row['post_desc']; ?></h2>
 			<i><?php echo $row['date_added']; ?></i>
+			<p><button class="deletePostBtn">Delete Post</button></p>
 			<form class="editPostForm d-none">
 				<input type="hidden" class="postIDForEdit" value="<?php echo $row['mock_post_id']; ?>">
 				<input type="text" class="postDescForEdit" value="<?php echo $row['post_desc']; ?>">
@@ -47,7 +50,7 @@
 					<?php $getAllCommentsByPostID = getAllCommentsByPostID($pdo, $row['mock_post_id']); ?>
 					<?php foreach ($getAllCommentsByPostID as $row) { ?>
 					<div class="commentContainer" style="margin-top: 10px;">
-						<p class="commentDescription"><?php echo $row['comment_desc']; ?></p>
+						<p class="commentDescription"><?php echo $row['comment_desc']; ?></p><button class="deleteCommentBtn">Delete Comment</button>
 						<form class="editCommentForm d-none">
 							<input type="hidden" class="commentIDEditField" value="<?php echo $row['mock_comment_id'] ?>">
 							<input type="text" class="commentDescEditField" value="<?php echo $row['comment_desc'] ?>">
