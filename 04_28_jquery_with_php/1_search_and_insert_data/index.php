@@ -48,6 +48,7 @@
 	<script>
 
 		$('#insertNewUser').on('submit', function (event) {
+			console.log($(this));
 			event.preventDefault();
 			var formData = {
 		      first_name: $("#firstNameInput").val(),
@@ -65,6 +66,7 @@
 	            data: formData,
 	            success: function (data) {   
 	            	$('#allUsers').load(location.href + " #allUsers");
+	            	console.log($(this));
 	            }
 	          })
 	        }
