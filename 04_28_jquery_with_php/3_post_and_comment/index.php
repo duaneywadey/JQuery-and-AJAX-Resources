@@ -67,6 +67,7 @@
 		</div>
 		<?php } ?>
 	</div>
+	<!-- We wrote our JQuery code in a separate file -->
 	<script src="script.js"></script>
 </body>
 </html>

@@ -9,21 +9,6 @@ function getAllPosts($pdo) {
 	return $stmt->fetchAll();
 }
 
-function getPostByID($pdo, $post_id) {
-	$sql = "SELECT * FROM mock_posts_data
-			WHERE mock_post_id = ?";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute([$post_id]);
-	return $stmt->fetch();
-}
-
-function getCommentByID($pdo, $comment_id) {
-	$sql = "SELECT * FROM mock_comments_data
-			WHERE mock_comment_id = ?";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute([$post_id]);
-	return $stmt->fetch();
-}
 
 function getAllCommentsByPostID($pdo, $post_id) {
 	$sql = "SELECT * FROM mock_comments_data 
