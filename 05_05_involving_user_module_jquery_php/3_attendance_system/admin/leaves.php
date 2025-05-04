@@ -34,33 +34,46 @@ if ($_SESSION['is_admin'] == 0) {
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-8 mt-4" style="font-family: 'Arial';">
-          <div class="card shadow mt-4">
             <?php $getAllLeaves = getAllLeaves($pdo); ?>
             <?php foreach ($getAllLeaves as $row) { ?>
-              <div class="card-body p-5 leaveContainer">
-                <h2 class="fullName"><?php echo $row['last_name'] .", " . $row['first_name']; ?></h2>
-                <h5 class="dateStart">DATE START: <?php echo $row['date_start']; ?></h5>
-                <h5 class="dateEnd">DATE END: <?php echo $row['date_end']; ?></h5>
-                <p class="leaveDescription mt-4">
-                  DESCRIPTION: <?php echo $row['description']; ?>
-                </p>
-                <p class="leaveStatus">STATUS: <?php echo $row['status']; ?></p>
-                <i>DATE ADDED: <?php echo $row['date_added']; ?></i>
-              </div>
-              <form action="core/handleForms.php" method="POST">
-                <input type="hidden" class="leave_id" value="<?php echo $row['leave_id']; ?>">
-                <div class="form-group float-right px-5">
-                  <label for="exampleFormControlSelect1">Update Status</label>
-                  <select class="form-control leaveStatus">
-                    <option value="">Change Status Here</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Accepted">Accepted</option>
-                    <option value="Rejected">Rejected</option>
-                  </select>
+              <div class="card shadow mt-4">
+                <div class="card-body p-5 leaveContainer">
+                  <h2 class="fullName"><?php echo $row['last_name'] .", " . $row['first_name']; ?></h2>
+                  <h5 class="dateStart">DATE START: <?php echo $row['date_start']; ?></h5>
+                  <h5 class="dateEnd">DATE END: <?php echo $row['date_end']; ?></h5>
+                  <p class="leaveDescription mt-4">
+                    DESCRIPTION: <?php echo $row['description']; ?>
+                  </p>
+                  <p class="leaveStatus">
+                    STATUS:
+                    <?php 
+                      if ($row['status'] == 'Rejected') {
+                        echo "<span style='color:red;'>" . $row['status'] ."</span>";
+                      }
+                      if ($row['status'] == 'Accepted') {
+                        echo "<span style='color:green;'>" . $row['status'] ."</span>";
+                      }
+                      if ($row['status'] == 'Pending') {
+                        echo "Pending";
+                      }                    
+                    ?> 
+                  </p>
+                  <i>DATE ADDED: <?php echo $row['date_added']; ?></i>
                 </div>
-              </form>
+                <form action="core/handleForms.php" method="POST">
+                  <input type="hidden" class="leave_id" value="<?php echo $row['leave_id']; ?>">
+                  <div class="form-group float-right px-5">
+                    <label for="exampleFormControlSelect1">Update Status</label>
+                    <select class="form-control leaveStatus">
+                      <option value="">Change Status Here</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Accepted">Accepted</option>
+                      <option value="Rejected">Rejected</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
             <?php } ?>
-          </div>
         </div>
       </div>
     </div>

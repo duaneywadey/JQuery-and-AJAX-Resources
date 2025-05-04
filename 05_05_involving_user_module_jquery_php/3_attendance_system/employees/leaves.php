@@ -51,7 +51,7 @@ if ($_SESSION['is_admin'] == 1) {
                 if ($row['status'] == 'Accepted') {
                   echo "<span style='color:green;'>" . $row['status'] ."</span>";
                 }
-                else {
+                if ($row['status'] == 'Pending') {
                   echo "Pending";
                 }
                 ?>
@@ -106,6 +106,9 @@ if ($_SESSION['is_admin'] == 1) {
               location.reload();
             }
           })
+        }
+        else {
+          alert("Make sure there are no empty input fields!")
         }
       })
     </script>
