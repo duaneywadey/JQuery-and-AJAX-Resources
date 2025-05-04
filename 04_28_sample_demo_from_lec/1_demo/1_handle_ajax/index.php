@@ -76,7 +76,7 @@
 
 	            	// Return the result in and put the string returned 
 	            	// inside .successLabel element
-	            	$('.successLabel').html("<h1 style='font-family: arial'>" + data +"</h1>");
+	            	$('.successLabel').html("<h1>" + data +"</h1>");
 	            }
 	          })
 	        }
