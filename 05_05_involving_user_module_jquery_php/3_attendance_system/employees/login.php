@@ -45,11 +45,11 @@
               ?>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Username</label>
-                  <input type="text" class="form-control" name="username">
+                  <input type="text" class="form-control" name="username" required>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Password</label>
-                  <input type="password" class="form-control" name="password">
+                  <input type="password" class="form-control" name="password" required>
                   <input type="submit" class="btn btn-primary float-right mt-4" name="loginUserBtn">
                 </div>
                 <p>Don't have an account yet? You may <a href="register.php"> register here!</a></p>

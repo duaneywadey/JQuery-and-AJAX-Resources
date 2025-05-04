@@ -26,20 +26,6 @@
           </div>
           <form action="core/handleForms.php" method="POST">
             <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">First Name</label>
-                    <input type="text" class="form-control" name="first_name" required>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" required>
-                  </div>
-                </div>
-              </div>
               <?php  
                 if (isset($_SESSION['message']) && isset($_SESSION['status'])) {
 
@@ -55,6 +41,20 @@
                 unset($_SESSION['message']);
                 unset($_SESSION['status']);
               ?>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="text" class="form-control" name="first_name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" required>
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
                 <input type="text" class="form-control" name="username" required>

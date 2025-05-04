@@ -31,7 +31,7 @@ if ($_SESSION['is_admin'] == 1) {
     <?php include 'includes/navbar.php'; ?>
     <div class="container-fluid">
       <div class="col-md-12">
-        <h1 class="p-5">Welcome to the attendance system, <?php echo $_SESSION['username']; ?>!</h1>
+        <h1 class="p-5">Welcome to the Employee Side!, <?php echo $_SESSION['username']; ?>!</h1>
       </div>
     </div>
     <?php include 'includes/footer.php'; ?>

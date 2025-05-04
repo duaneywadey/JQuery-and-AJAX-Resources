@@ -8,13 +8,6 @@ CREATE TABLE attendance_system_users (
     date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE attendance_records (
-    attendance_record_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    attendance_type VARCHAR(255),
-    date_added DATE,
-    timestamp_record_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 
 
