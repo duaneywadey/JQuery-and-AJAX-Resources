@@ -119,8 +119,7 @@ function getTimeInOrOutForToday($pdo, $user_id, $date_today, $attendance_type) {
 // Leaves entity
 
 function getLeavesByUserId($pdo, $user_id) {
-	$sql = "SELECT * FROM leaves WHERE user_id = ? 
-			ORDER BY date_added DESC";
+	$sql = "SELECT * FROM leaves WHERE user_id = ?";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute([$user_id]);
 	return $stmt->fetchAll();
@@ -145,4 +144,3 @@ function deleteLeave($pdo, $leave_id) {
 	$stmt = $pdo->prepare($sql);
 	return $stmt->execute([$leave_id]);	
 }
-
