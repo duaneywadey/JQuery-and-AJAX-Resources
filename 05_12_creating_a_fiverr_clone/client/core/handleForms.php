@@ -54,12 +54,12 @@ if (isset($_POST['loginUserBtn'])) {
 		$userIDFromDB = $loginQuery['userInfoArray']['user_id'];
 		$usernameFromDB = $loginQuery['userInfoArray']['username'];
 		$passwordFromDB = $loginQuery['userInfoArray']['password'];
-		$isAdminStatusFromDB = $loginQuery['userInfoArray']['is_admin'];
+		$isAdminStatusFromDB = $loginQuery['userInfoArray']['is_client'];
 
 		if (password_verify($password, $passwordFromDB)) {
 			$_SESSION['user_id'] = $userIDFromDB;
 			$_SESSION['username'] = $usernameFromDB;
-			$_SESSION['is_admin'] = $isAdminStatusFromDB;
+			$_SESSION['is_client'] = $isAdminStatusFromDB;
 			header("Location: ../index.php");
 		}
 
@@ -83,54 +83,6 @@ if (isset($_GET['logoutUserBtn'])) {
 	header("Location: ../login.php");
 }
 
-if (isset($_POST['insertNewAttendanceBtn'])) {
-	$user_id = $_SESSION['user_id'];
-	$attendance_type = $_POST['attendance_type'];
-	$date_today = $_POST['date_today'];
-
-	if (!empty($user_id) && !empty($attendance_type) && !empty($date_today)) {
-
-		if (!checkIfTimeInOrOutAlready($pdo, $user_id, $attendance_type, $date_today)) {
-			if (insertNewAttendance($pdo, $user_id, $attendance_type, $date_today)) {
-				$_SESSION['message'] = $attendance_type . " successfully added!";
-				$_SESSION['status'] = '200';
-			}
-			else {
-				$_SESSION['message'] = "An error occured with the query!";
-				$_SESSION['status'] = '400';	
-			}
-		}
-		else {
-			$_SESSION['message'] = "You already submitted your " . $attendance_type . " for today!";
-			$_SESSION['status'] = '400';
-		}
-
-	}
-	else {
-		$_SESSION['message'] = "Make sure no input fields are empty!";
-		$_SESSION['status'] = '400';
-	}
-	header("Location: ../file_an_attendance.php");
-
-}
-
-if (isset($_POST['insertNewLeaveBtn'])) {
-	$description = $_POST['description'];	
-	$date_start = $_POST['date_start'];	
-	$date_end = $_POST['date_end'];
-	$user_id = $_SESSION['user_id'];
-
-	if (insertNewLeave($pdo, $description, $user_id, $date_start, $date_end)) {
-		$_SESSION['message'] = $attendance_type . " Leave successfully saved!";
-		$_SESSION['status'] = '200';
-		header("Location: ../file_a_leave.php");
-	}	
-}
-
-if (isset($_POST['editLeaveBtn'])) {
-	$description = $_POST['description'];
-	$date_start = $_POST['date_start'];
-	$date_end = $_POST['date_end'];
-	$leave_id = $_POST['leave_id'];
-	updateLeaveDescription($pdo, $description, $date_start, $date_end, $leave_id);
+if (isset($_POST['createNewGig'])) {
+	insertNewGig($pdo, $_POST['title'], $_POST['description'], $_SESSION['user_id']);
 }
