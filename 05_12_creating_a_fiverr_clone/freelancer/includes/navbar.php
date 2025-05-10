@@ -12,9 +12,6 @@
         <a class="nav-link" href="interviews.php">Interviews</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pitches.php">Pitches</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="core/handleForms.php?logoutUserBtn=1">Logout</a>
       </li>
     </ul>

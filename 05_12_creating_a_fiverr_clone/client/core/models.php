@@ -127,7 +127,21 @@ function updateGig($pdo, $gig_title, $gig_description, $gig_id) {
 function deleteGig($pdo, $gig_id) {
 	$sql = "DELETE FROM gigs WHERE gig_id = ?";
 	$stmt = $pdo->prepare($sql);
-	return $stmt->execute([$gig_id]);	
+	if (deleteAllProposalsByGig($pdo, $gig_id) && deleteAllInterviewsByGig($pdo, $gig_id)) {
+		return $stmt->execute([$gig_id]);
+	}
+}
+
+function deleteAllProposalsByGig($pdo, $gig_id) {
+	$sql = "DELETE FROM gig_proposals WHERE gig_id = ?";
+	$stmt = $pdo->prepare($sql);
+	return $stmt->execute([$gig_id]);
+}
+
+function deleteAllInterviewsByGig($pdo, $gig_id) {
+	$sql = "DELETE FROM gig_interviews WHERE gig_id = ?";
+	$stmt = $pdo->prepare($sql);
+	return $stmt->execute([$gig_id]);
 }
 
 // Gig proposals
@@ -170,16 +184,20 @@ function getAllInterviewsByGig($pdo, $gig_id) {
 			ON fiverr_users.user_id = gig_interviews.freelancer_id
 			WHERE gig_interviews.gig_id = ?";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$stmt->execute([$gig_id]);
 	return $stmt->fetchAll();
 }
 
 
 function insertNewGigInterview($pdo, $gig_id, $freelancer_id, $time_start, $time_end) {
-	$sql = "INSERT INTO gig_interviews (gig_id, freelancer_id, time_start, time_end) 
+
+	if (!checkIfUserAlreadyScheduled($pdo, $freelancer_id, $gig_id)) {
+		$sql = "INSERT INTO gig_interviews (gig_id, freelancer_id, time_start, time_end) 
 			VALUES (?,?,?,?)";
-	$stmt = $pdo->prepare($sql);
-	return $stmt->execute([$gig_id, $freelancer_id, $time_start, $time_end]);
+		$stmt = $pdo->prepare($sql);
+		return $stmt->execute([$gig_id, $freelancer_id, $time_start, $time_end]);
+	}
+
 }
 
 function updateGigInterview($pdo, $gig_title, $gig_description, $gig_id) {

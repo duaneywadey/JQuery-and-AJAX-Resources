@@ -30,7 +30,7 @@ if ($_SESSION['is_client'] == 1) {
   <body>
     <?php include 'includes/navbar.php'; ?>
     <div class="container-fluid">
-      <div class="display-4 text-center">Hello there and welcome! <?php echo $_SESSION['username']; ?>. Here are all the gigs open </div>
+      <div class="display-4 text-center">Hello there and welcome! <span class="text-success"><?php echo $_SESSION['username']; ?></span>. Here are all the gigs open. You're allowed to submit your proposal only once!</div>
       <div class="row justify-content-center">
         <div class="col-md-8">
 
@@ -87,7 +87,12 @@ if ($_SESSION['is_client'] == 1) {
             url:"core/handleForms.php",
             data:formData,
             success:function (data) {
-              location.reload();
+              if (data) {
+                location.reload();
+              }
+              else {
+                alert("You're allowed to submit your proposal only once!");
+              }
             }
           })
         }

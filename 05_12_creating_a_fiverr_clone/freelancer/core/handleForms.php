@@ -84,7 +84,18 @@ if (isset($_GET['logoutUserBtn'])) {
 }
 
 if (isset($_POST['newGigProposal'])) {
-	insertNewGigProposal($pdo, $_POST['gig_proposal_description'], $_POST['gig_id'], $_SESSION['user_id']);
+	echo insertNewGigProposal(	$pdo, 
+								$_POST['gig_proposal_description'], 
+								$_POST['gig_id'], 
+								$_SESSION['user_id']
+							);
+}
+
+if (isset($_POST['updateInterviewStatus'])) {
+	echo updateInterviewStatus(	$pdo, 
+							$_POST['status'], 
+							$_POST['gig_interview_id']
+						 );
 }
 
 

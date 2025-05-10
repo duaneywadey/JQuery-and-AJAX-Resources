@@ -1,5 +1,6 @@
 <?php 
 require_once 'core/dbConfig.php'; 
+require_once 'core/models.php'; 
 
 if (!isset($_SESSION['username'])) {
   header("Location: login.php");
@@ -31,20 +32,65 @@ if ($_SESSION['is_client'] == 1) {
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="card shadow mt-4 p-4">
+          <h1 class="display-4">You'll see all your interviews here</h1>
+          <?php $getAllInterviewsByUserId = getAllInterviewsByUserId($pdo, $_SESSION['user_id']); ?>
+          <?php foreach ($getAllInterviewsByUserId as $row) { ?>
+          <div class="card shadow mt-4 p-4" gig_interview_id="<?php echo $row['gig_interview_id']; ?>">
             <div class="card-body">
-              <h3>Title here</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dignissimos, sapiente laboriosam, optio voluptate eius temporibus accusamus sit doloribus itaque veniam voluptatibus eaque porro numquam in mollitia recusandae sequi minus.</p>
-              <p>
-                <i>Lorem Ipsum</i>
-              </p>
-              <h3>Time Start: </h3>
-              <h3>Time End: </h3>
+              <h3><?php echo $row['title']; ?></h3>
+              <p><?php echo $row['description']; ?></p>
+              <h5>Status:
+                <?php 
+                  if ($row['status'] == "Accepted") {
+                    echo "<span class='text-success'>Accepted</span>";
+                  }
+                  if ($row['status'] == "Rejected") {
+                    echo "<span class='text-danger'>Rejected</span>";
+                  } 
+                  if ($row['status'] == "Pending") {
+                    echo "Pending";
+                  }
+                ?>  
+              </h5>
+              <h4 class="text-success">Time Start: <?php echo $row['time_start']; ?></h4>
+              <h4 class="text-success">Time End: <?php echo $row['time_end']; ?></h4>
+              <select class="interviewStatus form-control float-right">
+                <option value="">Change Status Here</option>
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+              </select>
             </div>
           </div>
+          <?php } ?>
         </div>
       </div>
     </div>
     <?php include 'includes/footer.php'; ?>
+    <script>
+      $('.interviewStatus').on('change', function (event) {
+        event.preventDefault();
+        var formData = {
+          gig_interview_id: $(this).closest('.card').attr('gig_interview_id'),
+          status: $(this).val(),
+          updateInterviewStatus:1
+        }
+
+        if (formData.gig_interview_id != "" && formData.status != "") {
+          $.ajax({
+            type:"POST",
+            url:"core/handleForms.php",
+            data:formData,
+            success:function (data) {
+              location.reload();
+            }
+          })
+        }
+        else {
+          alert("Make sure no fields are empty!");
+        }
+
+      })
+    </script>
   </body>
 </html>

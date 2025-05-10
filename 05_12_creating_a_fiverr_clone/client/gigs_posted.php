@@ -36,13 +36,17 @@ if ($_SESSION['is_client'] == 0) {
         <div class="col-md-8">
           <?php $getAllGigsByUserId = getAllGigsByUserId($pdo, $_SESSION['user_id']); ?>
           <?php foreach ($getAllGigsByUserId as $row) { ?>
-          <div class="gigContainer card shadow mt-4 p-4">
-            <div class="card-header"><h4><?php echo $row['title']; ?></h4></div>
+          <div class="gigContainer card shadow mt-4 p-4" gig_id="<?php echo $row['gig_id'] ?>">
+            <div class="card-header"><h4><?php echo $row['title']; ?></h4>
+              <button class="deleteGigBtn btn btn-danger float-right">Delete Gig</button>
+            </div>
             <div class="card-body">
               <p><?php echo $row['description']; ?></p>
               <p><i><?php echo $row['date_added'] ?></i></p>
               <p><i><?php echo $row['username'] ?></i></p>
-              <a href="get_gig_proposals.php?gig_id=<?php echo $row['gig_id']; ?>" class="btn btn-primary float-right">See Gig Proposals</a>
+              <div class="float-right">
+                <a href="get_gig_proposals.php?gig_id=<?php echo $row['gig_id']; ?>">See Gig Proposals</a>
+              </div>
               <form class="editGigForm mt-4 d-none">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
@@ -65,6 +69,28 @@ if ($_SESSION['is_client'] == 0) {
       $('.gigContainer').on('dblclick', function (event) {
         var editForm = $(this).find('.editGigForm');
         editForm.toggleClass('d-none');
+      })
+
+      $('.deleteGigBtn').on('click', function (event) {
+        var formData = {
+          gig_id: $(this).closest('.gigContainer').attr('gig_id'),
+          deleteGig:1 
+        }
+        if (formData.gigID != "") {
+          if (confirm("Are you sure you want to delete this gig?")) { 
+              $.ajax({
+                type:"POST",
+                url:"core/handleForms.php",
+                data: formData,
+                success: function (data) {
+                  location.reload();              
+                }
+              })
+            }
+        }
+        else {
+          alert("An error occured with your input")
+        }
       })
     </script>
   </body>

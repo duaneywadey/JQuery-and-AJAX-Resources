@@ -100,6 +100,31 @@ function getAllGigs($pdo) {
 	return $stmt->fetchAll();
 }
 
+function getAllInterviewsByUserId($pdo, $user_id) {
+	$sql = "SELECT 
+				gigs.gig_title AS title,
+				gigs.gig_description AS description,
+				gig_interviews.gig_interview_id AS gig_interview_id,
+				gig_interviews.time_start AS time_start,
+				gig_interviews.time_end AS time_end,
+				gig_interviews.status AS status
+			FROM fiverr_users 
+			JOIN gig_interviews ON 
+				fiverr_users.user_id = gig_interviews.freelancer_id 
+			JOIN gigs ON 
+				gig_interviews.gig_id = gigs.gig_id 
+			WHERE gig_interviews.freelancer_id = ?";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([$user_id]);
+	return $stmt->fetchAll();
+}
+
+function updateInterviewStatus($pdo, $status, $gig_interview_id) {
+	$sql = "UPDATE gig_interviews SET status = ? WHERE gig_interview_id = ?";
+	$stmt = $pdo->prepare($sql);
+	return $stmt->execute([$status, $gig_interview_id]);
+}
+
 
 // Gig proposal
 
@@ -120,10 +145,12 @@ function checkIfGigProposalAlreadyExists($pdo, $gig_id, $user_id) {
 }
 
 function insertNewGigProposal($pdo, $gig_proposal_description, $gig_id, $user_id) {
-	$sql = "INSERT INTO gig_proposals (gig_proposal_description, gig_id, user_id) 
-			VALUES (?,?,?)";
-	$stmt = $pdo->prepare($sql);
-	return $stmt->execute([$gig_proposal_description, $gig_id, $user_id]);
+	if (!checkIfGigProposalAlreadyExists($pdo, $gig_id, $user_id)) {
+		$sql = "INSERT INTO gig_proposals (gig_proposal_description, gig_id, user_id) 
+		VALUES (?,?,?)";
+		$stmt = $pdo->prepare($sql);
+		return $stmt->execute([$gig_proposal_description, $gig_id, $user_id]);
+	}
 }
 
 function updateGigProposal($pdo, $gig_proposal_description, $gig_proposal_id) {
