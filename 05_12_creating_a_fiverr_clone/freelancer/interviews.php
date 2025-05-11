@@ -39,6 +39,7 @@ if ($_SESSION['is_client'] == 1) {
             <div class="card-body">
               <h3><?php echo $row['title']; ?></h3>
               <p><?php echo $row['description']; ?></p>
+              <p><i><?php echo $row['client_name']; ?></i></p>
               <h5>Status:
                 <?php 
                   if ($row['status'] == "Accepted") {

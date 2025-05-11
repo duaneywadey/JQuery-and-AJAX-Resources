@@ -104,16 +104,25 @@ function getAllInterviewsByUserId($pdo, $user_id) {
 	$sql = "SELECT 
 				gigs.gig_title AS title,
 				gigs.gig_description AS description,
+				fiverr_clients.username AS client_name,
 				gig_interviews.gig_interview_id AS gig_interview_id,
 				gig_interviews.time_start AS time_start,
 				gig_interviews.time_end AS time_end,
 				gig_interviews.status AS status
-			FROM fiverr_users 
-			JOIN gig_interviews ON 
-				fiverr_users.user_id = gig_interviews.freelancer_id 
+			
+			FROM gig_interviews 
+
 			JOIN gigs ON 
 				gig_interviews.gig_id = gigs.gig_id 
+
+			JOIN fiverr_users fiverr_freelancers ON 
+				gig_interviews.freelancer_id = fiverr_freelancers.user_id  
+
+			JOIN fiverr_users fiverr_clients ON 
+				gigs.user_id  = fiverr_clients.user_id 
+
 			WHERE gig_interviews.freelancer_id = ?";
+
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute([$user_id]);
 	return $stmt->fetchAll();
