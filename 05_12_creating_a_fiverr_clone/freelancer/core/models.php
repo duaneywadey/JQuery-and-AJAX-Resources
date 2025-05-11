@@ -173,3 +173,13 @@ function deleteGigProposal($pdo, $gig_id) {
 	$stmt = $pdo->prepare($sql);
 	return $stmt->execute([$gig_id]);	
 }
+
+function getNumOfPendingInterviews($pdo, $user_id) {
+	$sql = "SELECT 
+				COUNT(gig_interview_id) AS pendingCount 
+			FROM gig_interviews 
+			WHERE status = 'Pending' AND freelancer_id = ?";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([$user_id]);	
+	return $stmt->fetch();
+}
