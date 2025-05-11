@@ -96,3 +96,7 @@ if (isset($_POST['deleteGig'])) {
 		return true;
 	}
 }
+
+if (isset($_POST['updateGig'])) {
+	echo updateGig($pdo, $_POST['title'], $_POST['description'], $_POST['gig_id']);
+}

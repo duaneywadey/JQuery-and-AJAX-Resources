@@ -98,4 +98,8 @@ if (isset($_POST['updateInterviewStatus'])) {
 						 );
 }
 
+if (isset($_POST['deleteGigProposal'])) {
+	echo deleteGigProposal($pdo, $_POST['gig_proposal_id']);
+}
+
 

@@ -52,16 +52,20 @@ if ($_SESSION['is_client'] == 1) {
               <p>
                 <?php echo $getProposalByGig['gig_proposal_description']; ?> 
                 <i>Submitted: <?php echo $getProposalByGig['date_added']; ?></i>
+                <form class="deleteProposalForm">
+                  <input type="hidden" class="gig_proposal_id" value="<?php echo $getProposalByGig['gig_proposal_id']; ?>">
+                  <input type="submit" class="btn btn-danger float-right" value="Delete Proposal">
+                </form>
               <?php } else {  ?>
                 <h4 class="text-danger">No proposal yet!</h4>
               <?php } ?>
               </p>
-              <form class="submitGigProposal mt-4">
+              <form class="submitGigProposal mt-5">
                 <div class="form-group">
                   <label for="proposal">Proposal</label>
                   <input type="hidden" value="<?php echo $row['gig_id']; ?>" class="gig_id">
                   <input type="text" placeholder="why are you the best candidate?" class="gig_proposal_description form-control">
-                  <input type="submit" class="btn btn-primary mt-4 float-right">
+                  <input type="submit" class="btn btn-primary mt-2 float-right">
                 </div>
               </form>
             </div>
@@ -98,6 +102,26 @@ if ($_SESSION['is_client'] == 1) {
         }
         else {
           alert("Make sure no input fields are empty!");
+        }
+      })
+
+      $('.deleteProposalForm').on('submit', function (event) {
+        event.preventDefault();
+
+        var formData = {
+          gig_proposal_id: $(this).find('.gig_proposal_id').val(),
+          deleteGigProposal: 1,
+        }
+
+        if(confirm("Are you sure you want to delete this proposal?")) {
+          $.ajax({
+            type:"POST",
+            url:"core/handleForms.php",
+            data:formData,
+            success: function (data) {
+              location.reload();
+            }
+          })
         }
       })
     </script>

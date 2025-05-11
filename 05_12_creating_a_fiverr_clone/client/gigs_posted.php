@@ -49,6 +49,7 @@ if ($_SESSION['is_client'] == 0) {
               </div>
               <form class="editGigForm mt-4 d-none">
                 <div class="form-group">
+                  <input type="hidden" value="<?php echo $row['gig_id']; ?>" class="form-control gig_id" required>
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" value="<?php echo $row['title']; ?>" class="form-control title" required>
                 </div>
@@ -90,6 +91,29 @@ if ($_SESSION['is_client'] == 0) {
         }
         else {
           alert("An error occured with your input")
+        }
+      })
+
+      $('.editGigForm').on('submit', function (event) {
+        event.preventDefault();
+        var formData = {
+          gig_id: $(this).find('.gig_id').val(),
+          title: $(this).find('.title').val(),
+          description: $(this).find('.description').val(),
+          updateGig:1 
+        }
+        if (formData.gig_id != "" && formData.title != "" && formData.description != "") {
+            $.ajax({
+              type:"POST",
+              url:"core/handleForms.php",
+              data: formData,
+              success: function (data) {
+                location.reload();              
+              }
+            })            
+        }
+        else {
+          alert("Make sure the input fields are not empty!")
         }
       })
     </script>
