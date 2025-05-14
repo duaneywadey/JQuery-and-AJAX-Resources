@@ -96,6 +96,7 @@ if ($_SESSION['is_client'] == 0) {
           <div class="card-body">
             <h2><?php echo $row['last_name'] . ", " . $row['first_name']; ?></h2>
             <p><?php echo $row['description']; ?></p>
+            <p><i><?php echo $row['date_added']; ?></i></p>
             <form class="addNewInterviewForm d-none">
               <div class="form-group">
                 <label for="time_start">Time Start</label>
@@ -130,7 +131,8 @@ if ($_SESSION['is_client'] == 0) {
           insertNewGigInterview:1
         }
 
-        if (formData.freelancer_id != "" && formData.gig_id != "" && formData.time_start != "" && formData.time_end != "") {
+        if (formData.freelancer_id != "" && formData.gig_id != "" 
+            && formData.time_start != "" && formData.time_end != "") {
           $.ajax({
             type: "POST",
             url:"core/handleForms.php",

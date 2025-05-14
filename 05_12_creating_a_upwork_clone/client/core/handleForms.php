@@ -84,11 +84,22 @@ if (isset($_GET['logoutUserBtn'])) {
 }
 
 if (isset($_POST['createNewGig'])) {
-	echo insertNewGig($pdo, $_POST['title'], $_POST['description'], $_SESSION['user_id']);
+	echo insertNewGig(
+						$pdo, 
+						$_POST['title'], 
+						$_POST['description'], 
+						$_SESSION['user_id']
+					);
 }
 
 if (isset($_POST['insertNewGigInterview'])) {
-	echo insertNewGigInterview($pdo, $_POST['gig_id'], $_POST['freelancer_id'], $_POST['time_start'], $_POST['time_end']);
+	echo insertNewGigInterview(
+								$pdo, 
+								$_POST['gig_id'], 
+								$_POST['freelancer_id'], 
+								$_POST['time_start'], 
+								$_POST['time_end']
+							);
 }
 
 if (isset($_POST['deleteGig'])) {
@@ -98,5 +109,10 @@ if (isset($_POST['deleteGig'])) {
 }
 
 if (isset($_POST['updateGig'])) {
-	echo updateGig($pdo, $_POST['title'], $_POST['description'], $_POST['gig_id']);
+	echo updateGig(
+					$pdo, 
+					$_POST['title'], 
+					$_POST['description'], 
+					$_POST['gig_id']
+				);
 }

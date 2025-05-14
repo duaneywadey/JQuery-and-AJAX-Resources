@@ -124,6 +124,8 @@ if ($_SESSION['is_client'] == 1) {
           })
         }
       })
+
+      
     </script>
   </body>
 </html>
