@@ -26,7 +26,7 @@
   	  		<div class="card shadow">
   	  			<div class="card-body">
   	  				<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid">
-  	  				<p class="p-4">Are you looking for a talent? Click <a href="client/index.php"> here </a></p>
+  	  				<p class="p-4">Are you looking for a talent? Click <a href="client/login.php"> here </a></p>
   	  			</div>
   	  		</div>
   	  	</div>
@@ -34,7 +34,7 @@
   	  		<div class="card shadow">
   	  			<div class="card-body">
   	  				<img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="img-fluid">
-  	  				<p class="p-4">Are you looking for a job? Click <a href="freelancer/index.php"> here </a></p>
+  	  				<p class="p-4">Are you looking for a job? Click <a href="freelancer/login.php"> here </a></p>
   	  			</div>
   	  		</div>
   	  	</div>
