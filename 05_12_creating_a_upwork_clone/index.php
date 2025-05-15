@@ -17,10 +17,10 @@
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark p-4" style="background-color: #008080;">
-	  <a class="navbar-brand" href="#">Fiverr Clone</a>
+	  <a class="navbar-brand" href="#">Upwork Clone</a>
 	</nav>
   	<div class="container-fluid">
-  	<div class="display-4 p-4 text-center">Welcome to the Fiverr clone! Choose one</div>
+  	<div class="display-4 p-4 text-center">Welcome to the Upwork clone! Choose one</div>
   	  <div class="row justify-content-center">
   	  	<div class="col-md-4">
   	  		<div class="card shadow">
