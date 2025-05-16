@@ -80,39 +80,5 @@ if (isset($_POST['loginUserBtn'])) {
 
 if (isset($_GET['logoutUserBtn'])) {
 	unset($_SESSION['username']);
-	header("Location: ../login.php");
-}
-
-if (isset($_POST['createNewGig'])) {
-	echo insertNewGig(
-						$pdo, 
-						$_POST['title'], 
-						$_POST['description'], 
-						$_SESSION['user_id']
-					);
-}
-
-if (isset($_POST['insertNewGigInterview'])) {
-	echo insertNewGigInterview(
-								$pdo, 
-								$_POST['gig_id'], 
-								$_POST['freelancer_id'], 
-								$_POST['time_start'], 
-								$_POST['time_end']
-							);
-}
-
-if (isset($_POST['deleteGig'])) {
-	if (deleteGig($pdo,$_POST['gig_id'])) {
-		return true;
-	}
-}
-
-if (isset($_POST['updateGig'])) {
-	echo updateGig(
-					$pdo, 
-					$_POST['title'], 
-					$_POST['description'], 
-					$_POST['gig_id']
-				);
+	header("Location: ../index.php");
 }
