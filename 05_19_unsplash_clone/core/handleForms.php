@@ -54,12 +54,12 @@ if (isset($_POST['loginUserBtn'])) {
 		$userIDFromDB = $loginQuery['userInfoArray']['user_id'];
 		$usernameFromDB = $loginQuery['userInfoArray']['username'];
 		$passwordFromDB = $loginQuery['userInfoArray']['password'];
-		$isAdminStatusFromDB = $loginQuery['userInfoArray']['is_client'];
+		$isAdminStatusFromDB = $loginQuery['userInfoArray']['is_admin'];
 
 		if (password_verify($password, $passwordFromDB)) {
 			$_SESSION['user_id'] = $userIDFromDB;
 			$_SESSION['username'] = $usernameFromDB;
-			$_SESSION['is_client'] = $isAdminStatusFromDB;
+			$_SESSION['is_admin'] = $isAdminStatusFromDB;
 			header("Location: ../index.php");
 		}
 
@@ -80,5 +80,65 @@ if (isset($_POST['loginUserBtn'])) {
 
 if (isset($_GET['logoutUserBtn'])) {
 	unset($_SESSION['username']);
+	unset($_SESSION['user_id']);
+	unset($_SESSION['is_admin']);
 	header("Location: ../index.php");
+}
+
+
+if (isset($_POST['insertCategoryBtn'])) {
+	$category_name = ucfirst($_POST['category_name']);
+	$user_id = $_SESSION['user_id'];
+	if (insertNewCategory($pdo, $category_name, $user_id)) {
+		header("Location: ../categories.php");
+	}
+}
+
+
+if (isset($_POST['insertImageFileBtn'])) {
+
+	// Allowed file types	
+	$allowed_file_types = ['jpg', 'jpeg', 'png'];
+
+	// Get file name
+	$fileName = $_FILES['image']['name'];
+
+	// Get temporary file name
+	$tempFileName = $_FILES['image']['tmp_name'];
+
+	// Get photo description from form
+	$photoDescription = $_POST['photoDescription'];
+
+	// Get category name from form
+	$category_name = $_POST['category_name'];
+
+	// Get file extension
+	$fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+	// Generate random characters for image name
+	$uniqueID = sha1(md5(rand(1,9999999)));
+
+	// Combine image name and file extension
+	$imageName = $uniqueID.".".$fileExtension;
+
+	// Specify path
+	$folder = "../files/".$imageName;
+
+	// Move file to the specified path 
+	if (in_array($fileExtension, $allowed_file_types)) {
+		if (move_uploaded_file($tempFileName, $folder)) {
+			if (insertPhoto($pdo, $imageName, $photoDescription, $_SESSION['user_id'], $category_name)) {
+				$_SESSION['message'] = "File saved successfully!";
+				$_SESSION['status'] = "200";
+				header("Location: ../index.php");
+			}
+		}
+	}
+	else {
+		$_SESSION['message'] = "Only image files are allowed!";
+		$_SESSION['status'] = "404";
+		header("Location: ../submit_a_photo.php");
+	}
+
+	
 }

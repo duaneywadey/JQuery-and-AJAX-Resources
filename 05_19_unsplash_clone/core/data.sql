@@ -19,8 +19,9 @@ CREATE TABLE unsplash_categories (
 CREATE TABLE unsplash_photos (
     unsplash_photo_id INT AUTO_INCREMENT PRIMARY KEY,
     photo_name TEXT,
+    photo_description TEXT,
     user_id INT,
-    category_name VARCHAR (255),
+    category_name VARCHAR (255) DEFAULT "Others",
     date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

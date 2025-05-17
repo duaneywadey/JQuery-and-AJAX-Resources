@@ -17,24 +17,26 @@
         <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="submit_a_photo.php">Submit a Photo</a>
       </li>
+      <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == '1') { ?>
       <li class="nav-item">
         <a class="nav-link" href="categories.php">
           Categories
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="accounts.php">
+        <a class="nav-link" href="all_accounts.php">
           All Accounts
         </a>
       </li> 
+      <?php } ?>
+
+      <?php if (isset($_SESSION['username'])) { ?>
       <li class="nav-item">
         <a class="nav-link" href="core/handleForms.php?logoutUserBtn=1">Logout</a>
       </li>
+      <?php } ?>
     </ul>
   </div>
 </nav>
