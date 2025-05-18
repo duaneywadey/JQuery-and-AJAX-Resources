@@ -43,13 +43,18 @@
       <?php $getAllPhotos = getAllPhotos($pdo); ?>
       <?php foreach ($getAllPhotos as $row) { ?>
       <div class="col-4 mt-4">
-        <div class="card shadow">
+        <div class="card shadow" unsplash_photo_id="<?php echo $row['unsplash_photo_id']; ?>" photo_name="<?php echo $row['photo_name']; ?>">
           <div class="card-body">
             <a class="example-image-link" href="files/<?php echo $row['photo_name']; ?>" data-lightbox="example-set" data-title="<?php echo $row['photo_description']; ?>"><img class="example-image img-fluid" src="files/<?php echo $row['photo_name']; ?>" alt="" /></a>
-            <button class="btn btn-danger mt-4 float-right">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
-            <h5><?php echo $row['photo_description']; ?></h5>
-            <h6><?php echo $row['username']; ?></h6>
-            <p><i><?php echo $row['date_added']; ?></i></p>
+
+            <?php if (isset($_SESSION['username']) && $_SESSION['user_id'] == $row['user_id']) { ?>
+              <button class="btn btn-danger mt-4 float-right deletePhotoBtn">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+            <?php } ?>
+
+            <h5><?php echo $row["photo_description"]; ?></h5>
+            <h6><?php echo $row["username"]; ?></h6>
+            <h6><?php echo $row["category_name"]; ?></h6>
+            <p><i><?php echo $row["date_added"]; ?></i></p>
           </div>
         </div>
       </div>
@@ -58,6 +63,40 @@
   </div>
   <?php include 'includes/footer.php'; ?>
   <script>
+    $('.categorySelectField').on('change', function (event) {
+      $.ajax({
+        type:"POST",
+        url:"core/handleForms.php",
+        data: {
+          category_name: $(this).val(),
+          showImagesByCategory: 1
+        },
+        success: function (data) {
+          $('.photoContainers').html(data);
+        }
+      })
+    })
+    $('.deletePhotoBtn').on('click', function (event) {
+      event.preventDefault();
+      var cardElement = $(this).closest('.card');
+      if (confirm("Are you sure you want to delete this photo?")) {
+        $.ajax({
+          type:"POST",
+          url:"core/handleForms.php",
+          data: {
+            unsplash_photo_id: cardElement.attr('unsplash_photo_id'),
+            photo_name: cardElement.attr('photo_name'),
+            deletePhoto:1 
+          },
+          success: function (data) {
+            cardElement.fadeOut();
+            setTimeout(function() {
+              location.reload();
+            }, 1000);
+          }
+        })
+      }
+    })
   </script>
 </body>
 </html>

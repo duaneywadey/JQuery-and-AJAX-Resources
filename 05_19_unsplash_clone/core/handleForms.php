@@ -126,12 +126,19 @@ if (isset($_POST['insertImageFileBtn'])) {
 
 	// Move file to the specified path 
 	if (in_array($fileExtension, $allowed_file_types)) {
-		if (move_uploaded_file($tempFileName, $folder)) {
-			if (insertPhoto($pdo, $imageName, $photoDescription, $_SESSION['user_id'], $category_name)) {
-				$_SESSION['message'] = "File saved successfully!";
-				$_SESSION['status'] = "200";
-				header("Location: ../index.php");
+		if (!checkIfUserSuspended($pdo, $_SESSION['user_id'])) {
+			if (move_uploaded_file($tempFileName, $folder)) {
+				if (insertPhoto($pdo, $imageName, $photoDescription, $_SESSION['user_id'], $category_name)) {
+					$_SESSION['message'] = "File saved successfully!";
+					$_SESSION['status'] = "200";
+					header("Location: ../index.php");
+				}
 			}
+		}
+		else {
+			$_SESSION['message'] = "Account is suspended!";
+			$_SESSION['status'] = "404";
+			header("Location: ../submit_a_photo.php");
 		}
 	}
 	else {
@@ -142,3 +149,55 @@ if (isset($_POST['insertImageFileBtn'])) {
 
 	
 }
+
+if (isset($_POST['deletePhoto'])) {
+	$unsplash_photo_id = $_POST['unsplash_photo_id'];
+	$photo_name = $_POST['photo_name'];
+	echo deletePhoto($pdo, $unsplash_photo_id, $photo_name);
+}
+if (isset($_POST['deleteCategory'])) {
+	$unsplash_category_id = $_POST['unsplash_category_id'];
+	echo deleteCategory($pdo, $unsplash_category_id);
+}
+
+if (isset($_POST['suspendOrUnspendUser'])) {
+	$suspend_or_unsuspend = $_POST['suspend_or_unsuspend'];
+	$user_id = $_POST['user_id'];
+	echo suspendOrUnspendUser($pdo, $suspend_or_unsuspend, $user_id);
+}
+
+if (isset($_POST['showImagesByCategory'])) {
+
+    $category_name = $_POST['category_name'];
+
+    $getAllPhotos = getAllPhotos($pdo, $category_name);
+
+    if (!empty($getAllPhotos)) {
+        foreach ($getAllPhotos as $row) {
+            echo '<div class="col-4 mt-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <a class="example-image-link" 
+                            	href="files/'. $row['photo_name'] . '" 
+                            	data-lightbox="example-set" 
+                            	data-title="' . $row['photo_description'] . '">
+
+                            	<img class="example-image img-fluid" 
+                            		 src="files/' . $row['photo_name'] . '" 
+                            		 alt="' . $row['photo_description'] . '" /></a>
+                            
+                            <button class="btn btn-danger mt-4 float-right">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                            
+                            <h5>' . $row["photo_description"] . '</h5>
+                            <h6>' . $row["username"] . '</h6>
+                            <h6>' . $row["category_name"] . '</h6>
+                            <p><i>' . $row["date_added"] . '</i></p>
+                        </div>
+                    </div>
+                </div>';
+        }
+    } else {
+        echo '<p>No images found in the category: ' . $category_name . '</p>';
+    }
+}
+?>

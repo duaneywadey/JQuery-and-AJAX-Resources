@@ -35,6 +35,7 @@
 						      <td><?php echo $row['first_name']; ?></td>
 						      <td><?php echo $row['last_name']; ?></td>
 						      <td><?php echo $row['date_added']; ?></td>
+						      <input type="hidden" class="user_id" value="<?php echo $row['user_id']; ?>">
 						      <td>
 						      	<?php
 						      	if ($row['is_admin'] == '1') {
@@ -52,14 +53,14 @@
 						      			echo "<span class='text-success'>Active</span>";
 						      		}
 						      		else {
-						      			echo "<span class='text-danger'>Suspended</span>";
+						      			echo "<span class='text-danger'><strong>Suspended</strong></span>";
 						      		}
 						      	?>
 						      </td>
 						      <td>
 						      	<select class="suspendSelectInputField form-control">
 						      		<option value="">Change Account Status</option>
-						      		<option value="Suspended">Suspend</option>
+						      		<option value="Suspend">Suspend</option>
 						      		<option value="Unsuspend">Unsuspend</option>
 						      	</select>
 						      </td>
@@ -74,6 +75,23 @@
     </div>
   <?php include 'includes/footer.php'; ?>
   <script>
+  	$('.suspendSelectInputField').on('change', function (event) {
+  		if ($(this).val() != "") {
+  			event.preventDefault();
+  			$.ajax({
+  				type:"POST",
+  				url:"core/handleForms.php",
+  				data: {
+  					suspend_or_unsuspend: $(this).val(),
+  					user_id: $(this).closest('tr').find('.user_id').val(),
+  					suspendOrUnspendUser:1
+  				},
+  				success: function (data) {
+  					location.reload();
+  				}
+  			})
+  		}
+  	})
   </script>
   </body>
  </html>

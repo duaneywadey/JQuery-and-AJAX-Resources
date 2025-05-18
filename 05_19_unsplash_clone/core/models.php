@@ -95,6 +95,7 @@ function deleteCategory($pdo, $unsplash_category_id) {
 
 function getAllCategories($pdo) {
 	$sql = "SELECT 
+				unsplash_categories.unsplash_category_id AS unsplash_category_id, 
 				unsplash_categories.category_name AS category_name, 
 				unsplash_categories.date_added AS date_added, 
 				unsplash_users.username AS username
@@ -129,49 +130,65 @@ function getAllPhotos($pdo, $category_name="") {
 
 	if ($category_name != "") {
 		$sql = "SELECT 
-				unsplash_photos.photo_name, 
-				unsplash_photos.photo_description, 
-				unsplash_photos.date_added, 
-				unsplash_users.username
-			FROM unsplash_photos
-			JOIN unsplash_users ON 
-				unsplash_photos.user_id = unsplash_users.user_id
-			WHERE unsplash_photos.category_name = ?
-			ORDER BY unsplash_photos.date_added DESC
-			";
+					unsplash_photos.user_id, 
+					unsplash_photos.unsplash_photo_id, 
+					unsplash_photos.photo_name, 
+					unsplash_photos.photo_description, 
+					unsplash_photos.date_added, 
+					unsplash_photos.category_name, 
+					unsplash_users.username
+				FROM unsplash_photos
+				JOIN unsplash_users ON 
+					unsplash_photos.user_id = unsplash_users.user_id
+				WHERE unsplash_photos.category_name = ?
+				ORDER BY unsplash_photos.date_added DESC
+				";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute([$category_name]);
 	}
 
 	else {
 		$sql = "SELECT 
-				unsplash_photos.photo_name, 
-				unsplash_photos.photo_description, 
-				unsplash_photos.date_added, 
-				unsplash_users.username
-			FROM unsplash_photos
-			JOIN unsplash_users ON 
-				unsplash_photos.user_id = unsplash_users.user_id
-			ORDER BY unsplash_photos.date_added DESC
-			";
-		$stmt = $pdo->prepare($sql);
+					unsplash_photos.user_id, 
+					unsplash_photos.unsplash_photo_id, 
+					unsplash_photos.photo_name, 
+					unsplash_photos.photo_description, 
+					unsplash_photos.category_name, 
+					unsplash_photos.date_added, 
+					unsplash_users.username
+				FROM unsplash_photos
+				JOIN unsplash_users ON 
+					unsplash_photos.user_id = unsplash_users.user_id
+				ORDER BY unsplash_photos.date_added DESC
+				";
+			$stmt = $pdo->prepare($sql);
 		$stmt->execute();
 	}
 	return $stmt->fetchAll();
 }
 
 
-function suspendOrUnspend($pdo, $suspend_or_unsuspend, $user_id) {
+function suspendOrUnspendUser($pdo, $suspend_or_unsuspend, $user_id) {
 	if ($suspend_or_unsuspend == "Suspend") {
-		$sql = "UPDATE FROM unsplash_users SET is_suspended = '1'
+		$sql = "UPDATE unsplash_users SET is_suspended = '1'
 				WHERE user_id = ?
 				";
 	}
 	if ($suspend_or_unsuspend == "Unsuspend") {
-		$sql = "UPDATE FROM unsplash_users SET is_suspended = '0'
+		$sql = "UPDATE unsplash_users SET is_suspended = '0'
 				WHERE user_id = ?
 				";
 	}
 	$stmt = $pdo->prepare($sql);
 	return $stmt->execute([$user_id]);
+}
+
+function checkIfUserSuspended($pdo, $user_id) {
+	$sql = "SELECT user_id FROM unsplash_users 
+			WHERE is_suspended = '1' AND user_id = ?";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([$user_id]);
+	if ($stmt->rowCount() > 0) {
+		return true;
+	}
 }

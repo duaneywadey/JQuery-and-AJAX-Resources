@@ -32,11 +32,11 @@
 						  <tbody>
 						  	<?php $getAllCategories = getAllCategories($pdo); ?>
 						  	<?php foreach ($getAllCategories as $row) { ?>
-						    <tr>
+						    <tr unsplash_category_id = "<?php echo $row['unsplash_category_id']; ?>">
 						      <td><?php echo $row['category_name']; ?></td>
 						      <td><?php echo $row['username']; ?></td>
 						      <td><?php echo $row['date_added']; ?></td>
-						      <td><button class="btn btn-danger">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
+						      <td><button class="btn btn-danger deleteCategory">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></td>
 						    </tr>
 						  <?php } ?>
 						  </tbody>
@@ -48,6 +48,27 @@
     </div>
   <?php include 'includes/footer.php'; ?>
   <script>
+  	$('.deleteCategory').on('click', function (event) {
+  		event.preventDefault();
+  		var tableRow = $(this).closest('tr');
+  		var unsplash_category_id = tableRow.attr('unsplash_category_id');
+  		if (confirm("Are you sure you want to delete this category?")) {
+	  		$.ajax({
+	  			type:"POST",
+	  			url:"core/handleForms.php",
+	  			data: {
+	  				unsplash_category_id: unsplash_category_id,
+	  				deleteCategory:1
+	  			},
+	  			success:function (data) {
+	  				tableRow.fadeOut();
+	  				setTimeout(function() {
+              location.reload();
+            }, 1000);
+	  			}
+	  		})
+  		}
+  	})
   </script>
   </body>
  </html>
