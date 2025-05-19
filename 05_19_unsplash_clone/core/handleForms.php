@@ -186,15 +186,14 @@ if (isset($_POST['showImagesByCategory'])) {
                             		 src="files/' . $row['photo_name'] . '" 
                             		 alt="' . $row['photo_description'] . '" /></a>
                             
-                            <button class="btn btn-danger mt-4 float-right">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
                             
-                            <h5>' . $row["photo_description"] . '</h5>
-                            <h6>' . $row["username"] . '</h6>
-                            <h6>' . $row["category_name"] . '</h6>
-                            <p><i>' . $row["date_added"] . '</i></p>
-                        </div>
-                    </div>
-                </div>';
+	                            <h5>' . $row["photo_description"] . '</h5>
+	                            <h6>' . $row["username"] . '</h6>
+	                            <h6>' . $row["category_name"] . '</h6>
+	                            <p><i>' . $row["date_added"] . '</i></p>
+	                        </div>
+	                    </div>
+	                </div>';
         }
     } else {
         echo '<p>No images found in the category: ' . $category_name . '</p>';
