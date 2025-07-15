@@ -14,16 +14,15 @@ class checkLogin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
-    {
-        echo '<h3 style="color:green">We are now in ValidUser middleware</h3>';
-        echo '<h3 style="color:red">Role:' . $role . '</h3>';
-        return $next($request);
-
-        if (Auth::user()->role == $role) {
+    public function handle(Request $request, Closure $next): Response
+    {        
+        if (Auth::user() && Auth::user()->role == "client"){
+            return redirect()->route('showdashboard');
+        }
+        if (Auth::user() && Auth::user()->role == "admin"){
             return $next($request);
         }
-        elseif (Auth::user()->role == "client"){
-            return redirect()->route('addcustomer');
+        else {
+            return redirect()->route('login');
         }
     }}

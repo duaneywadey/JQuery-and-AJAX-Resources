@@ -42,4 +42,31 @@ class UserController extends Controller
         Auth::logout();
         return view('login');
     }
+    public function userprofile() {
+
+        if (Auth::user()) {
+            $users = User::all();
+            $user_id = Auth::user()->id;
+            return view('userprofile', ['users'=>$users, 'user_id'=>$user_id]);
+        }
+        else {
+            return redirect()->route('login')->with('message', 'You must login first');
+        }
+    }
+    public function edituserprofile(Request $request) {
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email'
+        ]);
+
+        $userEntity = new User();
+        $data = $userEntity->find($request->id);
+
+        if ($data) {
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->save();
+            return redirect()->route('userprofile');
+        }
+    }
 }

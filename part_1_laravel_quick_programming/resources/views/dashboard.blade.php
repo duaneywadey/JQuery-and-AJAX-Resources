@@ -6,8 +6,8 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Welcome to the dashboard</h1>
-	<h3>Logged in users only</h3>
+	<h1>Client page</h1>
+	<h3>For client users only</h3>
 
 	<a href="#">Home</a> . <a href="#">Dashboard</a>
 </body>

@@ -9,7 +9,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 
 // Import middleware
-use App\Http\Middleware\ValidUser;
 use App\Http\Middleware\TestUser;
 use App\Http\Middleware\checkLogin;
 
@@ -21,14 +20,10 @@ Route::get('/users', function () {
     return view('user');
 });
 
-Route::get('/user/{id}', function ($id) {
-    $sampleMessage = "Good evening!!!";
-    return view('user', ['id'=>$id, 'sampleMessage'=>$sampleMessage]);
-});
 
 
 // From PageController
-Route::middleware(['checkLogin:admin'])->group(function(){
+Route::middleware(['checkLogin', TestUser::class])->group(function(){
     Route::get('/about', [PageController::class, 'about'])->name('about');
     Route::get('/about/{id}', [PageController::class, 'about'])->name('about');
     Route::get('/showform',[PageController::class,'showForm'])->name('showForm');
@@ -43,7 +38,7 @@ Route::middleware(['checkLogin:admin'])->group(function(){
 // Route::post('/handleForm',[PageController::class,'handleForm'])->name('handleForm');
 
 // From CustomerController
-Route::get('/addcustomer',[CustomerController::class,'addcustomer'])->name('addcustomer')->middleware(ValidUser::class, TestUser::class);
+Route::get('/addcustomer',[CustomerController::class,'addcustomer'])->name('addcustomer')->middleware(TestUser::class);
 Route::post('/insertcustomer',[CustomerController::class,'insertcustomer'])->name('insertcustomer');
 Route::post('/deletecustomer/{id}', [CustomerController::class, 'deletecustomer'])->name('deletecustomer');
 Route::get('/editcustomer/{id}', [CustomerController::class, 'editcustomer'])->name('editcustomer');
@@ -58,6 +53,8 @@ Route::post('/registersave',[UserController::class,'registersave'])->name('regis
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('/loginsave',[UserController::class,'loginsave'])->name('loginsave');
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
+Route::get('/userprofile', [UserController::class, 'userprofile'])->name('userprofile');
+Route::post('/edituserprofile', [UserController::class, 'edituserprofile'])->name('edituserprofile');
 
 
 
